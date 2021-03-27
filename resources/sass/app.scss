@@ -1,0 +1,29 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Fontawasome
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+
+// CoreUI
+@import "~@coreui/coreui/scss/coreui";
+
+// My Styles
+
+@import 'styles';
+
+body{
+    color: black !important;
+
+    div.col, div.col-3 {
+        label{
+            color: black !important;
+        }
+    }
+}

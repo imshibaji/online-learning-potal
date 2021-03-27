@@ -1,0 +1,13 @@
+{
+    "name": "Larnr",
+    "alias": "larnr",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Larnr\\Providers\\LarnrServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
