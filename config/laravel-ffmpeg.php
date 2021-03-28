@@ -8,6 +8,7 @@ return [
 
     'ffprobe' => [
         'binaries' => env('FFPROBE_BINARIES', 'ffprobe'),
+        // 'binaries' => env('FFPROBE_BINARIES', '/usr/bin/ffprobe'),
     ],
 
     'timeout' => 3600,

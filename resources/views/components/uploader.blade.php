@@ -6,3 +6,26 @@
         </div>
     </form>
 </div>
+
+<div id="app">
+    <file-uploader
+            :unlimited="true"
+            collection="avatars"
+            name="media"
+            :tokens="{{ json_encode(old('media', [])) }}"
+            label="Upload Avatar"
+            notes="Supported types: jpeg, png,jpg,gif"
+            {{-- accept="image/jpeg,image/png,image/jpg,image/gif" --}}
+    ></file-uploader>
+</div>
+
+@section('scripts')
+@parent
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/laravel-file-uploader"></script>
+<script>
+  new Vue({
+    el: '#app'
+  })
+</script>
+@endsection

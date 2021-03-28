@@ -7,7 +7,7 @@
         </video>
     </div>
     <div class="w-100 btn-group">
-        <input id="file" class="btn btn-success" type="file" name="{{$name}}" accept="video/*" />
+        <input id="video" class="btn btn-success" type="file" name="{{$name}}" accept="video/*" value="{{ $src ?? ''}}" />
         {{-- <input class="btn btn-info" type="submit" value="Upload" /> --}}
     </div>
     {{-- </form> --}}
@@ -16,7 +16,7 @@
 @section('scripts')
 @parent
 <script>
-$(document).on("change", "#file", function(evt) {
+$(document).on("change", "#video", function(evt) {
   var $source = $('#video_here');
   $source[0].src = URL.createObjectURL(this.files[0]);
   $source.parent()[0].load();

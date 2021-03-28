@@ -3,11 +3,9 @@
 namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
-use Plank\Mediable\Mediable;
 
 class Course extends Model
 {
-    use Mediable;
     // protected $guarded = ['_token'];
     // protected $fillable = [
     //     'title',

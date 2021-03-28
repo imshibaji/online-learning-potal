@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Video;
+use FFMpeg\Filters\Video\VideoFilters;
+use FFMpeg\Format\Video\X264;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class VideoController extends Controller
 {
@@ -17,7 +22,8 @@ class VideoController extends Controller
     public function index()
     {
         $videos = Video::all();
-        return view('admin.videos.list', compact('videos'));
+        $title = 'Video List';
+        return view('admin.videos.list', compact('videos', 'title'));
     }
 
     /**
@@ -27,8 +33,8 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
-
+        return view('admin.videos.add', ['title' => 'Video Uploader']);
+        // return phpinfo();
     }
 
     /**
@@ -39,7 +45,46 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $vid = new Video();
+        $vid->title = $request->input('title');
+        $vid->slug = $request->input('slag');
+
+        $video_data = $this->video($request);
+        $vid->image_path = $video_data['thumb'];
+        $vid->video_path = $video_data['video'];
+
+        $vid->keywords = $request->input('meta_keys');
+        $vid->description = $request->input('meta_desc');
+        $vid->details = $request->input('details');
+
+        $vid->save();
+
+        return redirect()->route('video.index');
+    }
+
+    public function video(Request $request){
+        $video = $img = null;
+
+        if($request->file('video')){
+            $path = basename(Storage::putFile(
+                'public/videos', $request->file('video')
+            ));
+            $video = 'videos/'.$path;
+        }
+
+        if($request->file('image')){
+           $img = 'thumbnails/'.basename(Storage::putFile('public/thumbnails', $request->file('image')));
+        }else if($request->file('video')){
+            $img = 'thumbnails/'.Str::random(16).'.png';
+            FFMpeg::fromDisk('public')
+            ->open('videos/'.$path)
+            ->getFrameFromSeconds(10)
+            ->export()
+            ->toDisk('public')
+            ->save($img);
+        }
+
+        return ['video' => $video, 'thumb' => $img ];
     }
 
     /**
@@ -50,7 +95,11 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $video = Video::find($id);
+        $videos = Video::all();
+        $title = $video->title;
+        return view('admin.videos.view', compact('video', 'videos', 'title'));
     }
 
     /**
@@ -61,7 +110,10 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.videos.edit', [
+            'title' => 'Video Uploader',
+            'video' => Video::find($id)
+        ]);
     }
 
     /**
@@ -73,7 +125,28 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vid = Video::find($id);
+        $vid->title = $request->input('title');
+        $vid->slug = $request->input('slag');
+
+        if($request->file('video')){
+            Storage::disk('public')->delete([$vid->image_path, $vid->video_path]);
+        }
+        if($request->file('image')){
+            Storage::disk('public')->delete([$vid->image_path]);
+        }
+        $video_data = $this->video($request);
+        $vid->image_path = $video_data['thumb'] ?? $vid->image_path;
+        $vid->video_path = $video_data['video'] ?? $vid->video_path;
+
+
+        $vid->keywords = $request->input('meta_keys');
+        $vid->description = $request->input('meta_desc');
+        $vid->details = $request->input('details');
+
+        $vid->save();
+
+        return redirect()->route('video.index');
     }
 
     /**
@@ -84,7 +157,11 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vid = Video::find($id);
+        Storage::disk('public')->delete([$vid->image_path, $vid->video_path]);
+        $vid->delete();
+
+        return redirect()->route('video.index');
     }
 
     public static function routes(){

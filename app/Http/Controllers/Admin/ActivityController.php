@@ -28,7 +28,9 @@ class ActivityController extends Controller
 
        $this->chartDataCreate($req);
 
-        return $req;    
+       dd($req);
+
+        return $req;
     }
 
     public function delete()
@@ -81,9 +83,9 @@ class ActivityController extends Controller
             ->get();
 
             $active = $active_user->sum('visits') - $new_user;
-            
+
             $d->active = $active;
-            // 
+            //
 
             $views = ActivityChart::where('date', $d->date )
             ->get()->sum('page_views');

@@ -82,8 +82,8 @@ Route::group(['domain' => 'app.larnr.com'], function(){
     Route::get('/migration', 'ManageController@migrate');
 
 
-    // Auth::routes(['verify' => true]);
-    Auth::routes();
+    Auth::routes(['verify' => true]);
+    // Auth::routes();
 
     NotificationController::routes();
 

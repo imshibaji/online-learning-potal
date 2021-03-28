@@ -7,12 +7,12 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col">
+                        <div class="col my-auto">
                             <h4>{{ $title ?? 'Admin Panel' }}</h4>
                         </div>
                         @section('quickbtn')
                             <div class="col text-right">
-                                <a href="{{url('/')}}/admin/user/add" class="btn btn-primary">Add New User</a>
+                                <a href="{{url('/')}}/admin/video/create" class="btn btn-primary">Add New Video</a>
                             </div>
                         @show
                     </div>

@@ -16,11 +16,13 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('path');
-            $table->time('duration')->nullable();
+            $table->string('slug');
+            $table->string('image_path');
+            $table->string('video_path');
             $table->string('keywords')->nullable();
             $table->string('description')->nullable();
             $table->text('details')->nullable();
+            $table->string('status', 10)->default('free');
             $table->nullableMorphs('videoable');
             $table->timestamps();
         });
