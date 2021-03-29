@@ -6,13 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
     <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
     {{--<link href="{{ url('/') }}/css/style.css" rel="stylesheet"> --}}
     <link href="{{ url('/') }}/css/app.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P440VPMBYV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P440VPMBYV');
+</script>
 @section('headers')
 @show
 </head>
@@ -21,7 +30,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-mycolor fixed-top">
         <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="https://www.larnr.com">
             <img src="{{ url('/') }}/imgs/app-icon-114.png" class="img-thumbnail-icon">
             {{config('app.name')}}
         </a>
@@ -35,16 +44,16 @@
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/">Finder <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
+                {{-- <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/courses">Online Courses</a>
-                </li>
+                </li> --}}
                 <li class="nav-item {{ Request::is('about') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/about">About Me</a>
                 </li>
                 {{-- <li class="nav-item {{ Request::is('plans') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/plans">Price Plans</a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link hover-nav" href="#">Professional Courses</a>
                 </li> --}}
@@ -109,13 +118,13 @@
         <div class="container">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Testimonials</a>
+                    <a class="nav-link active" href="https://www.shibajidebnath.com/testimonials/">Testimonials</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Payments Options</a>
+                    <a class="nav-link" href="https://www.shibajidebnath.com/payment/">Payments Options</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Terms and Condition</a>
+                    <a class="nav-link active" href="https://www.shibajidebnath.com/terms-and-conditions/">Terms and Condition</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Privacy Policy</a>
@@ -143,18 +152,18 @@
     </div>
 
 @section('footers')
-@show                       
+@show
     <script src="{{url('/')}}/js/app.js"></script>
     <script src="{{url('/')}}/js/script.js"></script>
 
     @error('email')
-        <div class="alert alert-danger alert-dismissible fade show" 
-        style="position: absolute; left:30%; top:10%; z-index:3000;" 
+        <div class="alert alert-danger alert-dismissible fade show"
+        style="position: absolute; left:30%; top:10%; z-index:3000;"
         role="alert">
             {{ $message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-            </button>       
+            </button>
         </div>
     @enderror
     <script>

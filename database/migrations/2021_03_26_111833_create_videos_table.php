@@ -24,6 +24,7 @@ class CreateVideosTable extends Migration
             $table->text('details')->nullable();
             $table->string('status', 10)->default('free');
             $table->nullableMorphs('videoable');
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }

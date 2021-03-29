@@ -1,0 +1,27 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Bootstrap
+@import './bootstrap.min.css';
+
+.bg-blue{
+    background-color: #088cd8;
+}
+@media(max-width: 768px){
+    .hover-nav {
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+.hover-nav:hover{
+    animation: navhover 1s forwards;
+}
+
+@keyframes navhover{
+    to {
+        background-color: #eee;
+        color: black;
+        border-radius: 2px;
+        box-shadow: 0px 0px 8px #888888;
+    }
+}

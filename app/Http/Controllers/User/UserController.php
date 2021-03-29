@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\CourseAssignment;
 use App\Models\Topic;
 use App\Models\UserAssesment;
+use App\Models\Video;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -31,15 +32,17 @@ class UserController extends Controller
         }
         return $courses;
     }
-    
+
     public function index(){
         Artisan::call('inspire');
         $inspaire = Artisan::output();
         $allcourses = Course::where('status', 'active')->orderBy('short')->get() ?? [];
         $mycourses = CourseAssignment::where('user_id', Auth::id())->get() ?? [];
-        
+        // $videos = Video::inRandomOrder()->limit(8)->get();
+        $videos = Video::all();
+
         $courses = $allcourses;
-        
+
         foreach($allcourses as $key => $allc){
             foreach($mycourses as $myc){
                 if($allc->id == $myc->course->id){
@@ -48,7 +51,13 @@ class UserController extends Controller
             }
         }
 
-        return view('users.home', compact(['inspaire', 'courses']));
+        return view('users.home', compact(['inspaire', 'courses', 'videos']));
+    }
+    public function video($slug){
+        $video = Video::where('slug', $slug)->first();
+        $videos = Video::inRandomOrder()->limit(3)->get();
+        $title = $video->title;
+        return view('users.video', compact('video', 'videos', 'title'));
     }
 
     public function course($id){
@@ -76,7 +85,7 @@ class UserController extends Controller
             $course = Course::find($req->id);
             $topics = $course->topics()->orderBy('short')->get();
             $topic = Topic::find($req->tid);
-            
+
             // $topic = $course->topics()->orderBy('short')->paginate(1);
             // dd($topic);
 
@@ -93,12 +102,12 @@ class UserController extends Controller
         $assesments = Auth::user()->userAssesments()->where('topic_id', $req->tid)->get();
         $topics = Auth::user()->topicAssignments;
         $topic = Topic::find($req->tid);
-        
+
 
         return view('users.courses', [
             'title' => 'My Courses Area',
-            'courses' => $courses, 
-            'topics' => $topics, 
+            'courses' => $courses,
+            'topics' => $topics,
             'topic' => $topic,
             'assesments' => $assesments
         ]);
@@ -110,12 +119,12 @@ class UserController extends Controller
         $assesments = Auth::user()->userAssesments()->where('topic_id', $req->tid)->get();
         $topics = Auth::user()->topicAssignments;
         $topic = Topic::find($req->tid);
-        
+
 
         return view('users.learn', [
             'title' => 'Learning Section',
-            'courses' => $courses, 
-            'topics' => $topics, 
+            'courses' => $courses,
+            'topics' => $topics,
             'topic' => $topic,
             'assesments' => $assesments
         ]);
@@ -177,12 +186,12 @@ class UserController extends Controller
             }
         }
 
-        $assesment = [ 
+        $assesment = [
             'topic' => $topic->title,
             'report' => $report,
-            'design' => $design_points, 
-            'development' => $development_points, 
-            'debug' => $debugging_points, 
+            'design' => $design_points,
+            'development' => $development_points,
+            'debug' => $debugging_points,
             'total' => $marks
         ];
 

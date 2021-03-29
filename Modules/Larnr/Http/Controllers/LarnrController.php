@@ -2,6 +2,7 @@
 
 namespace Modules\Larnr\Http\Controllers;
 
+use App\Models\Video;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -14,9 +15,19 @@ class LarnrController extends Controller
      */
     public function index()
     {
-        return view('larnr::index');
+        $videos = Video::inRandomOrder()->limit(12)->get();
+        // return $videos;
+        return view('larnr::index', compact('videos'));
     }
 
+    public function video($id){
+        $video = Video::find(base64_decode($id));
+        $videos = Video::inRandomOrder()->limit(3)->get();
+        $title = $video->title;
+        $keywords = $video->keywords;
+        $description = $video->description;
+        return view('larnr::video', compact('video', 'videos', 'title', 'keywords', 'description'));
+    }
     /**
      * Show the form for creating a new resource.
      * @return Renderable

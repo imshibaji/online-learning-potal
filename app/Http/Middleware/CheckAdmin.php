@@ -22,7 +22,7 @@ class CheckAdmin
         if($user->user_type == 'admin' || $user->user_type == 'stuff'){
             return $next($request);
         }else{
-            return redirect('/user');
-        } 
+            return redirect(route('user'));
+        }
     }
 }

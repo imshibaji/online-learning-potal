@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
     <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet">--}}
@@ -14,6 +14,15 @@
     {{-- <link href="{{ url('/') }}/css/style.css" rel="stylesheet"> --}}
     <link href="{{ url('/') }}/css/app.css" rel="stylesheet">
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P440VPMBYV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P440VPMBYV');
+</script>
 @section('headers')
 @show
 </head>
@@ -22,7 +31,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-mycolor fixed-top">
         <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="https://www.larnr.com">
             <img src="{{ url('/') }}/imgs/app-icon-114.png" class="img-thumbnail-icon">
             {{ config('app.name') }}
         </a>
@@ -44,9 +53,9 @@
                     {{-- <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('usercourses')}}">Courses</a>
                     </li> --}}
-                    <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
-                    </li>
+                    </li> --}}
 
                     {{-- It Will be Used In feuture --}}
                     {{-- <li class="nav-item {{ Request::is('user/learn') ? 'active' : '' }}">

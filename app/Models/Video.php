@@ -12,4 +12,8 @@ class Video extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia, HasUploader;
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

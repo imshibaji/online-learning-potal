@@ -8,6 +8,9 @@ Route::get('/', 'UserController@index')->name('user');
 Route::get('courses', 'UserController@courses')->name('usercourses');
 Route::get('course/{id}', 'UserController@course')->name('usercourse');
 
+// Video
+Route::get('video/{slug}', 'UserController@video')->name('uservideo');
+
 // Before checkout
 Route::get('course-preview/{id}', 'UserController@course_preview')->name('usercpreview');
 Route::get('course-preview/{id}/{tid}', 'UserController@course_preview')->name('usertpreview');

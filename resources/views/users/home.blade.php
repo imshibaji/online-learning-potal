@@ -13,15 +13,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    
+
                     <x-alert :message="$inspaire" type="info" />
 
                     {{-- <user-main-dashboard></user-main-dashboard> --}}
 
                     <!-- <x-display /> -->
-                    
+
+                    <x-video-list :videos="$videos" />
+
                     <x-course-list :courses="$courses" />
-                    
+
                 </div>
             </div>
         </div>

@@ -24,7 +24,7 @@
 @parent
 <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
 <style>
-.video-js .vjs-big-play-button {top: 45%;left: 45%;font-size: 15px;line-height: 30px;height: 30px;width: 30px;border-radius: 50%;}
+.video-js .vjs-big-play-button {background-color: #088cd8;top: 45%;left: 45%;font-size: 25px;line-height: 50px;height: 50px;width: 50px;border-radius: 50%;}
 </style>
 
 @endsection

@@ -7,8 +7,8 @@
         <div class="card">
             <img src="{{ url('storage/'.$video->image_path) }}" class="card-img-top" alt="{{$video->title}}">
             <div class="card-body">
-              <h5 class="card-title">{{ Str::substr($video->title, 0, 20) }}...</h5>
-              <p class="card-text">{{ Str::substr($video->description, 0, 60)}}...</p>
+              <h6 class="card-title">{{ Str::substr($video->title, 0, 25) }}...</h6>
+              <p class="card-text">{{ Str::substr($video->description, 0, 50)}}...</p>
               <div class="text-center">
                 <div class="btn-group">
                     <a href="{{ url('admin/video/'. $video->id)}}" class="btn btn-primary">View</a>
@@ -17,7 +17,7 @@
                   </div>
               </div>
             </div>
-          </div>
+        </div>
     </div>
     @endforeach
 </div>
