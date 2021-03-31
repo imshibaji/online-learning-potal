@@ -19,14 +19,14 @@ class PaymentController extends Controller
     {
         // Actual Server
         // $this->api = new Instamojo(
-        //     '76f6824a7366d4190ea320862a56daa1', 
-        //     '960a6744f56190e48467bcd3b5305a40', 
+        //     '76f6824a7366d4190ea320862a56daa1',
+        //     '960a6744f56190e48467bcd3b5305a40',
         // );
 
         // Test Server
         $this->api = new Instamojo(
-            env('INSTA_API_KEY'), 
-            env('INSTA_API_TOKEN'), 
+            env('INSTA_API_KEY'),
+            env('INSTA_API_TOKEN'),
             env('INSTA_END_POINT')
         );
     }
@@ -53,7 +53,7 @@ class PaymentController extends Controller
         }
     }
 
-    // 
+    //
     public function pay(Request $req)
     {
         try {
@@ -118,7 +118,7 @@ class PaymentController extends Controller
                 'payments' => json_encode($response['payments'])
             ]);
 
-            
+
             // Final Process
             if($payment_status == 'Credit'){
                 $this->money_trasection('Add Money By Instamojo', $response['amount'], $payment_status);
@@ -138,7 +138,7 @@ class PaymentController extends Controller
     {
         try {
             $response = $this->api
-            ->paymentRequestsList(10, 1, 
+            ->paymentRequestsList(10, 1,
             '2020-04-10T13:41:55.142211Z',
             '2020-04-10T13:41:55.142233Z'
         );
@@ -151,7 +151,7 @@ class PaymentController extends Controller
 
     private function free_course_assign($user_id, $course_id){
         $ca = CourseAssignment::firstOrCreate([
-            'user_id'=> $user_id, 
+            'user_id'=> $user_id,
             'course_id' => $course_id
         ]);
         $ca->save();
@@ -161,7 +161,7 @@ class PaymentController extends Controller
     private function course_assign($pay_request_id){
         $pay = InstaMojoPayment::where('payment_id', $pay_request_id)->first();
         $ca = CourseAssignment::firstOrCreate([
-            'user_id'=> $pay->user_id, 
+            'user_id'=> $pay->user_id,
             'course_id' => $pay->course_id
         ]);
         $ca->save();
@@ -176,17 +176,17 @@ class PaymentController extends Controller
             $money->details = $purpose;
 
             // dd(strtolower($payment_status), $amount, $purpose);
-            
+
             if(strtolower($payment_status) == 'credit'){
                 $money->addition_amt = $amount;
                 $money->withdraw_amt = 0;
                 $money->balance_amt = ($premoney->balance_amt ?? 0) + $amount;
-    
+
             } elseif(strtolower($payment_status) == 'debit') {
                 $money->addition_amt = 0;
                 $money->withdraw_amt = $amount;
                 $money->balance_amt = ($premoney->balance_amt ?? 0) - $amount;
-    
+
             } elseif(strtolower($payment_status) == 'balance') {
                 $money->addition_amt = 0;
                 $money->withdraw_amt = 0;

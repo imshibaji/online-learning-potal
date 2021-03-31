@@ -8,6 +8,7 @@ use App\Models\Money;
 use App\Models\Topic;
 use App\Models\User;
 use Exception;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,10 +31,10 @@ class HomeController extends Controller
         $states = $this->getStates();
         $countries = $this->getCountry();
         $cities = $this->getCities();
-        
-        return view('fronts.main', 
+
+        return view('fronts.main',
         [
-            'states' => $states, 
+            'states' => $states,
             'countries' => $countries,
             'cities' => $cities
         ]);
@@ -44,7 +45,7 @@ class HomeController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-     
+
         $credentials = $req->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
@@ -63,10 +64,10 @@ class HomeController extends Controller
         $states = $this->getStates();
         $countries = $this->getCountry();
         $cities = $this->getCities();
-        
-        return view('fronts.signup', 
+
+        return view('fronts.signup',
         [
-            'states' => $states, 
+            'states' => $states,
             'countries' => $countries,
             'cities' => $cities
         ]);
@@ -96,6 +97,7 @@ class HomeController extends Controller
             'manage_by_user_id' => 1,
             'active' => true
         ]);
+        event(new Registered($user));
 
         $id = $user->id;
         if($id>0){
@@ -105,7 +107,7 @@ class HomeController extends Controller
                 'email' => 'required',
                 'password' => 'required',
             ]);
-         
+
             $credentials = $req->only('email', 'password');
             if (Auth::attempt($credentials)) {
                 // Authentication passed...
@@ -208,7 +210,7 @@ class HomeController extends Controller
         $gems = Auth::user()->gems()->get()->last();
 
         $userPay = Money::where('user_id',Auth::id())->get();
-        
+
         $chartData = $chartData->toArray();
 
         $task_name = array_map(function($data){
@@ -227,7 +229,7 @@ class HomeController extends Controller
             return $data['debug'];
         }, $chartData);
 
-        
+
         return [
             // User Activity Information
             'totalAmt' => $userPay->sum('addition_amt'),

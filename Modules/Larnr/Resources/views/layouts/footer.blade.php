@@ -3,10 +3,7 @@
     <div class="container">
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Testimonials</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Payments Options</a>
+                <a class="nav-link active" href="#">Sponserships</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="#">Terms and Condition</a>

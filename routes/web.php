@@ -19,17 +19,18 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 use App\Http\Controllers\Admin\NotificationController;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::group(['domain' => 'app.larnr.com'], function(){
     // Front Parts
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/signup', 'HomeController@register_page')->name('register_page');
-    Route::post('/signup', 'HomeController@signup')->name('signup');
-    Route::post('/signin', 'HomeController@signin')->name('signin');
+    Route::post('/signup', 'HomeController@signup')->middleware(ProtectAgainstSpam::class)->name('signup');
+    Route::post('/signin', 'HomeController@signin')->middleware(ProtectAgainstSpam::class)->name('signin');
 
     Route::post('/profile', 'HomeController@profile')->name('profilePost');
     Route::post('/change', 'HomeController@changePassword')->name('changePassword');
@@ -45,11 +46,11 @@ Route::group(['domain' => 'app.larnr.com'], function(){
     Route::get('/course-preview/{cid}', 'HomeController@course_preview')->name('homecpreview');
     Route::get('/course-preview/{cid}/{tid}', 'HomeController@course_preview')->name('hometpreview');
 
-    // Payment Controller
-    Route::get('/bill', 'PaymentController@bill')->name('bill');
-    Route::any('/payment', 'PaymentController@pay')->name('billpay');
-    Route::get('/payreport', 'PaymentController@report');
-    Route::get('/payreportlist', 'PaymentController@reportList');
+    // // Payment Controller
+    // Route::get('/bill', 'PaymentController@bill')->name('bill');
+    // Route::any('/payment', 'PaymentController@pay')->name('billpay');
+    // Route::get('/payreport', 'PaymentController@report');
+    // Route::get('/payreportlist', 'PaymentController@reportList');
 
 
 
@@ -104,7 +105,10 @@ Route::group(['domain' => 'app.larnr.com'], function(){
     ->namespace('User')->group(base_path('routes/users.php'));
 
 
-
+    // Route::get('{any}', function(){
+    //     return redirect()->route('user');
+    // });
+    Route::redirect('{any}', 'user', 301);
 
     Route::fallback('HomeController@error');
 

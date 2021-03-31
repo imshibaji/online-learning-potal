@@ -15,14 +15,14 @@ class LarnrController extends Controller
      */
     public function index()
     {
-        $videos = Video::inRandomOrder()->limit(12)->get();
+        $videos = Video::inRandomOrder()->limit(8)->get();
         // return $videos;
         return view('larnr::index', compact('videos'));
     }
 
     public function video($id){
         $video = Video::find(base64_decode($id));
-        $videos = Video::inRandomOrder()->limit(3)->get();
+        $videos = Video::inRandomOrder()->limit(4)->get();
         $title = $video->title;
         $keywords = $video->keywords;
         $description = $video->description;

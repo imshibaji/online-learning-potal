@@ -17,7 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 class UserController extends Controller
 {
-    
+    private $util;
+    public function __construct()
+    {
+        $this->util = (object) include_once(resource_path('utils/util.php'));
+    }
+
     // Users Area
     public function list(){
         $users = User::all();
@@ -25,8 +30,15 @@ class UserController extends Controller
         if(Auth::user()->user_type == 'stuff'){
             $users = Auth::user()->manages;
         }
-        return view('admin.users.list', ['title' => 'User List', 'users' => $users]);
+        $countries = $this->util->countries;
+
+        return view('admin.users.list', [
+            'title' => 'User List',
+            'users' => $users,
+            'countries' => $countries
+        ]);
     }
+
 
     public function add(){
         $users = User::all();
@@ -66,15 +78,15 @@ class UserController extends Controller
     public function update(Request $req){
         $inp = $req->input();
         $pass = User::find($inp['id'])->password;
-        if($inp['new_password']!= null){ 
+        if($inp['new_password']!= null){
             $pass = Hash::make($inp['new_password']);
         }
 
         $user = User::where('id', $inp['id'])
         ->update([
-            // 'name'=> $inp['name'], 
+            // 'name'=> $inp['name'],
             'password'=> $pass,
-            'fname'=>$inp['fname'], 
+            'fname'=>$inp['fname'],
             'lname' => $inp['lname'],
             'dob' => $inp['dob'],
             'profession' => $inp['profession'],
@@ -104,8 +116,8 @@ class UserController extends Controller
         $chart = UserChart::where('user_id', $user->id)->get();
 
         return view('admin.users.view', [
-            'title' => 'User Details', 
-            'user' => $user, 
+            'title' => 'User Details',
+            'user' => $user,
             'courses' => $courses,
             'learn' => $learning,
             'charts' => $chart,
@@ -117,12 +129,48 @@ class UserController extends Controller
 
     public function delete(User $user){
         $out = $user->delete();
-        return [ 'status' => 200, 
-            'message' => 'User Deleted', 
-            'out' => $out 
+        return [ 'status' => 200,
+            'message' => 'User Deleted',
+            'out' => $out
         ];
     }
-    
+
+    public function deleteList(){
+        $users = User::onlyTrashed()->get();
+
+        if(Auth::user()->user_type == 'stuff'){
+            $users = Auth::user()->manages;
+        }
+        $countries = $this->util->countries;
+
+        return view('admin.users.deletedList', [
+            'title' => 'User List',
+            'users' => $users,
+            'countries' => $countries
+        ]);
+    }
+
+    public function forceDelete($id){
+        $user = User::onlyTrashed()->where('id', $id)->firstOrFail();
+        $out = $user->forceDelete();
+        return [ 'status' => 200,
+            'message' => 'User Forced Deleted',
+            'out' => $out
+        ];
+    }
+    public function restore($id){
+        $user = User::onlyTrashed()->where('id', $id)->firstOrFail();
+        $out = $user->restore();
+
+        session()->flash('status', 'User Restored');
+        return redirect()->route('adminuserlist');
+
+        // return [ 'status' => 200,
+        //     'message' => 'User Restored',
+        //     'out' => $out
+        // ];
+    }
+
     public static function routes(){
         Route::prefix('user')->group(function(){
             Route::get('list', 'UserController@list')->name('adminuserlist');
@@ -132,6 +180,9 @@ class UserController extends Controller
             Route::post('update', 'UserController@update')->name('adminuserupdate');
             Route::get('view/{user}', 'UserController@view')->name('adminuserview');
             Route::post('delete/{user}', 'UserController@delete')->name('adminuserdelete');
+            Route::get('deleted', 'UserController@deleteList')->name('adminuserdeletelist');
+            Route::post('clear/{id}', 'UserController@forceDelete')->name('adminuserforceddelete');
+            Route::get('restore/{id}', 'UserController@restore')->name('adminuserrestore');
         });
     }
 }

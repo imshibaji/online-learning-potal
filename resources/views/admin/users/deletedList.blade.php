@@ -1,5 +1,11 @@
 @extends('admin.users.layout')
 
+@section('quickbtn')
+    <div class="col text-right">
+        <a href="{{ url('admin/user/list') }}" class="btn btn-primary">User List</a>
+    </div>
+@endsection
+
 @section('usercontent')
 <table class="table">
     <tr>
@@ -39,8 +45,7 @@
             </td>
             <td class="text-center">
                 <div class="btn-group">
-                    <a class="btn btn-info" href="{{url('/')}}/admin/user/view/{{$user->id}}">View</a>
-                    <a class="btn btn-warning" href="{{url('/')}}/admin/user/edit/{{$user->id}}">Edit</a>
+                    <a class="btn btn-warning" href="{{ route('adminuserrestore',$user->id) }}">Retore</a>
                     @utype('admin')
                     <button class="btn btn-danger" onclick="remove('{{$user->id}}')">Delete</button>
                     @endutype
@@ -55,8 +60,8 @@
 @section('scripts')
 <script>
 function remove(id){
-    if(confirm('User Id:'+id+'. Are you sure?')){
-        $.post("{{url('/')}}/admin/user/delete/"+id, {_token: '<?php echo csrf_token() ?>'}, (res)=>{
+    if(confirm('User Id:'+id+'. Are you sure for Permanent Delete?')){
+        $.post("{{url('/')}}/admin/user/clear/"+id, {_token: '<?php echo csrf_token() ?>'}, (res)=>{
             console.log(res);
             if(res.out){
                 location.reload();

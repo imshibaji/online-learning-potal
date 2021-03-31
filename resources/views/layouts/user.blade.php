@@ -31,7 +31,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-mycolor fixed-top">
         <div class="container">
-        <a class="navbar-brand" href="https://www.larnr.com">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ url('/') }}/imgs/app-icon-114.png" class="img-thumbnail-icon">
             {{ config('app.name') }}
         </a>

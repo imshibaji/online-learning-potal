@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ConvertVideoForStreaming;
 use App\Models\Video;
 use FFMpeg\Filters\Video\VideoFilters;
 use FFMpeg\Format\Video\X264;
@@ -99,6 +100,13 @@ class VideoController extends Controller
         $video = Video::find($id);
         $videos = Video::all();
         $title = $video->title;
+
+        // Not used now
+        // $this->dispatch(new ConvertVideoForStreaming($video));
+
+        // $streamUrl = Storage::disk('streamable_videos')->url('streams/'.$video->id . '.m3u8');
+        // dd($streamUrl);
+
         return view('admin.videos.view', compact('video', 'videos', 'title'));
     }
 

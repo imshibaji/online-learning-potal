@@ -7,9 +7,9 @@
         <div class="col-md-7 text-center d-n-none d-md-block">
             {{--<div class="embed-responsive embed-responsive-4by3 mb-3">
                 <iframe class="embed-responsive-item"
-                src="https://www.youtube.com/embed/BPn9WD4ti_0?controls=0" 
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe> 
+                src="https://www.youtube.com/embed/BPn9WD4ti_0?controls=0"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             </div>--}}
             <div class="p-4">
                 <x-video />
@@ -21,6 +21,7 @@
         <div class="col-md-4 bg-light block">
         <form method="POST" action="{{route('signup')}}">
             @csrf
+            @honeypot
             <div class="row p-2">
                 <div class="col text-center">
                     <h2>Signup Now</h2>
@@ -121,7 +122,7 @@
 @endsection
 
 @section('scripts')
-<script>    
+<script>
 redirectLogin();
 window.addEventListener('resize', redirectLogin);
 function redirectLogin(){

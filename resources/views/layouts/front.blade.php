@@ -73,6 +73,7 @@
                             <li class="nav-item">
                                 <form method="POST" action="{{ route('signin') }}" class="form-inline my-2 my-lg-0">
                                     @csrf
+                                    @honeypot
                                     <input class="form-control mr-sm-2 @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email" value="{{ old('email') }}" aria-label="Email">
                                     <input class="form-control mr-sm-2 @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" value="{{ old('ppassword') }}" aria-label="Password">
                                     <button class="btn btn-light my-2 my-sm-0" type="submit">Login</button>

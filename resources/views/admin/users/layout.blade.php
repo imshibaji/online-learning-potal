@@ -13,6 +13,9 @@
                         @section('quickbtn')
                             <div class="col text-right">
                                 <a href="{{url('/')}}/admin/user/add" class="btn btn-primary">Add New User</a>
+                                @utype('admin')
+                                <a href="{{url('/')}}/admin/user/deleted" class="btn btn-info">Deleted List</a>
+                                @endutype
                             </div>
                         @show
                     </div>
@@ -25,7 +28,7 @@
                         </div>
                     @endif
 
-                    @section('usercontent')   
+                    @section('usercontent')
                     @show
                 </div>
             </div>
