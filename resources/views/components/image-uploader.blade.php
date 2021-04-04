@@ -1,6 +1,6 @@
 <div class="col">
     {{-- <form action="#" method="POST" enctype="multipart/form-data"> --}}
-        <img id="img_upload" src="{{ $src ?? url('images/poster.jpg')}}" width="100%" height="150" />
+        <img id="img_upload" src="{{ $src ?? url('images/image-upload.jpg')}}" width="100%" height="150" />
         <div class="w-100 btn-group">
             <input id="image" class="btn btn-success" type="file" name="{{$name}}" accept="image/*" value="{{ $src ?? ''}}" />
             {{-- <input class="btn btn-info" type="submit" value="Upload" /> --}}

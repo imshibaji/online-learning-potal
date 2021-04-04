@@ -21,4 +21,7 @@ class Comment extends Model
     public function replies(){
         return $this->hasMany('App\Models\Comment', 'comment_id');
     }
+    public function commentable(){
+        return $this->morphTo();
+    }
 }

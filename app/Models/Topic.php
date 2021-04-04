@@ -17,4 +17,12 @@ class Topic extends Model
     public function assignments(){
         return $this->hasMany('App\Models\Assignment');
     }
+
+    public function videos(){
+        return $this->morphMany(Video::class, 'videoable');
+    }
+
+    public function comments(){
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

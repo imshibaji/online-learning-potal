@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('larnr::layouts.user')
 
 @section('content')
 <div class="container">
@@ -15,8 +15,8 @@
                     </div>
                 </div>
                 <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    @captchaHTML
+                        @csrf
+                        @captchaHTML
                 <div class="row p-2">
                     <div class="col-md-3">
                         {{ __('Name') }}<span class="text-danger">*</span>

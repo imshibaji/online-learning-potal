@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('larnr::layouts.user')
 
 @section('content')
 <div class="container">

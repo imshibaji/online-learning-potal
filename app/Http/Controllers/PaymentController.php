@@ -14,21 +14,17 @@ use Instamojo\Instamojo;
 class PaymentController extends Controller
 {
     private $api;
+    private $authType = 'app';
 
     public function __construct()
     {
-        // Actual Server
-        // $this->api = new Instamojo(
-        //     '76f6824a7366d4190ea320862a56daa1',
-        //     '960a6744f56190e48467bcd3b5305a40',
-        // );
-
-        // Test Server
-        $this->api = new Instamojo(
-            env('INSTA_API_KEY'),
-            env('INSTA_API_TOKEN'),
-            env('INSTA_END_POINT')
-        );
+        // Pay Auth Initiate
+        $this->api = Instamojo::init($this->authType,[
+            "client_id" =>  env('MOJO_CLIENT_ID', 'test_v9uNRGxgG45Tg0G95LMhYwGxgyO35YAOIgL'),
+            "client_secret" => env('MOJO_CLIENT_SECRET', 'test_gHMTloYSF3KQCrD2XvFlsEoW5DG55VLHu6RngDHECS5esWL4Dlk0Ch77lWbG3BfUiE4y28Xrp6qgAwdwU0PFlkKTLBQf8KsMbDs5XuY5QsY7ELRrxz3G6wVvFld'),
+            // "username" => 'none', /** In case of user based authentication**/
+            // "password" => 'none' /** In case of user based authentication**/
+        ], env('MOJO_TEST_MODE', true));
     }
 
 
@@ -57,7 +53,7 @@ class PaymentController extends Controller
     public function pay(Request $req)
     {
         try {
-            $response = $this->api->paymentRequestCreate(array(
+            $response = $this->api->createPaymentRequest(array(
                 "purpose" => $req->pps,
                 "amount" => $req->amt,
                 "buyer_name" => $req->name,
@@ -108,7 +104,7 @@ class PaymentController extends Controller
             $payment_status = $req->payment_status;
             $pay_request_id = $req->payment_request_id;
 
-            $response = $this->api->paymentRequestStatus($pay_request_id);
+            $response = $this->api->getPaymentRequestDetails($pay_request_id);
 
             InstaMojoPayment::where('payment_id', $pay_request_id)
             ->update([
@@ -137,11 +133,7 @@ class PaymentController extends Controller
     public function reportList()
     {
         try {
-            $response = $this->api
-            ->paymentRequestsList(10, 1,
-            '2020-04-10T13:41:55.142211Z',
-            '2020-04-10T13:41:55.142233Z'
-        );
+            $response = $this->api->getPaymentRequests();
             print_r($response);
         }
         catch (Exception $e) {

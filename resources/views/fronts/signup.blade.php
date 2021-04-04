@@ -20,6 +20,7 @@
         <form method="POST" action="{{route('signup')}}">
             @csrf
             @honeypot
+            @captchaHTML
             <div class="row p-2">
                 <div class="col text-center">
                     <h2>Signup Now</h2>

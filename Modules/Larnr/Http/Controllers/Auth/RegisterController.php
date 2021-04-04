@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Modules\Larnr\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Modules\Larnr\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -54,7 +56,6 @@ class RegisterController extends Controller
             'mobile' => ['required', 'string', 'min:10', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
@@ -76,5 +77,10 @@ class RegisterController extends Controller
             'user_type' => 'user',
             'active' => true
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('larnr::auth.register');
     }
 }

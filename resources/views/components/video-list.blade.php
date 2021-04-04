@@ -1,6 +1,6 @@
 <div class="row">
 @foreach ($videos as $video)
-<div class="col-md-3">
+<div class="col-md-3 p-2">
     <div class="card">
         <a href="{{ url('user/video/'.$video->slug) }}">
             <img src="{{ url('storage/'.$video->image_path) }}" class="card-img-top" alt="{{$video->title}}">

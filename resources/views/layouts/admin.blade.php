@@ -13,7 +13,7 @@
 
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
-    {{-- <link href="{{ url('/') }}/css/style.css" rel="stylesheet"> --}}
+    <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url('/')}}/css/prism_patched.min.css">
     <link href="{{ url('/') }}/css/app.css" rel="stylesheet">
 @section('headers')
@@ -25,8 +25,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-mycolor fixed-top">
         <div class="container">
         <a class="navbar-brand" href="{{ url('/admin') }}">
-            <img src="{{ url('/') }}/imgs/app-icon-114.png" class="img-thumbnail-icon">
-            {{ config('app.name') }}
+            <img src="{{ url('/') }}/images/logo-dark.png" class="logo-img">
+            {{-- {{ config('app.name') }} --}}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,6 +113,7 @@
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
+                                @captchaHTML
                             </form>
                         </div>
                     </li>

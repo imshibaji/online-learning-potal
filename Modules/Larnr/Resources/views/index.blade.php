@@ -18,7 +18,7 @@
                                 <h6 class="card-title my-1">{{ Str::substr($video->title, 0, 35) }}</h6>
                             </a>
                             <small class="my-1 card-text">{{ Str::substr($video->description, 0, 40)}}...</small><br>
-                            <small class="my-1 card-text text-muted">Shibaji Debnath | {{rand(100,1000)}}views </small>
+                            <small class="my-1 card-text text-muted">{{$author ?? 'Larnr Education'}} | {{rand(100,1000)}}views </small>
                         </div>
                     </div>
                 </div>

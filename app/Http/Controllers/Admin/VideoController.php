@@ -22,7 +22,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::all();
+        $videos = Video::orderBy('id', 'desc')->get();
         $title = 'Video List';
         return view('admin.videos.list', compact('videos', 'title'));
     }

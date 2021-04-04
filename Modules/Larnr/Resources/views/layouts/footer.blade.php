@@ -6,13 +6,13 @@
                 <a class="nav-link active" href="#">Sponserships</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="#">Terms and Condition</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Privacy Policy</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="#">Become A Partner</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tac">Terms and Condition</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact us</a>
             </li>
         </ul>
     </div>
@@ -20,8 +20,18 @@
 <!-- Footer -->
 <!-- Copyright -->
 <div class="copyright">
-    <p class="text-center">
-        &copy; Developed By Medust Technology Pvt. Ltd. {{ date('Y') }}.
-    </p>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-center text-md-left">
+                &copy; Copyright By Larnr Education. {{ date('Y') }}.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-center text-md-right">
+                Developed By <a class="text-light" href="https://www.shibajidebnath.com" target="_blank">Shibaji Debnath</a>.
+            </p>
+        </div>
+    </div>
+
 </div>
 <!-- Copyright -->

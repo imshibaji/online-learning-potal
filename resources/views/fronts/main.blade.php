@@ -22,6 +22,7 @@
         <form method="POST" action="{{route('signup')}}">
             @csrf
             @honeypot
+            @captchaHTML
             <div class="row p-2">
                 <div class="col text-center">
                     <h2>Signup Now</h2>
@@ -101,7 +102,7 @@
                     <label>Country<span class="text-danger">*</span></label>
                     <select class="form-control" name="country">
                         @foreach ($countries as $key=>$value)
-                            <option value="{{$key}}">{{$value}}</option>
+                            <option value="{{$value}}">{{$value}}</option>
                         @endforeach
                     </select>
                 </div>

@@ -29,7 +29,7 @@
                 <div><i class="fa fa-whatsapp"></i> {{ $user->whatsapp ?? 'None' }}</div>
             </td>
             <td class="text-center">
-                <div>{{ $countries[$user->country] ?? 'none' }}</div>
+                <div>{{ $user->country ?? 'none' }}</div>
                 <div>{{ $user->pincode }}</div>
             </td>
             <td>{{ $user->user_type }}</td>

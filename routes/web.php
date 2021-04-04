@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -47,10 +48,10 @@ Route::group(['domain' => 'app.larnr.com'], function(){
     Route::get('/course-preview/{cid}/{tid}', 'HomeController@course_preview')->name('hometpreview');
 
     // // Payment Controller
-    // Route::get('/bill', 'PaymentController@bill')->name('bill');
-    // Route::any('/payment', 'PaymentController@pay')->name('billpay');
-    // Route::get('/payreport', 'PaymentController@report');
-    // Route::get('/payreportlist', 'PaymentController@reportList');
+    Route::get('/bill', 'PaymentController@bill')->name('bill')->middleware('auth');
+    Route::any('/payment', 'PaymentController@pay')->name('billpay')->middleware('auth');
+    Route::get('/payreport', 'PaymentController@report')->middleware('auth');
+    Route::get('/payreportlist', 'PaymentController@reportList')->middleware('auth');
 
 
 
@@ -85,6 +86,8 @@ Route::group(['domain' => 'app.larnr.com'], function(){
 
     Auth::routes(['verify' => true]);
     // Auth::routes();
+
+    Route::redirect('/register', '/signup', 301);
 
     NotificationController::routes();
 

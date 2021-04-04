@@ -7,12 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
+    <title>{{ $title ?? 'Larnr Education'}} | Skills Learning Center</title>
     <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet">--}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
-    <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
-    <link href="{{ url('/') }}/css/app.css" rel="stylesheet">
+    {{-- <link href="{{ url('/') }}/css/style.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('css/larnr.css') }}">
+        <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P440VPMBYV"></script>
@@ -50,23 +51,6 @@
                     <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
                     </li>
-                    {{-- <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('usercourses')}}">Courses</a>
-                    </li> --}}
-                    <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
-                    </li>
-
-                    {{-- It Will be Used In feuture --}}
-                    {{-- <li class="nav-item {{ Request::is('user/learn') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('userlearn')}}">My Courses</a>
-                    </li> --}}
-                    {{-- <li class="nav-item {{ Request::is('user/reports') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('userreports')}}">Report Chart</a>
-                    </li> --}}
-                    {{-- <li class="nav-item {{ Request::is('user/jobs') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('userjobs')}}">Job Openings</a>
-                    </li> --}}
                 @endguest
             </ul>
 
@@ -77,8 +61,8 @@
                         <a class="nav-link hover-nav" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('signup'))
-                        <li class="nav-item {{ Request::is('signup') ? 'active' : '' }}">
-                            <a class="nav-link hover-nav" href="{{ route('signup') }}">{{ __('Register') }}</a>
+                        <li class="nav-item {{ Request::is('register') ? 'active' : '' }}">
+                            <a class="nav-link hover-nav" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
@@ -120,7 +104,6 @@
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
-                                @captchaHTML
                             </form>
                         </div>
                     </li>
@@ -131,9 +114,11 @@
     </nav>
     <!-- Navbar End -->
     <div class="contents page-height">
-        @yield('content')
+        @section('content')
+        @show
 
-          <!-- Copyright By -->
+        <!-- Copyright By -->
+        <div class="bg-mycolor fixed-bottom">
         <div class="container">
             <div class="row p-3 m-0">
                 <div class="col-md text-center text-md-left">
@@ -141,18 +126,18 @@
                 </div>
                 <div class="col-md text-center">
                     <p class="text-light">
-                        &copy; Copyright By <a class="text-light" href="https://www.larnr.com">Larnr.com</a>.
+                        &copy;Copyright By <a class="text-light" href="https://www.larnr.com">Larnr.com</a>.
                         {{ date('Y') }}
                     </p>
                 </div>
                 <div class="col-md text-center text-md-right">
-                    <p class="text-light">Developed By <a class="text-light" href="https://www.shibajidebnath.com">Shibaji Debnath.</a>
+                    <p class="text-light">Developed By <a class="text-light" href="https://www.medust.com">Medust Technology Pvt. Ltd.</a>
                     </p>
                 </div>
             </div>
         </div>
         <!-- Copyright By -->
-
+        </div>
 </div>
 
 @section('footers')

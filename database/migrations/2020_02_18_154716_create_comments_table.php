@@ -23,6 +23,7 @@ class CreateCommentsTable extends Migration
             $table->enum('read_status', ['unread', 'read'])->default('unread');
             $table->boolean('public')->default(false);
             $table->integer('comment_id')->nullable();
+            $table->nullableMorphs('commentable');
             $table->timestamps();
         });
     }

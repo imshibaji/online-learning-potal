@@ -38,8 +38,8 @@ class UserController extends Controller
         $inspaire = Artisan::output();
         $allcourses = Course::where('status', 'active')->orderBy('short')->get() ?? [];
         $mycourses = CourseAssignment::where('user_id', Auth::id())->get() ?? [];
-        // $videos = Video::inRandomOrder()->limit(8)->get();
-        $videos = Video::all();
+        $videos = Video::inRandomOrder()->limit(4)->get();
+        // $videos = Video::all();
 
         $courses = $allcourses;
 

@@ -2,6 +2,7 @@
 
 namespace Modules\Larnr\Providers;
 
+use AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -37,6 +38,7 @@ class LarnrServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(InvisibleReCaptchaServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
     }
 

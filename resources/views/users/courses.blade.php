@@ -17,7 +17,7 @@
                     {{-- Course List --}}
                         <div class="container-fluid">
                             <div class="row">
-                                @foreach ($courses as $learn)
+                                @forelse ($courses as $learn)
                                 {{-- @if($learn->course->status == 'active') --}}
                                 <div class="col-12 col-sm-6 col-md-3 block p-2">
                                     <h4 class="text-center m-0">{{ $learn->course->title }}</h4>
@@ -35,7 +35,12 @@
                                     </div>
                                 </div>
                                 {{-- @endif --}}
-                                @endforeach
+                                @empty
+                                    <div class="col text-center">
+                                        <h1>You do not have own course.</h1>
+                                        <p>When you Enrolled Any course. You can get full access.</p>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                         {{-- Course List --}}

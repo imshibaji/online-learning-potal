@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
-    {{--<link href="{{ url('/') }}/css/style.css" rel="stylesheet"> --}}
+    <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
     <link href="{{ url('/') }}/css/app.css" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P440VPMBYV"></script>
@@ -31,8 +31,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-mycolor fixed-top">
         <div class="container">
         <a class="navbar-brand" href="https://www.larnr.com">
-            <img src="{{ url('/') }}/imgs/app-icon-114.png" class="img-thumbnail-icon">
-            {{config('app.name')}}
+            <img src="{{ url('/') }}/images/logo-dark.png" class="logo-img">
+            {{-- {{config('app.name')}} --}}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,12 +44,12 @@
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/">Finder <span class="sr-only">(current)</span></a>
                 </li>
-                {{-- <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/courses">Online Courses</a>
-                </li> --}}
-                <li class="nav-item {{ Request::is('about') ? 'active' : '' }}">
-                    <a class="nav-link hover-nav" href="/about">About Me</a>
                 </li>
+                {{-- <li class="nav-item {{ Request::is('about') ? 'active' : '' }}">
+                    <a class="nav-link hover-nav" href="/about">About Me</a>
+                </li> --}}
                 {{-- <li class="nav-item {{ Request::is('plans') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/plans">Price Plans</a>
                 </li>
@@ -74,6 +74,7 @@
                                 <form method="POST" action="{{ route('signin') }}" class="form-inline my-2 my-lg-0">
                                     @csrf
                                     @honeypot
+                                    @captchaHTML
                                     <input class="form-control mr-sm-2 @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email" value="{{ old('email') }}" aria-label="Email">
                                     <input class="form-control mr-sm-2 @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" value="{{ old('ppassword') }}" aria-label="Password">
                                     <button class="btn btn-light my-2 my-sm-0" type="submit">Login</button>
@@ -98,6 +99,7 @@
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
+                                        @captchaHTML
                                     </form>
                                 </div>
                             </li>
@@ -140,7 +142,7 @@
     <!-- Copyright -->
     <div class="copyright">
         <p class="text-center">
-            &copy; Developed By Medust Technology Pvt. Ltd. {{ date('Y') }}.
+            &copy; Developed By Shibaji Debnath. {{ date('Y') }}.
         </p>
     </div>
     <!-- Copyright -->
@@ -172,5 +174,6 @@
     </script>
 @section('scripts')
 @show
+@captcha
 </body>
 </html>

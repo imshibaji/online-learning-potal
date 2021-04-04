@@ -1,13 +1,13 @@
 @extends('admin.videos.layout')
 
 @section('videocontent')
-<div class="row">
+<div class="row p-1 my-0">
     @foreach ($videos as $video)
-    <div class="col-md-3">
+    <div class="col-md-3 p-1 my-0">
         <div class="card">
             <img src="{{ url('storage/'.$video->image_path) }}" class="card-img-top" alt="{{$video->title}}">
             <div class="card-body">
-              <h6 class="card-title">{{ Str::substr($video->title, 0, 25) }}...</h6>
+              <h6 class="card-title">{{ Str::substr($video->title, 0, 28) }}</h6>
               <p class="card-text">{{ Str::substr($video->description, 0, 50)}}...</p>
               <div class="text-center">
                 <div class="btn-group">

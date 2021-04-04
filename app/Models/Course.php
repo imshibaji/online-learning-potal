@@ -2,6 +2,8 @@
 
 namespace App\models;
 
+use App\Models\Comment;
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
@@ -29,5 +31,13 @@ class Course extends Model
 
     public function assignments(){
         return $this->hasMany('App\Models\Assignment');
+    }
+
+    public function videos(){
+        return $this->morphMany(Video::class, 'videoable');
+    }
+
+    public function comments(){
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

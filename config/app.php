@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'ASIA/KOLKATA',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
-
+        AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
         /*
          * Application Service Providers...
          */

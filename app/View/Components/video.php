@@ -11,6 +11,7 @@ class video extends Component
     public $poster;
     public $src;
     public $type;
+    public $url;
     /**
      * Create a new component instance.
      *
@@ -21,7 +22,8 @@ class video extends Component
         $height = null,
         $poster = null,
         $src = null,
-        $type = null
+        $type = null,
+        $url = null
     )
     {
         $this->width = $width;
@@ -29,6 +31,7 @@ class video extends Component
         $this->poster = $poster;
         $this->src = $src;
         $this->type = $type;
+        $this->url = $url;
     }
 
     /**

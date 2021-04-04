@@ -11,8 +11,8 @@
                         </div>
                         <div class="text-justify p-2">
                             Duration: {{ $course->duration }}<br/>
-                            Price: 
-                            @if($course->offer_price != null) 
+                            Price:
+                            @if($course->offer_price != null)
                                 <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
                                 <strong class="text-success">₹{{ $course->offer_price }}/-</strong>
                             @else
