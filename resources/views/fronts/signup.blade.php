@@ -100,7 +100,7 @@
                     <label>Country<span class="text-danger">*</span></label>
                     <select class="form-control" name="country">
                         @foreach ($countries as $key=>$value)
-                            <option value="{{$key}}">{{$value}}</option>
+                            <option value="{{$value}}">{{$value}}</option>
                         @endforeach
                     </select>
                 </div>

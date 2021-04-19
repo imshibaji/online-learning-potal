@@ -15,11 +15,11 @@ class Avatar extends Component
     public function __construct(
         $fl = 'G',
         $ll = 'U',
-        $size = '30px'
+        $size = '35px'
     )
     {
-        $this->fl = $fl;
-        $this->ll = $ll;
+        $this->fl = substr($fl,0,1);
+        $this->ll = substr($ll,0,1);
         $this->size = $size;
     }
 

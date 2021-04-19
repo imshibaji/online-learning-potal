@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Instamojo\Instamojo;
+use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Tags\Sitemap;
 
 class HomeController extends Controller
 {
@@ -20,6 +22,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->util = (object) include_once(resource_path('utils/util.php'));
+        \Debugbar::disable();
     }
 
     public function index(){
@@ -38,6 +41,10 @@ class HomeController extends Controller
             'countries' => $countries,
             'cities' => $cities
         ]);
+    }
+
+    public function sitemapGen(){
+        return SitemapGenerator::create('https://app.larnr.com')->getSitemap();
     }
 
     public function signin(Request $req){

@@ -18,11 +18,12 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
 
-        $user = Auth::user();
-        if($user->user_type == 'admin' || $user->user_type == 'stuff'){
-            return $next($request);
-        }else{
-            return redirect(route('user'));
-        }
+        // $user = Auth::user();
+        // if($user->user_type == 'admin' || $user->user_type == 'stuff'){
+        //     return $next($request);
+        // }else{
+        //     return redirect(route('user'));
+        // }
+        return $next($request);
     }
 }

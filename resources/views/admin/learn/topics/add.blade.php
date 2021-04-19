@@ -29,8 +29,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="embed_code">Embed Video</label>
-                    <x-video-uploader name="embed_code" />
+                    <label for="video">Video</label>
+                    {{-- <x-video-uploader name="embed_code" /> --}}
+                    <x-video-selector />
                 </div>
                 <div class="form-group">
                     <label for="duration">Duration</label>

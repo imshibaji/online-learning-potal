@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Learn;
 use App\Http\Controllers\Controller;
 use App\Models\Catagory;
 use App\Models\Course;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,6 +44,12 @@ class CourseController extends Controller
 
         $out = $course->save();
 
+        if($req->vid){
+            $video = Video::findOrFail($req->vid);
+            $course->video()->save($video);
+        }
+
+
         // $course = Course::create($req->all());
 
         return redirect(route('admincourselist'));
@@ -70,6 +77,14 @@ class CourseController extends Controller
         $course->user_id = Auth::id();
 
         $out = $course->save();
+
+        if($course->video){
+            $course->video()->update(['videoable_type' => null, 'videoable_id' => null]);
+        }
+        if($req->vid){
+            $video = Video::findOrFail($req->vid);
+            $course->video()->save($video);
+        }
         return redirect(route('admincourselist'));
     }
 
@@ -80,6 +95,9 @@ class CourseController extends Controller
 
     public function delete($id){
         $course = Course::find($id);
+        if($course->video){
+            $course->video()->update(['videoable_type' => null, 'videoable_id' => null]);
+        }
         $out = $course->delete();
 
         return [ 'status' => 200,

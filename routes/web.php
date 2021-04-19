@@ -29,6 +29,9 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 Route::group(['domain' => 'app.larnr.com'], function(){
     // Front Parts
     Route::get('/', 'HomeController@index')->name('home');
+    // Sitemap
+    Route::get('sitemap', 'HomeController@sitemapGen')->name('sitemap');
+
     Route::get('/signup', 'HomeController@register_page')->name('register_page');
     Route::post('/signup', 'HomeController@signup')->middleware(ProtectAgainstSpam::class)->name('signup');
     Route::post('/signin', 'HomeController@signin')->middleware(ProtectAgainstSpam::class)->name('signin');

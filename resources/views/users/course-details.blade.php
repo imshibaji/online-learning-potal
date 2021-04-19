@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -20,9 +20,16 @@
                             <div id="course_content">
                                 @if ($topic)
                                         <h1 class="text-center">{{$topic->title}}</h1>
-                                        @if($topic->embed_code)
+                                        {{-- @php
+                                            dd($topic->video->id)
+                                        @endphp --}}
+                                        @if($topic->video)
                                         <div class="row" style="padding: 0px 15px">
-                                            <div class="col-md-9 nogap py-3">{!! $topic->embed_code !!}</div>
+                                            <div class="col-md-9 nogap py-3">
+                                                {{-- {!! $topic->embed_code !!} --}}
+                                                <x-video src="{{url('storage/'.$topic->video->video_path)}}" poster="{{ url('storage/'.$topic->video->image_path ) }}" />
+                                                @include('users.learn.contents')
+                                            </div>
                                             <div class="col-md-3 nogap">
                                                 <div class="list-group pb-2 d-none d-md-block">
                                                     @foreach ($topics as $ta)
@@ -36,15 +43,14 @@
                                                     <select class="form-control" onchange="onChange(this)">
                                                         @foreach ($topics as $ta)
                                                             @if($ta->status == 'active')
-                                                                
-                                                                    <option value="{{ url('/') }}/user/course-details/{{$course->id}}/{{$ta->id}}" {{ Request::is('user/course-details/'.$course->id.'/'.$ta->id) ? 'selected' : '' }}>{{ $ta->title }}</option>
+                                                                <option value="{{ url('/') }}/user/course-details/{{$course->id}}/{{$ta->id}}" {{ Request::is('user/course-details/'.$course->id.'/'.$ta->id) ? 'selected' : '' }}>{{ $ta->title }}</option>
                                                             @endIf
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        @include('users.learn.contents')
+                                        {{-- @include('users.learn.contents') --}}
                                         @else
                                             <div class="row">
                                                 <div class="col-md-9 py-3">@include('users.learn.contents')</div>
@@ -61,8 +67,7 @@
                                                         <select class="form-control" onchange="onChange(this)">
                                                             @foreach ($topics as $ta)
                                                                 @if($ta->status == 'active')
-                                                                    
-                                                                        <option value="{{ url('/') }}/user/course-details/{{$course->id}}/{{$ta->id}}" {{ Request::is('user/course-details/'.$course->id.'/'.$ta->id) ? 'selected' : '' }}>{{ $ta->title }}</option>
+                                                                    <option value="{{ url('/') }}/user/course-details/{{$course->id}}/{{$ta->id}}" {{ Request::is('user/course-details/'.$course->id.'/'.$ta->id) ? 'selected' : '' }}>{{ $ta->title }}</option>
                                                                 @endIf
                                                             @endforeach
                                                         </select>
@@ -84,6 +89,9 @@
 
                                     <h1 class="text-center">{{ $course->title }}</h1>
                                     <div class="my-2">
+                                        <div class="pb-2">
+                                            <x-video src="{{url('storage/'.$course->video->video_path)}}" poster="{{ url('storage/'.$course->video->image_path ) }}" />
+                                        </div>
                                         {!! $course->details !!}
                                     </div>
                                 @endif

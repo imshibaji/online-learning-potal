@@ -3,13 +3,19 @@
     <div class="container">
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Sponserships</a>
+                <a class="nav-link" href="/about">About us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Become A Partner</a>
+                <a class="nav-link active" href="/sponsor">Sponserships</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/partner">Become A Partner</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/tac">Terms and Condition</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/privacy">Privacy</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact us</a>

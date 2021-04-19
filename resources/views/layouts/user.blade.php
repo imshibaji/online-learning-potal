@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
-    <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
+    <title>{{ $title ?? 'Dashboard'}} | Larnr Education</title>
+    {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
+    <link rel="icon" href="favicon.ico" sizes="16x16 32x32" type="image/ico">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet">--}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
     <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
@@ -30,8 +31,8 @@
 <body class="bg-dark">
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-mycolor fixed-top">
-        <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="https://larnr.com">
             <img src="{{ url('/') }}/images/logo-dark.png" class="logo-img">
             {{-- {{ config('app.name') }} --}}
         </a>
@@ -134,7 +135,7 @@
         @yield('content')
 
           <!-- Copyright By -->
-        <div class="container">
+        <div class="container-fluid">
             <div class="row p-3 m-0">
                 <div class="col-md text-center text-md-left">
                     <p class="text-light">SDLearn v1.0.0</p>

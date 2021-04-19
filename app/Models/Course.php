@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use App\Models\Comment;
 use App\Models\Video;
@@ -33,8 +33,8 @@ class Course extends Model
         return $this->hasMany('App\Models\Assignment');
     }
 
-    public function videos(){
-        return $this->morphMany(Video::class, 'videoable');
+    public function video(){
+        return $this->morphOne(Video::class, 'videoable');
     }
 
     public function comments(){

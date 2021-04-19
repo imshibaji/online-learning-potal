@@ -5,6 +5,7 @@
 //////////////////////
 
 use App\Http\Controllers\Admin\ApiController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AssignController;
 use App\Http\Controllers\Admin\GemsController;
 use App\Http\Controllers\Admin\Learn\CatagoryController;
@@ -35,6 +36,8 @@ GemsController::routes();
 AssignController::routes();
 
 VideoController::routes();
+
+ArticleController::routes();
 
 Route::prefix('learn')->group(function(){
     // Catagory Section

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Learn;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Topic;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +35,16 @@ class TopicController extends Controller
         $topic->premium_status = $req->input('premium_status');
         $topic->user_id = Auth::id();
         $topic->course_id = $req->input('course_id');
+
         $result = $topic->save();
+
+        $topic->short = $topic->id;
+        $topic->save();
+
+        if($req->vid){
+            $video = Video::find($req->vid);
+            $topic->video()->save($video);
+        }
 
         if($result){
             // return redirect(route('admintopiclist'));
@@ -47,7 +57,7 @@ class TopicController extends Controller
     public function edit(Topic $topic){
         $courses = Course::where('status', 'active')->get();
         return view('admin.learn.topics.edit', [
-            'title' => 'Topic Edit', 
+            'title' => 'Topic Edit',
             'courses' => $courses,
             'topic' => $topic
         ]);
@@ -63,7 +73,17 @@ class TopicController extends Controller
         $topic->premium_status = $req->input('premium_status');
         $topic->user_id = Auth::id();
         $topic->course_id = $req->input('course_id');
+
         $result = $topic->save();
+
+        if($topic->video){
+            $topic->video()->update(['videoable_type' => null, 'videoable_id' => null]);
+        }
+        if($req->vid){
+            $video = Video::find($req->vid);
+            $topic->video()->save($video);
+        }
+
 
         if($result){
             // return redirect(route('admintopiclist'));
@@ -79,11 +99,14 @@ class TopicController extends Controller
     }
 
     public function delete(Topic $topic){
+        if($topic->video){
+            $topic->video()->update(['videoable_type' => null, 'videoable_id' => null]);
+        }
         $out = $topic->delete();
 
-        return [ 'status' => 200, 
-            'message' => 'Topic Deleted', 
-            'out' => $out 
+        return [ 'status' => 200,
+            'message' => 'Topic Deleted',
+            'out' => $out
         ];
     }
 

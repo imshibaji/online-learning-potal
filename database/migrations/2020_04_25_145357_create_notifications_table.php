@@ -22,7 +22,7 @@ class CreateNotificationsTable extends Migration
             $table->enum('sending_status', ['yes', 'no'])->default('no');
             $table->enum('notify_type', ['all', 'sms', 'email', 'whatsapp', 'dashboard'])->default('all');
             $table->enum('premium_type', ['none', 'silver', 'gold', 'platinum'])->default('none');
-            $table->enum('user_type', ['all', 'user', 'admin', 'stuff'])->default('all');
+            $table->string('user_type', 15)->default('all');
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });

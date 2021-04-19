@@ -30,8 +30,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="embed_code">Embed Video</label>
-                    <x-video-uploader name="embed_code" src="{{ $topic->embed_code }}" />
+                    <label for="video">Video</label>
+                    {{-- <x-video-uploader name="embed_code" src="{{ $topic->embed_code }}" /> --}}
+                    <x-video-selector vid="{{$topic->video->id ?? null }}" />
                 </div>
                 <div class="form-group">
                     <label for="duration">Duration</label>

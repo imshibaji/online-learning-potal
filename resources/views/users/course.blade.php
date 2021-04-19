@@ -13,12 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    
-                    
+
+
                     <h1 class="text-center">{{ $course->title }}</h1>
                     <div class="text-center">
                         Price:
-                        @if($course->offer_price != null) 
+                        @if($course->offer_price != null)
                             <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
                             <strong class="text-success">₹{{ $course->offer_price }}/-</strong>,
                         @else
@@ -38,9 +38,14 @@
                     </div>
 
                     <div class="my-2 mx-5 px-5">
+                        <div class="pb-2">
+                            @if(isset($course->video->video_path))
+                            <x-video src="{{url('storage/'.$course->video->video_path)}}" poster="{{ url('storage/'.$course->video->image_path ) }}" />
+                            @endif
+                        </div>
                         {!! $course->details !!}
                     </div>
-                    
+
                     {{-- Course List --}}
                     <ul class="list-group mx-md-5 px-md-5">
                         @foreach ($course->topics()->orderBy('short')->get() as $topic)
@@ -49,7 +54,7 @@
                                 @if ($topic->premium_status == 'free')
                                     <a href="{{ url('/') }}/user/course-preview/{{$course->id}}/{{$topic->id}}" class="btn btn-primary text-white">
                                        <i class="fa fa-play"></i> Preview
-                                    </a> 
+                                    </a>
                                 @else
                                     <a href="{{ url('/') }}/user/course-preview/{{$course->id}}/{{$topic->id}}" class="btn btn-warning"><i class="fa fa-trophy"></i> Premium</a>
                                 @endif

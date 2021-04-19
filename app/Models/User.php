@@ -142,8 +142,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return Cache::has('user-is-online-' . $this->id);
     }
 
+    // Creator Part
     public function courseCreator(){
         return $this->hasMany('App\Models\Course');
+    }
+    public function videosCreator(){
+        return $this->hasMany(Video::class);
     }
 
     public function courseManager(){

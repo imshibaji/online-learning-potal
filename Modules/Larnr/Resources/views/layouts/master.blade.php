@@ -5,6 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{$title ?? 'Best Software Development Tutorials videos'}} - Larnr Education</title>
+
+        {{-- Theame Color --}}
+        <meta name="theme-color" content="#3490dc">
         <!-- Primary Meta Tags -->
         <meta name="title" content="{{$title ?? 'Best Software Tutorials videos'}} - Larnr Education">
         <meta name="keywords" content="{{ $keywords ?? 'free, software, development, tutorial, development tutorials' }}">
@@ -29,6 +32,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
+        <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
         {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
         {{-- Laravel Mix - CSS File --}}
@@ -49,7 +53,7 @@
 </script>
     </head>
     <body>
-        @include('larnr::layouts.header')
+        @include('larnr::layouts.header1')
         <div style="margin-top:60px">
             @yield('content')
         </div>

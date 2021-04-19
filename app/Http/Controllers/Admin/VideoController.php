@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\ConvertVideoForStreaming;
+use App\Models\Catagory;
+use App\Models\Course;
+use App\Models\User;
 use App\Models\Video;
 use FFMpeg\Filters\Video\VideoFilters;
 use FFMpeg\Format\Video\X264;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -22,7 +26,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::orderBy('id', 'desc')->get();
+        $videos = Video::orderBy('id', 'desc')->paginate(8);
         $title = 'Video List';
         return view('admin.videos.list', compact('videos', 'title'));
     }
@@ -34,7 +38,12 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('admin.videos.add', ['title' => 'Video Uploader']);
+
+        return view('admin.videos.add', [
+            'title' => 'Video Uploader',
+            'categories' => Catagory::all(),
+            'users' => User::all(),
+        ]);
         // return phpinfo();
     }
 
@@ -57,6 +66,11 @@ class VideoController extends Controller
         $vid->keywords = $request->input('meta_keys');
         $vid->description = $request->input('meta_desc');
         $vid->details = $request->input('details');
+        $vid->catagory_id = $request->input('category_id');
+        $vid->user_id = $request->input('user_id');
+        $vid->status = $request->input('status');
+        $vid->type = $request->input('type');
+        $vid->approved = $request->approved;
 
         $vid->save();
 
@@ -120,7 +134,9 @@ class VideoController extends Controller
     {
         return view('admin.videos.edit', [
             'title' => 'Video Uploader',
-            'video' => Video::find($id)
+            'video' => Video::find($id),
+            'categories' => Catagory::all(),
+            'users' => User::all(),
         ]);
     }
 
@@ -151,6 +167,11 @@ class VideoController extends Controller
         $vid->keywords = $request->input('meta_keys');
         $vid->description = $request->input('meta_desc');
         $vid->details = $request->input('details');
+        $vid->catagory_id = $request->input('category_id');
+        $vid->user_id = $request->input('user_id');
+        $vid->status = $request->input('status');
+        $vid->type = $request->input('type');
+        $vid->approved = $request->approved;
 
         $vid->save();
 
@@ -166,10 +187,20 @@ class VideoController extends Controller
     public function destroy($id)
     {
         $vid = Video::find($id);
-        Storage::disk('public')->delete([$vid->image_path, $vid->video_path]);
+        // Storage::disk('public')->delete([$vid->image_path, $vid->video_path]);
         $vid->delete();
 
         return redirect()->route('video.index');
+    }
+
+    public function deletedList(){
+
+    }
+    public function restore($id){
+
+    }
+    public function forceDelete($id){
+
     }
 
     public static function routes(){

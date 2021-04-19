@@ -21,5 +21,9 @@
     </div>
     @endforeach
 </div>
-
+<div class="row">
+    <div class="col-12 d-flex justify-content-center pt-4">
+        {{ $videos->links('vendor.pagination.bootstrap-4') }}
+    </div>
+</div>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -40,7 +40,10 @@
                                 @if ($topic)
                                     @if ($topic->premium_status =="free")
                                         <h1 class="text-center">{{$topic->title}}</h1>
-                                        <div class="py-3">{!! $topic->embed_code !!}</div>
+                                        <div class="py-3">
+                                            {!! $topic->embed_code !!}
+                                            <x-video src="{{url('storage/'.$topic->video->video_path)}}" poster="{{ url('storage/'.$topic->video->image_path ) }}" />
+                                        </div>
                                         @include('users.learn.contents')
                                     @else
                                         <h1 class="text-center">You have no access on this course. Please enroll this course for full access.</h1>
@@ -51,6 +54,9 @@
                                 @else
                                     <h1 class="text-center">{{ $course->title }}</h1>
                                     <div class="my-2">
+                                        <div class="pb-2">
+                                            <x-video src="{{url('storage/'.$course->video->video_path)}}" poster="{{ url('storage/'.$course->video->image_path ) }}" />
+                                        </div>
                                         {!! $course->details !!}
                                     </div>
                                 @endif

@@ -12,28 +12,40 @@
 */
 
 use App\Http\Controllers\Admin\ActivityController;
-use App\Models\Video;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 $routes = function(){
     Route::get('/', 'LarnrController@index');
-    Route::get('v/{id}', 'LarnrController@video');
     Route::get('search', 'LarnrController@search');
+    // Footers Area
+    Route::get('tac', 'LarnrController@tac');
+    Route::get('privacy', 'LarnrController@privacy');
+    Route::get('about', 'LarnrController@about');
+    Route::get('contact', 'LarnrController@contact');
 
-    // Auth::routes(['verify' => true]);
+    // Sitemap
+    Route::get('sitemap', 'LarnrController@sitemapGen');
 
-    Route::get('tac', function(){
-        return view('larnr::tac');
-    });
 
-    Route::get('privacy', function(){
-        return view('larnr::privacy');
-    });
+    Route::get('sponsor', 'SponsorController@index');
+    Route::get('partner', 'PartnerController@index');
+
+    Route::get('articles', 'ArticleController@index');
+    Route::get('article/{slug}', 'ArticleController@show');
+    Route::post('article/comment', 'ArticleController@comment')->middleware('auth');
+
+    Route::get('courses', 'CourseController@index');
+
+    // Video Controller
+    Route::get('allvideos', 'VideoController@allVideos');
+    // Route::get('search', 'VideoController@search');
+    Route::get('v/{id}', 'VideoController@video');
+    // ->middleware('auth');
+    Route::post('v/comment', 'VideoController@comment')->middleware('auth');
+
 
     // Activities Data Create
     Route::post('/ahoy/visits', [ActivityController::class, 'create']);
-
     Route::redirect('{any}', '/', 301);
 };
 

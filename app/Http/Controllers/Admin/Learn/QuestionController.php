@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin\Learn;
 
 use App\Http\Controllers\Controller;
-use App\models\Course;
-use App\models\Question;
-use App\models\Topic;
+use App\Models\Course;
+use App\Models\Question;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,9 +88,9 @@ class QuestionController extends Controller
     public function delete(Question $question){
         $out = $question->delete();
 
-        return [ 'status' => 200, 
-            'message' => 'Question Deleted', 
-            'out' => $out 
+        return [ 'status' => 200,
+            'message' => 'Question Deleted',
+            'out' => $out
         ];
     }
 

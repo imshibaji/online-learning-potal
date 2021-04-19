@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
-    <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
+    <title>{{ $title ?? 'Larnr Education'}} | Technology Learning Center</title>
+    {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
+    <link rel="icon" href="favicon.ico" sizes="16x16 32x32" type="image/ico">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
     <link href="{{ url('/') }}/css/style.css" rel="stylesheet">

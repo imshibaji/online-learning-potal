@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use AhmedAliraqi\LaravelMediaUploader\Entities\Concerns\HasUploader;
-use App\models\Course;
-use App\models\Topic;
+use App\Models\Course;
+use App\Models\Topic;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Video extends Model implements HasMedia
+class Video extends Model
 {
+    use SoftDeletes;
     use HasFactory;
-    use InteractsWithMedia, HasUploader;
 
+    public function scopePublish(){
+        return $this->where('status', 'free')->where('type', 'publish');
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -32,5 +33,9 @@ class Video extends Model implements HasMedia
 
     public function videoable(){
         return $this->morphTo();
+    }
+
+    public function category(){
+        return $this->belongsTo(Catagory::class, 'catagory_id');
     }
 }

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title ?? 'Shibaji Debnath'}} | Technology Learning Center</title>
-    <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
-
+    <title>{{ $title ?? 'Larnr Education'}} | Technology Learning Center</title>
+    {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
+    <link rel="icon" href="favicon.ico" sizes="16x16 32x32" type="image/ico">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -52,14 +52,17 @@
                     <li class="nav-item">
                         <a class="nav-link hover-nav" href="#">Notifications</a>
                     </li> --}}
-                    <li class="nav-item {{ Request::is('admin/user/list') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('adminuserlist')}}">Users</a>
+                    <li class="nav-item {{ Request::is('admin/article') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('article.index')}}">Articles</a>
                     </li>
                     <li class="nav-item {{ Request::is('admin/video') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('video.index')}}">Videos</a>
                     </li>
                     <li class="nav-item {{ Request::is('admin/notify/list') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('adminnotifylist')}}">Notifitions</a>
+                    </li>
+                    <li class="nav-item {{ Request::is('admin/user/list') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('adminuserlist')}}">Users</a>
                     </li>
                     @utype('admin')
                     <li class="nav-item dropdown">

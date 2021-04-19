@@ -3,8 +3,11 @@
 namespace Modules\Larnr\Providers;
 
 use AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Routing\Router;
+use Modules\Larnr\Http\Middleware\Authentication;
 
 class LarnrServiceProvider extends ServiceProvider
 {

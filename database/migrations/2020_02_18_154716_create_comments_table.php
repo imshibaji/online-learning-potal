@@ -16,9 +16,6 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->integer('course_id')->nullable();
-            $table->integer('topic_id')->nullable();
-            $table->string('title')->nullable();
             $table->string('message')->nullable();
             $table->enum('read_status', ['unread', 'read'])->default('unread');
             $table->boolean('public')->default(false);

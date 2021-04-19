@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="back-dark">
-<div class="container contents">
+<div class="container-fluid contents">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">

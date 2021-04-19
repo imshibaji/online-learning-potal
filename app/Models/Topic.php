@@ -1,12 +1,12 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
-
     public function course(){
         return $this->belongsTo('App\Models\Course');
     }
@@ -18,8 +18,8 @@ class Topic extends Model
         return $this->hasMany('App\Models\Assignment');
     }
 
-    public function videos(){
-        return $this->morphMany(Video::class, 'videoable');
+    public function video(){
+        return $this->morphOne(Video::class, 'videoable');
     }
 
     public function comments(){

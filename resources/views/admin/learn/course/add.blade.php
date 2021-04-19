@@ -29,7 +29,8 @@
                     <label for="status">Course Intro Video</label>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <x-video-uploader />
+                            {{-- <x-video-uploader /> --}}
+                            <x-video-selector />
                         </div>
                     </div>
                 </div>

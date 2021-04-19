@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class Comments extends Component
 {
+    public $messages;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        $messages = null
+    )
     {
-        //
+        $this->messages = $messages;
     }
 
     /**

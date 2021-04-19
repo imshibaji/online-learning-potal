@@ -6,6 +6,14 @@
         </a>
         <form action="/search" class="mr-2 my-auto w-100 d-none d-sm-inline-block order-1">
             <div class="input-group">
+                <div class="input-group-prepend">
+                    <select name="t" class="custom-select" id="type">
+                        <option value="all" selected>All</option>
+                        <option value="video">Videos</option>
+                        <option value="article">Articles</option>
+                        <option value="course">Courses</option>
+                    </select>
+                </div>
                 <input type="text" name="q" class="form-control border border-right-0" placeholder="Search...">
                 <span class="input-group-append">
                     <button class="btn btn-outline-light border border-left-0" type="submit">
@@ -20,16 +28,20 @@
     </button>
     <div class="navbar-collapse collapse flex-shrink-1 flex-grow-0 order-last" id="navbar7">
         <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link hover-nav" href="/courses">Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link hover-nav" href="/articles">Articles</a>
+            </li>
             <!-- Authentication Links -->
             @guest
-            <li class="nav-item">
                 <li class="nav-item">
                     <a class="nav-link hover-nav" href="{{ route('login')}}">Login</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link hover-nav" href="{{ route('register') }}">Free Registration</a>
                 </li>
-            </li>
             @else
                 <li class="nav-item">
                     <a class="nav-link hover-nav" href="{{ route('user') }}">{{ __('Dashboard') }}</a>
