@@ -20,9 +20,14 @@ class TopicController extends Controller
         return view('admin.learn.topics.list', ['title' => 'Topics List', 'topics' => $topics ]);
     }
 
-    public function add(){
+    public function add(Request $req){
         $courses = Course::where('status', 'active')->get();
-        return view('admin.learn.topics.add', ['title' => 'Topic Add', 'courses' => $courses]);
+        $imp_course_id = $req->query('course');
+        return view('admin.learn.topics.add', [
+            'title' => 'Topic Add',
+            'courses' => $courses,
+            'course_id' => $imp_course_id
+        ]);
     }
 
     public function create(Request $req){
@@ -47,8 +52,8 @@ class TopicController extends Controller
         }
 
         if($result){
-            // return redirect(route('admintopiclist'));
-            return back();
+            return redirect(url('admin/learn/course/view/'.$req->input('course_id')));
+            // return back();
         }else{
             return redirect(route('admintopicadd'));
         }
@@ -59,7 +64,8 @@ class TopicController extends Controller
         return view('admin.learn.topics.edit', [
             'title' => 'Topic Edit',
             'courses' => $courses,
-            'topic' => $topic
+            'topic' => $topic,
+            'course_id' =>$topic->course->id
         ]);
     }
 
@@ -86,8 +92,8 @@ class TopicController extends Controller
 
 
         if($result){
-            // return redirect(route('admintopiclist'));
-            return back();
+            return redirect(url('admin/learn/course/view/'.$req->input('course_id')));
+            // return back();
         }else{
             return redirect(route('admintopicedit'));
         }

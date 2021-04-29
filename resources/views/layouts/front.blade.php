@@ -30,7 +30,7 @@
 <body>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-mycolor fixed-top">
-        <div class="container">
+        <div class="container-fluid">
         <a class="navbar-brand" href="https://www.larnr.com">
             <img src="{{ url('/') }}/images/logo-dark.png" class="logo-img">
             {{-- {{config('app.name')}} --}}
@@ -43,10 +43,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
-                    <a class="nav-link hover-nav" href="/">Finder <span class="sr-only">(current)</span></a>
+                    <a class="nav-link hover-nav" href="https://www.larnr.com/articles">Articles</a>
+                </li>
+                <li class="nav-item {{ Request::is('/videos') ? 'active' : '' }}">
+                    <a class="nav-link hover-nav" href="https://www.larnr.com/allvideos">Videos</a>
                 </li>
                 <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
-                    <a class="nav-link hover-nav" href="/courses">Online Courses</a>
+                    <a class="nav-link hover-nav" href="https://www.larnr.com/courses">Courses</a>
                 </li>
                 {{-- <li class="nav-item {{ Request::is('about') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="/about">About Me</a>

@@ -25,7 +25,7 @@
             <h4 class="text-md-right text-center">Do you want to add new question?</h5>
         </div>
         <div class="col-md-2 text-center">
-            <a href="{{ url('admin/learn/question/add') }}" class="btn btn-success">Add Question</a>
+            <a href="{{ url('admin/learn/question/add?c='.$topic->course->id.'&t='.$topic->id) }}" class="btn btn-success">Add Question</a>
         </div>
     </div>
 </div>
@@ -119,7 +119,7 @@ td:hover{
 		helper: fixHelperModified,
 		stop: updateIndex
 	}).disableSelection();
-	
+
     $("tbody").sortable({
         distance: 5,
         delay: 100,

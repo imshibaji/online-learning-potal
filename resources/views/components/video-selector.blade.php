@@ -11,9 +11,11 @@
             <option value="0">None</option>
             @foreach ($videos as $video)
                 @if($video->id == $vid)
-                    <option value="{{$video->id}}" selected>{{$video->title}} Used: {{$video->videoable}}</option>
+                    <option value="{{$video->id}}" selected>{{$video->title}}</option>
                 @else
-                    <option value="{{$video->id}}">{{$video->title}}  {{$video->videoable}}</option>
+                    @if(!isset($video->videoable))
+                        <option value="{{$video->id}}">{{$video->title}}  {{$video->videoable}}</option>
+                    @endif
                 @endif
             @endforeach
         </select>

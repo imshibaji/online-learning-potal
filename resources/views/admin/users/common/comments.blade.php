@@ -33,24 +33,33 @@
 
 <div>
     <hr/>
-    <ul class="list-unstyled">
-        @foreach ($comments as $cmts)
-        <li class="row">
-            <div class="col-2">
-                <h6>{{$cmts->course->title}}</h6>
-                <p>{{$cmts->topic->title}}</p>
+    <div class="container">
+        @foreach ($comments as $cmt)
+        <div class="media">
+            @if($cmt->commentable)
+            <img src="{{ url('storage/'.$cmt->commentable->image_path)}}" class="mr-3" width="60px" alt="{{$cmt->commentable->title}}">
+            <div class="media-body">
+              <h5 class="m-0"><span class="text-success">{{$cmt->commentable->title}}</span></h5>
+              <p class="p-0 m-0">{{$cmt->message}}</p>
+              <p class="p-0 m-0 ml-3 mb-1">- By {{$cmt->user->fullname()}}</p>
+              @if($cmt->replies)
+                @foreach ($cmt->replies as $reply)
+                    <div class="media mt-1 ml-3">
+                        {{-- <a class="mr-3" href="#">
+                        <img src="..." alt="...">
+                        </a> --}}
+                        <div class="media-body">
+                        <h6 class="m-0">Replied by {{$reply->user->fullname()}}</h6>
+                        <p>{{$reply->message}}</p>
+                        </div>
+                    </div>
+                @endforeach
+              @endif
             </div>
-            <div class="col-9">
-              <h5 class="mt-0 mb-1">{{$cmts->title}}</h5>
-              {{$cmts->message}}
-            </div>
-            <div class="col-1">
-              <button class="btn btn-primary">Reply</button>
-            </div>
-        </li>
+            @endif
+        </div>
         @endforeach
-        
-      </ul>
+      </div>
 </div>
 
 @section('scripts2')

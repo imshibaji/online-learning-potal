@@ -12,8 +12,8 @@
 
                 <div class="card-body text-center p-5" style="min-height: 510px">
                     <h4 class="text-success"><i class="fa fa-info-circle"></i> {{$course->title}}</h4>
-                    <h5>Price: 
-                        @if($course->offer_price != null) 
+                    <h5>Price:
+                        @if($course->offer_price != null)
                             <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
                             <strong class="text-success">₹{{ $course->offer_price }}/-</strong>,
                         @else
@@ -56,8 +56,8 @@
             </div>
         </div>
     </div>
-</div>  
-</div> 
+</div>
+</div>
 @endsection
 
 @section('headers')

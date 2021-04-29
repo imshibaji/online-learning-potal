@@ -1,6 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
+<div class="bg-dark" style="min-height: 82vh">
 <div class="container">
         <div class="row pt-5 pb-5 justify-content-center">
             <div class="col-md-6 bg-light block">
@@ -22,7 +23,7 @@
                         @csrf
                         @captchaHTML
                 <div class="row p-2">
-                    <div class="col-4">
+                    <div class="col-4 text-dark">
                         {{ __('E-Mail Address') }}<span class="text-danger">*</span>
                     </div>
                     <div class="col-8">
@@ -36,7 +37,7 @@
                     </div>
                 </div>
                 <div class="row p-2">
-                    <div class="col-4">
+                    <div class="col-4 text-dark">
                         {{ __('Password') }}<span class="text-danger">*</span>
                     </div>
                     <div class="col-8">
@@ -104,4 +105,5 @@
         </div>
 
     </div>
+</div>
 @endsection

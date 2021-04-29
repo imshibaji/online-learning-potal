@@ -21,9 +21,16 @@ class QuestionController extends Controller
         return Course::find($id)->topics;
     }
 
-    public function add(){
+    public function add(Request $req){
         $courses = Course::where('status', 'active')->get();
-        return view('admin.learn.questions.add', ['title' => 'Question Add', 'courses' => $courses]);
+        $course_id = $req->query('c');
+        $topic_id = $req->query('t');
+        return view('admin.learn.questions.add', [
+            'title' => 'Question Add',
+            'courses' => $courses,
+            'course_id' => $course_id,
+            'topic_id' => $topic_id,
+        ]);
     }
 
     public function create(Request $req){
@@ -44,8 +51,8 @@ class QuestionController extends Controller
         $out = $q->saveOrFail();
 
         if($out)
-            // return redirect(route('adminquestionlist'));
-            return back();
+            return redirect(url('admin/learn/topic/view/'.$req->topic_id));
+            // return back();
         else
             return redirect(route('adminquestionadd'));
     }
@@ -53,7 +60,13 @@ class QuestionController extends Controller
     public function edit($id){
         $courses = Course::where('status', 'active')->get();
         $question = Question::find($id);
-        return view('admin.learn.questions.edit', ['title' => 'Question Edit', 'courses' => $courses, 'question' => $question]);
+        return view('admin.learn.questions.edit', [
+            'title' => 'Question Edit',
+            'courses' => $courses,
+            'question' => $question,
+            'course_id' => $question->topic->course->id,
+            'topic_id' => $question->topic->id,
+        ]);
     }
 
     public function update(Request $req){
@@ -74,15 +87,19 @@ class QuestionController extends Controller
         $out = $q->saveOrFail();
 
         if($out)
-            // return redirect(route('adminquestionlist'));
-            return back();
+            return redirect(route('adminquestionlist'));
+            // return back();
         else
             return redirect(route('adminquestionendit'));
     }
 
     public function view($id){
         $question = Question::find($id);
-        return view('admin.learn.questions.view', ['title' => 'Question View', 'question' => $question]);
+        return view('admin.learn.questions.view', [
+            'title' => 'Question View',
+            'question' => $question,
+            'topic_id' => $question->topic->id,
+        ]);
     }
 
     public function delete(Question $question){

@@ -6,9 +6,7 @@
         <div class="col-md-9 p-0 py-sm-2">
             <div class="card m-2">
                 @if(isset($article->video_path))
-                    <div class="embed-responsive embed-responsive-16by9">
-                        {!! $article->video_path !!}
-                    </div>
+                    <x-video poster="{{ url('storage/'.$article->image_path) }}" src="{{$article->video_path}}" type="video/youtube" />
                 @endif
                 <div class="card-header my-auto">
                     <div class="row">

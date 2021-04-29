@@ -25,7 +25,7 @@
             <h4 class="text-md-right text-center">Do you want to add new topic?</h5>
         </div>
         <div class="col-md-2 text-center">
-            <a href="{{ url('admin/learn/topic/add') }}" class="btn btn-success">Add Topic</a>
+            <a href="{{ url('admin/learn/topic/add?course='.$course->id) }}" class="btn btn-success">Add Topic</a>
         </div>
     </div>
 </div>
@@ -48,7 +48,7 @@
                     <input type="hidden" name="tid" id="tid" value="{{ $topic->id }}">
                 </td>
                 {{-- <td class="indexInput">
-                    
+
                     <input size="2" readonly type="text" name="short" id="index" value="{{ $topic->short }}">
                 </td> --}}
                 <td style="width:50%">{{$topic->title}}</td>
@@ -119,7 +119,7 @@ td:hover{
 		helper: fixHelperModified,
 		stop: updateIndex
 	}).disableSelection();
-	
+
     $("tbody").sortable({
         distance: 5,
         delay: 100,

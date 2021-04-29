@@ -2,8 +2,8 @@
 
 @section('content')
 @include('larnr::articles.display')
-<div class="container-fluid">
-    <div class="row justify-content-center">
+<div class="container">
+    <div class="row justify-content-start">
         @foreach ($articles as $article)
         <div class="col-md-3 my-3">
             <div class="card h-100 box">

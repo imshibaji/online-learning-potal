@@ -2,6 +2,7 @@
 
 namespace Modules\Larnr\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -18,7 +19,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('larnr::courses.index');
+
+        return view('larnr::courses.index', [
+            'courses' => Course::where('status', 'active')->orderBy('short')->get()
+        ]);
     }
 
     /**

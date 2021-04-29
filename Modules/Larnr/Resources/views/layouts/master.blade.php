@@ -31,6 +31,7 @@
         <meta property="twitter:image" content="{{ $og_image ?? 'https://www.larnr.com/images/screen.png' }}">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta property="fb:pages" content="621683681208701" />
         {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
         <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
         {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
@@ -41,7 +42,8 @@
         <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
         @yield('styles')
 
-
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1387222468543405"
+        crossorigin="anonymous"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P440VPMBYV"></script>
 <script>

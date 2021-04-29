@@ -4,6 +4,9 @@
 @section('quickbtn')
     <div class="col text-right">
         <a href="{{ url('admin/learn/topic/view/'.$question->topic->id) }}" class="btn btn-primary">Question List</a>
+        @if(isset($topic_id))
+            <a href="{{ url('admin/learn/topic/view/'.$topic_id) }}" class="btn btn-warning">Back To Topic</a>
+        @endif
     </div>
 @endsection
 
@@ -18,7 +21,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @php 
+            @php
                 $opts = json_decode($question->opt);
                 // var_dump($opts);
             @endphp
@@ -67,8 +70,8 @@ function submitDatas(){
         anss.push($(this).val());
     });
     console.log(anss.length, dataans);
-    
-    
+
+
     for(var i=0; i<anss.length; i++){
         // console.log(anss[i], dataans[i]);
         var found = dataans.find((el) => {
@@ -88,8 +91,8 @@ function submitDatas(){
         $("input").prop('disabled', true);
         $('#report').append('<div class="text-default"><h4>Answer:</h4>'+answer+'</div>');
     }
-    
-    return false; 
+
+    return false;
 }
 </script>
 @endsection

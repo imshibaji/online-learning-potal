@@ -7,7 +7,11 @@
     width="{{ $witdh ?? '640' }}"
     height="{{ $height ?? '420' }}"
     poster="{{ $poster ??  url('images/poster.jpg') }}"
-    data-setup='{ "playbackRates": [1, 1.25, 1.5, 2] }'
+    @if (isset($type) && ($type=='video/youtube'))
+        data-setup='{ "playbackRates": [1, 1.25, 1.5, 2], "techOrder": ["youtube"], "youtube": { "customVars": { "wmode": "transparent" ,"ytControls": 2 } } }'
+    @else
+        data-setup='{ "playbackRates": [1, 1.25, 1.5, 2] }'
+    @endif
   >
     <source src="{{ $src ?? url('videos/intro.mp4') }}" type="{{$type ?? 'video/mp4'}}" />
     <p class="vjs-no-js">
@@ -28,10 +32,13 @@
 @endsection
 @section('scripts')
 @parent
-<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+<script src="{{url('js/video.min.js') }}"></script>
+@if (isset($type) && ($type=='video/youtube'))
+<script src="{{url('js/Youtube.min.js') }}"></script>
+@endif
 <script>
-var player = videojs('my-video', {
+// var player = videojs('my-video', {
 //   autoplay: 'muted',
-});
+// });
 </script>
 @endsection

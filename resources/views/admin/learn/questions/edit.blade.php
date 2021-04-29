@@ -3,6 +3,9 @@
 @section('quickbtn')
     <div class="col text-right">
         <a href="{{ url('admin/learn/question/list') }}" class="btn btn-primary">Question List</a>
+        @if(isset($topic_id))
+            <a href="{{ url('admin/learn/topic/view/'.$topic_id) }}" class="btn btn-warning">Back To Topic</a>
+        @endif
     </div>
 @endsection
 
@@ -196,7 +199,7 @@ function qType(){
     }
     else if(type == 3){
         $('#options').hide();
-    }  
+    }
 }
 
 
@@ -253,7 +256,7 @@ $('#addOpt').click(function(e){
 
 reload();
 function reload(){
-    $('input[name="close"]').each(function(){ 
+    $('input[name="close"]').each(function(){
         $(this).click(function(){
             $(this).parent().parent().remove();
         });

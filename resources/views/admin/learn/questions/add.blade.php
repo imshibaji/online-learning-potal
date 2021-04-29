@@ -3,6 +3,9 @@
 @section('quickbtn')
     <div class="col text-right">
         <a href="{{ url('admin/learn/question/list') }}" class="btn btn-primary">Question List</a>
+        @if(isset($topic_id))
+            <a href="{{ url('admin/learn/topic/view/'.$topic_id) }}" class="btn btn-warning">Back To Topic</a>
+        @endif
     </div>
 @endsection
 
@@ -18,7 +21,7 @@
                         <td>
                             <select id="cid" name="course_id" class="form-control">
                                 @foreach ($courses as $course)
-                                    <option value="{{$course->id}}">{{$course->title}}</option>
+                                    <option @if($course_id == $course->id) selected @endif value="{{$course->id}}">{{$course->title}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -136,6 +139,7 @@
 
 @section('scripts')
 <script>
+var tid = {!! $topic_id !!};
 window.onload = function(){
     CKEDITOR.replace('editor');
     CKEDITOR.replace('answer');
@@ -160,7 +164,8 @@ function getTopics(){
     $.get("{{url('/')}}/admin/learn/question/topic/"+cid).then((data)=>{
         $('#tid').empty();
         data.forEach(el => {
-            $('#tid').append(`<option value="${el.id}">${el.title}</option>`);
+            var elm = (el.id == tid)? `<option selected value="${el.id}">${el.title}</option>` : `<option value="${el.id}">${el.title}</option>`;
+            $('#tid').append(elm);
         });
     });
 }
@@ -185,7 +190,7 @@ $('#qtype').change(() => {
     }
     else if(type == 3){
         $('#options').hide();
-    }  
+    }
 });
 
 var oval = 2;
@@ -229,7 +234,7 @@ $('#addOpt').click(function(e){
 
 reload();
 function reload(){
-    $('input[name="close"]').each(function(){ 
+    $('input[name="close"]').each(function(){
         $(this).click(function(){
             $(this).parent().parent().remove();
         });

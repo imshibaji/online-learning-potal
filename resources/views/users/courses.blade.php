@@ -13,7 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                        @php
+                            // dd($courses)
+                        @endphp
                     {{-- Course List --}}
                         <div class="container-fluid">
                             <div class="row">

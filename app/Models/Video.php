@@ -35,6 +35,10 @@ class Video extends Model
         return $this->morphTo();
     }
 
+    public function linked(){
+        return $this->belongsTo($this->videoable_type, 'videoable_id');
+    }
+
     public function category(){
         return $this->belongsTo(Catagory::class, 'catagory_id');
     }

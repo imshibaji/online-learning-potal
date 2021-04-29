@@ -7,14 +7,11 @@ use App\Models\Learning;
 use App\Models\Money;
 use App\Models\Topic;
 use App\Models\User;
-use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Instamojo\Instamojo;
 use Spatie\Sitemap\SitemapGenerator;
-use Spatie\Sitemap\Tags\Sitemap;
 
 class HomeController extends Controller
 {

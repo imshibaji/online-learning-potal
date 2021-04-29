@@ -21,6 +21,12 @@
                 <div class="form-group">
                     <textarea name="details" id="editor" class="form-control" placeholder="Main Course Content"></textarea>
                 </div>
+                <div class="form-group">
+                    <input type="text" id="meta_keys" name="meta_keys" class="form-control" placeholder="Input Meta Keywords">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="meta_desc" name="meta_desc" class="form-control" placeholder="Input Meta Description">
+                </div>
             </div>
 
             {{-- Right Side --}}
@@ -35,6 +41,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="status">Embed YouTube video</label>
+                    <div class="form-group">
+                        <textarea name="embed_code" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="catagory_id">Select Catagory</label>
                     <select id="catagory_id" name="catagory_id" class="form-control" >
                         <option value="0">None</option>
@@ -42,12 +54,6 @@
                             <option value="{{$cat->id}}">{{$cat->title}}</option>
                         @endforeach
                     </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="meta_keys" name="meta_keys" class="form-control" placeholder="Input Meta Keywords">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="meta_desc" name="meta_desc" class="form-control" placeholder="Input Meta Description">
                 </div>
                 <div class="form-group">
                     <input type="text" id="duration" name="duration" class="form-control" placeholder="Input Total Course Duration">
@@ -95,7 +101,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor',{
-        height:450
+        height:350
     });
 }
 

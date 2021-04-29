@@ -30,6 +30,7 @@ class CourseController extends Controller
     public function create(Request $req){
         $course = new Course();
         $course->title = $req->input('title');
+        $course->embed_code = $req->input('embed_code');
         $course->catagory_id = $req->input('catagory_id');
         $course->slag = $req->input('slag');
         $course->meta_keys = $req->input('meta_keys');
@@ -64,6 +65,7 @@ class CourseController extends Controller
     public function update(Request $req){
         $course = Course::find($req->id);
         $course->title = $req->input('title');
+        $course->embed_code = $req->input('embed_code');
         $course->catagory_id = $req->input('catagory_id');
         $course->slag = $req->input('slag');
         $course->meta_keys = $req->input('meta_keys');

@@ -67,8 +67,20 @@ class UserController extends Controller
     }
 
     public function courses(){
-        $courses = Course::where('status', 'active')->orderBy('short')->get();
-        return view('users.courses', ['courses' => $courses]);
+        $allcourses = Course::where('status', 'active')->orderBy('short')->get() ?? [];
+        $mycourses = CourseAssignment::where('user_id', Auth::id())->get() ?? [];
+
+        $courses = $allcourses;
+
+        foreach($allcourses as $key => $allc){
+            foreach($mycourses as $myc){
+                if($allc->id == $myc->course->id){
+                    unset($courses[$key]);
+                }
+            }
+        }
+
+        return view('users.all-courses', ['courses' => $courses]);
     }
 
     public function course_preview(Request $req){

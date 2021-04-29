@@ -28,7 +28,7 @@
 @show
 </head>
 
-<body class="bg-dark">
+<body class="bg-light">
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-mycolor fixed-top">
         <div class="container-fluid">
@@ -45,15 +45,21 @@
             <ul class="navbar-nav mr-auto">
                 @guest
                     <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link hover-nav" href="/">Main</a>
+                    </li>
+                    <li class="nav-item {{ Request::is('/videos') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="https://www.larnr.com/allvideos">Videos</a>
+                    </li>
+                    <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="https://www.larnr.com/courses">Courses</a>
                     </li>
                 @else
                     <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
                     </li>
-                    {{-- <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('usercourses')}}">Courses</a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
                     </li>
@@ -138,16 +144,16 @@
         <div class="container-fluid">
             <div class="row p-3 m-0">
                 <div class="col-md text-center text-md-left">
-                    <p class="text-light">SDLearn v1.0.0</p>
+                    <p class="text-dark">SDLearn v1.0.0</p>
                 </div>
                 <div class="col-md text-center">
-                    <p class="text-light">
-                        &copy; Copyright By <a class="text-light" href="https://www.larnr.com">Larnr.com</a>.
+                    <p class="text-dark">
+                        &copy; Copyright By <a class="text-info" href="https://www.larnr.com">Larnr.com</a>.
                         {{ date('Y') }}
                     </p>
                 </div>
                 <div class="col-md text-center text-md-right">
-                    <p class="text-light">Developed By <a class="text-light" href="https://www.shibajidebnath.com">Shibaji Debnath.</a>
+                    <p class="text-dark">Developed By <a class="text-info" href="https://www.shibajidebnath.com">Shibaji Debnath.</a>
                     </p>
                 </div>
             </div>

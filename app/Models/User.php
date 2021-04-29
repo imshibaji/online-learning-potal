@@ -62,6 +62,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $key;
     }
 
+    public function fullname(){
+        return $this->fname. ' '.$this->lname;
+    }
+
     public function scopeIsActive($q){
         return $q->where('active', 1);
     }

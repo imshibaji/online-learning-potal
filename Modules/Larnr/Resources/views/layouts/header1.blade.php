@@ -47,12 +47,13 @@
             @else
                 <li class="nav-item">
                     <a class="nav-link hover-nav" href="{{ route('user') }}">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <i class="fa fa-lg fa-user-circle" aria-hidden="true"></i>
                     </a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link hover-nav" href="{{ route('userMyCourses') }}">MyCourses</a>
                 </li> --}}
+                @utype('admin')
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge badge-pill badge-danger" style="float:right;margin-bottom:-18px;margin-right:-6px;">4</span>
@@ -71,12 +72,13 @@
                         @endfor
                     </div>
                 </li>
+                @endutype
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-cog fa-lg"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">profile</a>
+                        <a class="dropdown-item" href="https://app.larnr.com/user/profile">profile</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

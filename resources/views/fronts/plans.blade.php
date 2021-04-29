@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-<div class="contents bg-dark mt-2 pb-2">
+<div class="contents bg-light mt-2 pb-2">
 <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -9,7 +9,7 @@
                     <div class="card-header">
                         <h3>Learning Plan</h3>
                     </div>
-    
+
                     <div class="card-body" style="min-height: 500px;">
                         <p class="text-center pb-2 author-msg">Learning is best way for earning. So this area created with so many efforts.<br />
                          All of My Students will be geting <strong class="text-success">Premium Access for Lifetime</strong>.</p>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class AdminController extends Controller
 
     // Comments List
     public function comment_list(){
-        return view('admin.learn.comments.list', ['title' => 'Comment List']);
+        $comments = Comment::all();
+        return view('admin.learn.comments.list', ['title' => 'Comment List', 'comments' => $comments]);
     }
     public function comment_add(){
         return view('admin.learn.comments.add', ['title' => 'Comment Add']);

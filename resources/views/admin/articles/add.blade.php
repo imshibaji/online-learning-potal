@@ -41,7 +41,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="status">Video *class="embed-responsive-item"</label>
+                    <label for="status">Youtube Video URL</label>
                     <div class="form-group row">
                         <div class="col-md-12">
                             {{-- <x-video-uploader /> --}}

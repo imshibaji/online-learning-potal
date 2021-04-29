@@ -28,7 +28,7 @@ class ActivityController extends Controller
 
        $this->chartDataCreate($req);
 
-       dd($req);
+    //    dd($req);
 
         return $req;
     }
@@ -66,8 +66,13 @@ class ActivityController extends Controller
 
     public function chartPrepaire()
     {
+        $from = (new Carbon)->subDays(29)->startOfDay()->toDateString();
+        $to = (new Carbon)->now()->endOfDay()->toDateString();
+
         $dates = ActivityChart::groupBy('date')
-        ->selectRaw('count(*) as total_users, date')->get();
+        ->whereBetween('date',[$from, $to])
+        ->selectRaw('count(*) as total_users, date')
+        ->get();
 
         foreach($dates as $d){
             $new_user = count(ActivityChart::where('user_id', null)

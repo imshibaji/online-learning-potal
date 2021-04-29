@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-<div class="contents bg-dark mt-2 pb-2">
+<div class="contents bg-light mt-2 pb-2">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -17,7 +17,7 @@
                         <h1 class="text-center">{{ $course->title }}</h1>
                         <div class="text-center">
                             Price:
-                            @if($course->offer_price != null) 
+                            @if($course->offer_price != null)
                                 <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
                                 <strong class="text-success">₹{{ $course->offer_price }}/-</strong>,
                             @else
@@ -39,7 +39,7 @@
                         <div class="my-2 mx-5 px-5">
                             {!! $course->details !!}
                         </div>
-                        
+
                         {{-- Course List --}}
                         <ul class="list-group mx-md-5 px-md-5">
                             @foreach ($course->topics()->orderBy('short')->get() as $topic)
@@ -48,7 +48,7 @@
                                     @if ($topic->premium_status == 'free')
                                         <a href="{{ url('/') }}/course-preview/{{$course->id}}/{{$topic->id}}" class="btn btn-primary text-white">
                                         <i class="fa fa-play"></i> Preview
-                                        </a> 
+                                        </a>
                                     @else
                                         <a href="{{ url('/') }}/course-preview/{{$course->id}}/{{$topic->id}}" class="btn btn-warning"><i class="fa fa-trophy"></i> Premium</a>
                                     @endif

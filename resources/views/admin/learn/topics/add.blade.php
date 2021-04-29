@@ -3,6 +3,9 @@
 @section('quickbtn')
     <div class="col text-right">
         <a href="{{ url('admin/learn/topic/list') }}" class="btn btn-primary">Topic List</a>
+        @if(isset($course_id))
+            <a href="{{ url('admin/learn/course/view/'.$course_id) }}" class="btn btn-warning">Back To Course</a>
+        @endif
     </div>
 @endsection
 
@@ -21,10 +24,10 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="cat_id">Select Catagory</label>
+                    <label for="cat_id">Select Course</label>
                     <select name="course_id" id="cat_id" class="form-control">
                         @foreach ($courses as $course)
-                        <option value="{{$course->id}}">{{$course->title}}</option>
+                        <option @if($course_id == $course->id) selected @endif value="{{$course->id}}">{{$course->title}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -32,6 +35,12 @@
                     <label for="video">Video</label>
                     {{-- <x-video-uploader name="embed_code" /> --}}
                     <x-video-selector />
+                </div>
+                <div class="form-group">
+                    <label for="status">Embed YouTube video</label>
+                    <div class="form-group">
+                        <textarea name="embed_code" class="form-control"></textarea>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="duration">Duration</label>
@@ -73,7 +82,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor', {
-      height: 450,
+      height: 550,
       baseFloatZIndex: 10005,
       // Remove the redundant buttons from toolbar groups defined above.
       removeButtons: 'Cut,Copy,Paste,PasteText,PasteFromWord'

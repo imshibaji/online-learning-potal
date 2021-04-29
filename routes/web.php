@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\Admin\NotificationController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -82,9 +82,9 @@ Route::group(['domain' => 'app.larnr.com'], function(){
     Route::get('/get', 'HomeController@getUsers');
 
 
-    Route::get('/make', 'ManageController@index');
-    Route::get('/make/{$name}', 'ManageController@make');
-    Route::get('/migration', 'ManageController@migrate');
+    // Route::get('/make', 'ManageController@index');
+    // Route::get('/make/{$name}', 'ManageController@make');
+    // Route::get('/migration', 'ManageController@migrate');
 
 
     Auth::routes(['verify' => true]);
@@ -109,6 +109,18 @@ Route::group(['domain' => 'app.larnr.com'], function(){
     // Users Routes
     Route::middleware(['auth'])->prefix('user')
     ->namespace('User')->group(base_path('routes/users.php'));
+
+
+    Route::get('comments', function(){
+        $comments = Comment::where('user_id', Auth::id())->get();
+        $data = '';
+        for ($i= 0; $i<count($comments); $i++) {
+            if(isset($comments[$i]->commentable)){
+                $data .= $comments[$i]->commentable->title;
+            }
+        }
+        return $data;
+    });
 
 
     // Route::get('{any}', function(){

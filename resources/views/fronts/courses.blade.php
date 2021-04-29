@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-<div class="contents bg-dark mt-2 pb-2">
+<div class="contents bg-light mt-2 pb-2">
 <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -9,7 +9,7 @@
                     <div class="card-header">
                         <h4>Online Courses</h4>
                     </div>
-    
+
                     <div class="card-body" style="min-height: 480px">
                         <div class="row">
                             @foreach ($courses as $course)
@@ -22,8 +22,8 @@
                                     </div>
                                     <div class="text-justify p-2">
                                         Duration: {{ $course->duration }}<br/>
-                                        Price: 
-                                        @if($course->offer_price != null) 
+                                        Price:
+                                        @if($course->offer_price != null)
                                             <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
                                             <strong class="text-success">₹{{ $course->offer_price }}/-</strong>
                                         @else
