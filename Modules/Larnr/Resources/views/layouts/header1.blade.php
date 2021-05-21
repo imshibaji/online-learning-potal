@@ -6,7 +6,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse" id="navbar5">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item {{ Request::is('articles') ? 'active' : '' }}">
                 <a class="nav-link hover-nav" href="/articles">Articles</a>
             </li>
@@ -17,7 +17,7 @@
                 <a class="nav-link hover-nav" href="/courses">Courses</a>
             </li>
         </ul>
-        <form action="/search" class="mx-2 my-auto d-none d-sm-inline-block w-100">
+        {{-- <form action="/search" class="mx-2 my-auto d-none d-sm-inline-block w-100">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <select name="t" class="custom-select" id="type">
@@ -34,8 +34,8 @@
                     </button>
                 </span>
             </div>
-        </form>
-        <ul class="navbar-nav">
+        </form>--}}
+        <ul class="navbar-nav mr-end">
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
@@ -45,10 +45,26 @@
                     <a class="nav-link hover-nav" href="{{ route('register') }}">Register</a>
                 </li>
             @else
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link hover-nav" href="{{ route('user') }}">
                         <i class="fa fa-lg fa-user-circle" aria-hidden="true"></i>
                     </a>
+                </li> --}}
+                @utype('admin')
+                    <li class="nav-item">
+                        <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
+                    </li>
+                @endutype
+                @utype('stuff')
+                    <li class="nav-item">
+                        <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
+                    </li>
+                @endutype
+                <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+                    <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
+                    <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link hover-nav" href="{{ route('userMyCourses') }}">MyCourses</a>
@@ -75,10 +91,19 @@
                 @endutype
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-cog fa-lg"></i>
+                        <i class="fa fa-user-circle fa-lg"></i>
+                        {{ Auth::user()->fname }} <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="https://app.larnr.com/user/profile">profile</a>
+                        <a class="dropdown-item" href="{{ route('profile') }}">
+                            {{ __('Profile') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('transactions') }}">
+                            {{ __('Billing') }}
+                        </a>
+                        <a class="dropdown-item"" href="{{ route('teacher.home') }}">
+                            Teacher Room
+                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

@@ -21,6 +21,7 @@ class CreateVideosTable extends Migration
             $table->string('video_path');
             $table->string('keywords')->nullable();
             $table->string('description')->nullable();
+            $table->string('caconical')->nullable();
             $table->text('details')->nullable();
             $table->string('status', 10)->default('free');
             $table->nullableMorphs('videoable');

@@ -53,7 +53,12 @@
                                         {{-- @include('users.learn.contents') --}}
                                         @else
                                             <div class="row">
-                                                <div class="col-md-9 py-3">@include('users.learn.contents')</div>
+                                                <div class="col-md-9 py-3">
+                                                    @isset($topic->embed_code)
+                                                        <x-video src="{{$topic->embed_code}}" type="video/youtube" poster="{{ url('storage/'.$topic->image_path ) }}" />
+                                                    @endisset
+                                                    @include('users.learn.contents')
+                                                </div>
                                                 <div class="col-md-3">
                                                     <div class="list-group pb-2 d-none d-md-block">
                                                         @foreach ($topics as $ta)
@@ -89,9 +94,16 @@
 
                                     <h1 class="text-center">{{ $course->title }}</h1>
                                     <div class="my-2">
+                                        @isset($course->video->video_path)
                                         <div class="pb-2">
                                             <x-video src="{{url('storage/'.$course->video->video_path)}}" poster="{{ url('storage/'.$course->video->image_path ) }}" />
                                         </div>
+                                        @endisset
+                                        @isset($course->embed_code)
+                                        <div class="pb-2">
+                                            <x-video src="{{$course->embed_code}}" type="video/youtube" poster="{{ url('storage/'.$course->image_path ) }}" />
+                                        </div>
+                                        @endisset
                                         {!! $course->details !!}
                                     </div>
                                 @endif

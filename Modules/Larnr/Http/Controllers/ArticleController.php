@@ -21,7 +21,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::inRandomOrder()->publish()->get();
+        $articles = Article::publish()->inRandomOrder()->get();
         $title = 'Free Tutorials Articles';
         $description = 'This section for free Software development tutorials. you can learn software development learning free way';
 
@@ -51,6 +51,7 @@ class ArticleController extends Controller
         $og_image= url('storage/'.$article->image_path);
         $og_video = url('storage/'.$article->video_path);
         $author = ($article->user)? $article->user->fname .' '. $article->user->lname : null;
+        $canonical = $article->canonical ?? null;
 
         // $video->views = ($video->type=='publish')? $video->views + rand(1,10) : $video->views;
         $article->views = $article->views + rand(1,10);
@@ -58,6 +59,7 @@ class ArticleController extends Controller
 
 
         return view('larnr::articles.single', compact('article', 'articles', 'title',
-        'keywords', 'description','og_type', 'og_url', 'og_image', 'og_video', 'author'));
+        'keywords', 'description','og_type', 'og_url',
+        'og_image', 'og_video', 'author','canonical'));
     }
 }

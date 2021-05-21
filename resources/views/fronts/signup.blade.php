@@ -76,7 +76,8 @@
             <div class="row p-2">
                 <div class="col">
                     <label>City<span class="text-danger">*</span></label>
-                    <select class="form-control" name="city">
+                    <select class="form-control" name="city" required>
+                        <option value="">Choose your city</option>
                         @foreach ($cities as $city)
                             <option>{{ $city }}</option>
                         @endforeach
@@ -90,7 +91,8 @@
             <div class="row p-2">
                 <div class="col">
                     <label>State<span class="text-danger">*</span></label>
-                    <select class="form-control" name="state">
+                    <select class="form-control" name="state" required>
+                        <option value="">Choose your State</option>
                         @foreach ($states as $state)
                             <option>{{ $state }}</option>
                         @endforeach
@@ -98,7 +100,8 @@
                 </div>
                 <div class="col">
                     <label>Country<span class="text-danger">*</span></label>
-                    <select class="form-control" name="country">
+                    <select class="form-control" name="country" required>
+                        <option value="">Choose your Country</option>
                         @foreach ($countries as $key=>$value)
                             <option value="{{$value}}">{{$value}}</option>
                         @endforeach

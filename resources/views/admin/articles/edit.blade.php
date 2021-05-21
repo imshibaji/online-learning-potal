@@ -96,6 +96,14 @@
                         <option {{($article->approved == 1)? 'selected': ''}} value="1">Approved</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="status">Canonical URL</label>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="canonical" value="{{$article->canonical}}" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -111,7 +119,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor',{
-        height:360
+        height:440
     });
 }
 

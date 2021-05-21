@@ -5,7 +5,7 @@
         <p class="lead">You can improved skills by live classes from professional teachers.</p>
         <p class="lead">
             <a class="btn btn-primary" href="https://app.larnr.com">Join Now</a>
-            For Live Webiners or Regular Updates
+            For Live Webiners and Regular Updates
         </p>
     </div>
 </div>

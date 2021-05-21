@@ -36,7 +36,7 @@ class ActivityController extends Controller
     public function delete()
     {
         $count = Activity::count();
-        $deleteUs = Activity::latest()->take($count)->skip(20)->get();
+        $deleteUs = Activity::latest()->take($count)->skip(200)->get();
         foreach($deleteUs as $deleteMe){
             Activity::where('id',$deleteMe->id)->delete();
         }

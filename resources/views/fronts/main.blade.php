@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="bg-dark">
-<div class="contents container page-height">
+<div class="contents container-fluid page-height">
     <div class="row justify-content-center align-items-md-center">
-        <div class="col-md-7 text-center d-n-none d-md-block">
+        <div class="col-md-8 text-center d-n-none d-md-block">
             {{--<div class="embed-responsive embed-responsive-4by3 mb-3">
                 <iframe class="embed-responsive-item"
                 src="https://www.youtube.com/embed/BPn9WD4ti_0?controls=0"
@@ -18,7 +18,7 @@
             <h2 class="text-light">Quick Join Now.</h2>
             <h6>Never Loose the opportunities.</h6>
         </div>
-        <div class="col-md-4 bg-light block">
+        <div class="col-md-3 bg-light block">
         <form method="POST" action="{{route('signup')}}">
             @csrf
             @honeypot
@@ -78,7 +78,8 @@
             <div class="row p-2">
                 <div class="col">
                     <label>City<span class="text-danger">*</span></label>
-                    <select class="form-control" name="city">
+                    <select class="form-control" name="city" required>
+                        <option value="">Choose your city</option>
                         @foreach ($cities as $city)
                             <option>{{ $city }}</option>
                         @endforeach
@@ -92,7 +93,8 @@
             <div class="row p-2">
                 <div class="col">
                     <label>State<span class="text-danger">*</span></label>
-                    <select class="form-control" name="state">
+                    <select class="form-control" name="state" required>
+                        <option value="">Choose your State</option>
                         @foreach ($states as $state)
                             <option>{{ $state }}</option>
                         @endforeach
@@ -100,7 +102,8 @@
                 </div>
                 <div class="col">
                     <label>Country<span class="text-danger">*</span></label>
-                    <select class="form-control" name="country">
+                    <select class="form-control" name="country" required>
+                        <option value="">Choose your Country</option>
                         @foreach ($countries as $key=>$value)
                             <option value="{{$value}}">{{$value}}</option>
                         @endforeach

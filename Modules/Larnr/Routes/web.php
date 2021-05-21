@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\Admin\ActivityController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 $routes = function(){
@@ -27,6 +28,7 @@ $routes = function(){
     Route::get('sitemap', 'LarnrController@sitemapGen');
 
 
+    Route::get('testimonial', 'TestimonialController@index');
     Route::get('sponsor', 'SponsorController@index');
     Route::get('partner', 'PartnerController@index');
 
@@ -35,6 +37,12 @@ $routes = function(){
     Route::post('article/comment', 'ArticleController@comment')->middleware('auth');
 
     Route::get('courses', 'CourseController@index');
+    Route::get('course/{slug}', 'CourseController@show');
+
+
+    // Payment
+    Route::get('/bill', [PaymentController::class,'bill']);
+    Route::any('/payment', [PaymentController::class, 'pay']);
 
     // Video Controller
     Route::get('allvideos', 'VideoController@allVideos');
@@ -46,7 +54,7 @@ $routes = function(){
 
     // Activities Data Create
     Route::post('/ahoy/visits', [ActivityController::class, 'create']);
-    Route::redirect('{any}', '/', 301);
+    // Route::redirect('{any}', '/', 301);
 };
 
 Route::domain('larnr.com')->group($routes);

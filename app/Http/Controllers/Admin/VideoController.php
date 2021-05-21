@@ -71,6 +71,7 @@ class VideoController extends Controller
         $vid->status = $request->input('status');
         $vid->type = $request->input('type');
         $vid->approved = $request->approved;
+        $vid->canonical = $request->canonical;
 
         $vid->save();
 
@@ -172,6 +173,7 @@ class VideoController extends Controller
         $vid->status = $request->input('status');
         $vid->type = $request->input('type');
         $vid->approved = $request->approved;
+        $vid->canonical = $request->canonical;
 
         $vid->save();
 

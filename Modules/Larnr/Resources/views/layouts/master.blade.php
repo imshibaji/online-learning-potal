@@ -32,6 +32,9 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta property="fb:pages" content="621683681208701" />
+    @isset($canonical)
+    <link rel="canonical" href="{{$canonical}}" />
+    @endisset
         {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
         <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
         {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
@@ -40,6 +43,7 @@
         @yield('headers')
         <link rel="stylesheet" href="{{ asset('css/larnr.css') }}">
         <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url('/') }}/css/prism_coy.css">
         @yield('styles')
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1387222468543405"
@@ -65,6 +69,7 @@
         <script src="{{ asset('js/larnr.js') }}"></script>
         <script src="{{url('/')}}/js/jquery.min.js"></script>
         <script src="{{url('/')}}/js/script.js"></script>
+        <script src="{{url('/')}}/js/prism_patched.min.js"></script>
         @yield('scripts')
     </body>
 </html>

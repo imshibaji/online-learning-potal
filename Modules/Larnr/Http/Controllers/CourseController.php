@@ -49,9 +49,11 @@ class CourseController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show($slug)
     {
-        return view('larnr::show');
+        $course = Course::where('slag', $slug)->where('status', 'active')->first();
+        $title = $course->title;
+        return view('larnr::courses.course', compact('course', 'title'));
     }
 
     /**

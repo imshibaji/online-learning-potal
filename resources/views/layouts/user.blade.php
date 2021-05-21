@@ -54,15 +54,24 @@
                         <a class="nav-link hover-nav" href="https://www.larnr.com/courses">Courses</a>
                     </li>
                 @else
-                    <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
+                    </li> --}}
+                    {{-- <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('usercourses')}}">Courses</a>
+                    </li> --}}
+                    <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="http://larnr.com/courses">Articles</a>
                     </li>
                     <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('usercourses')}}">Courses</a>
+                        <a class="nav-link hover-nav" href="http://larnr.com/allvideos">Videos</a>
                     </li>
-                    <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="http://larnr.com/courses">Courses</a>
+                    </li>
+                    {{-- <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
-                    </li>
+                    </li> --}}
 
                     {{-- It Will be Used In feuture --}}
                     {{-- <li class="nav-item {{ Request::is('user/learn') ? 'active' : '' }}">
@@ -99,7 +108,32 @@
                             <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
                         </li>
                     @endutype
-
+                    <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
+                    </li>
+                    @utype('admin')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="badge badge-pill badge-danger" style="float:right;margin-bottom:-18px;margin-right:-6px;">4</span>
+                            <i class="fa fa-bell fa-lg"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-item">Notifications</div>
+                            <div class="dropdown-divider"></div>
+                            @for($i=0; $i<4; $i++)
+                                <a class="dropdown-item" href="#">
+                                    <div class="p-2">
+                                        <h6 class="p-0 m-0">Notification Title</h6>
+                                        <small>This is test notification. This is test notification.</small>
+                                    </div>
+                                </a>
+                            @endfor
+                        </div>
+                    </li>
+                    @endutype
                     {{-- <li class="nav-item">
                         <a class="nav-link hover-nav" href="#">Notifications</a>
                     </li> --}}
@@ -113,6 +147,9 @@
                             {{-- <a class="dropdown-item" href="{{ route('usergems') }}">
                                 {{ __('Affiliate') }}
                             </a> --}}
+                            <a class="dropdown-item"" href="{{ route('teacher.home') }}">
+                                Teacher Room
+                            </a>
                             <a class="dropdown-item" href="{{ route('transactions') }}">
                                 {{ __('Billing') }}
                             </a>

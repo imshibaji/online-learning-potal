@@ -10,7 +10,7 @@
     @else
       <li class="nav-item">
         <a class="nav-link" id="assesment-tab" data-toggle="tab" href="#assesment" role="tab" aria-controls="assesment" aria-selected="false">Assesments Report</a>
-      </li> 
+      </li>
     @endif
     {{-- <li class="nav-item">
       <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Comments</a>
@@ -20,7 +20,7 @@
   {{-- Course Contents --}}
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="topic" role="tabpanel" aria-labelledby="topic-tab">
-        
+
         <div class="p-3">
             @if ($topic)
                 <div>{!! $topic->details !!}</div>
@@ -69,7 +69,7 @@
                 </div>
                 @endforeach
               {{-- End Questions Loop --}}
-              
+
               <div class="shadow-none p-3 mt-4 bg-light rounded text-center">
                 <input type="submit" class="btn btn-success" value="Submit Your Answers">
               </div>
@@ -84,7 +84,7 @@
     {{-- Assesment Section Start --}}
     @else
     <div class="tab-pane fade" id="assesment" role="tabpanel" aria-labelledby="assesments-tab">
-      
+
         @foreach ($assesments as $assesment)
           @php
               $asses = json_decode($assesment->assesment, true);
@@ -130,22 +130,22 @@
 
                 @if(isset($r['user_answer']))
                   <div class="pb-4">
-                      <span class="text-primary">Your Answer:</span> 
+                      <span class="text-primary">Your Answer:</span>
                       {!! $r['user_answer'] !!}
                   </div>
                 @endif
-                
+
                 @if($r['remark'] == 'Correct')
-                  <h5 class="text-success">You Answer is Correct</h5> 
+                  <h5 class="text-success">You Answer is Correct</h5>
                 @elseIf($r['remark'] == 'InCorrect')
                   <h5 class="text-danger">You Answer is Inorrect</h5>
                 @else
                   <h5 class="text-primary">You Answer is Thoughful</h5>
                 @endif
 
-                
+
                 <div class="shadow-none p-3 bg-light rounded text-left">
-                  <strong>Correct Answer:</strong> 
+                  <strong>Correct Answer:</strong>
                   {!! $r['answer'] !!}
                 </div>
               </div>
@@ -167,13 +167,13 @@
         </div>
 
         <hr>
-        
+
         <div class="p-3">
           <div class="media">
             <img src="/images/computer-user-icon.png" width="40" class="mr-3" alt="...">
             <div class="media-body">
               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          
+
               <div class="media mt-3">
                 <a class="mr-3" href="#">
                   <img src="/images/computer-teacher-icon.png" width="60" class="mr-3" alt="...">

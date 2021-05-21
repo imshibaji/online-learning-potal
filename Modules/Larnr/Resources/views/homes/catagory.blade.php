@@ -5,21 +5,21 @@
                <div class="cat-1 cat-text">Graphics and Motion Graphics Design Tutorials</div>
             </div>
         </a> --}}
-        <a href="#" class="card col-md-4 p-0">
+        <div href="#" class="card col-md-4 p-0">
             <div class="cat" style="background-image: url('https://www.plm.automation.siemens.com/media/global/en/is-820219790-640x360_tcm27-49149.jpg');">
                 <div class="cat-2 cat-text">Software and Website Development Tutorials</div>
             </div>
-        </a>
-        <a href="#" class="card col-md-4 p-0">
+        </div>
+        <div href="#" class="card col-md-4 p-0">
             <div class="cat" style="background-image: url('https://www.plm.automation.siemens.com/media/global/en/is-820219790-640x360_tcm27-49149.jpg');">
                 <div class="cat-3 cat-text">Mobile Application Development Tutorials</div>
             </div>
-        </a>
-        <a href="#" class="card col-md-4 p-0">
+        </div>
+        <div href="#" class="card col-md-4 p-0">
             <div class="cat" style="background-image: url('https://www.plm.automation.siemens.com/media/global/en/is-820219790-640x360_tcm27-49149.jpg');">
                 <div class="cat-4 cat-text">Web Server and Hosting Managment Tutorials</div>
             </div>
-        </a>
+        </div>
         {{-- <a href="#" class="card col-md-4 p-0">
             <div class="cat" style="background-image: url('https://www.plm.automation.siemens.com/media/global/en/is-820219790-640x360_tcm27-49149.jpg');">
                 <div class="cat-5 cat-text">Games Design and Development Tutorials</div>

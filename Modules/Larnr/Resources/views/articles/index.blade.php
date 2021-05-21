@@ -8,7 +8,7 @@
         <div class="col-md-3 my-3">
             <div class="card h-100 box">
                 <a href="{{ url('article/'.$article->slug) }}">
-                    <img src="{{ url('storage/'.$article->image_path) }}" class="card-img-top" alt="{{$article->title}}">
+                    <img height="140" src="{{ url('storage/'.$article->image_path) }}" class="card-img-top" alt="{{$article->title}}">
                 </a>
                 <div class="card-body">
                     <div class="row">

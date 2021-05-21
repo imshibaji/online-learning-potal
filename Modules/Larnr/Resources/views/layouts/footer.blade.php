@@ -6,6 +6,9 @@
                 <a class="nav-link" href="/about">About us</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link active" href="/testimonial">Testimonials</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="/sponsor">Sponserships</a>
             </li>
             <li class="nav-item">

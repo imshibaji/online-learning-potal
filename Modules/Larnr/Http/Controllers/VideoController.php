@@ -27,6 +27,7 @@ class VideoController extends Controller
         $og_image= url('storage/'.$video->image_path);
         $og_video = url('storage/'.$videos[0]->video_path);
         $author = ($video->user)? $video->user->fname .' '. $video->user->lname : null;
+        $canonical = $video->canonical;
 
         // $video->views = ($video->type=='publish')? $video->views + rand(1,10) : $video->views;
         $video->views = $video->views + rand(1,10);
@@ -34,7 +35,8 @@ class VideoController extends Controller
 
 
         return view('larnr::videos.single', compact('video', 'videos', 'title',
-        'keywords', 'description','og_type', 'og_url', 'og_image', 'og_video', 'author'));
+        'keywords', 'description','og_type', 'og_url',
+        'og_image', 'og_video', 'author', 'canonical'));
     }
 
     // public function search(Request $request){
@@ -61,7 +63,7 @@ class VideoController extends Controller
     // }
 
     public function allVideos(){
-        $videos = Video::inRandomOrder()->publish()->get();
+        $videos = Video::publish()->inRandomOrder()->get();
         $title = 'Free Tutorials Videos';
         $description = 'This section for free Software development tutorials video. you can learn software development learning free way';
         return view('larnr::videos.list', compact('videos', 'title'));

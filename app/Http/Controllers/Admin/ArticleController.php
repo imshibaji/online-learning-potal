@@ -67,6 +67,7 @@ class ArticleController extends Controller
         $article->status = $request->status;
         $article->type = $request->type;
         $article->approved = $request->approved;
+        $article->canonical = $request->canonical;
         $article->save();
 
         return redirect(route('article.index'));
@@ -125,6 +126,7 @@ class ArticleController extends Controller
         $article->status = $request->status;
         $article->type = $request->type;
         $article->approved = $request->approved;
+        $article->canonical = $request->canonical;
         $article->save();
 
         return redirect(route('article.index'));

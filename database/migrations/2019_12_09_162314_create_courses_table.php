@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->text('details')->nullable();
             $table->string('meta_keys')->nullable();
             $table->string('meta_desc')->nullable();
+            $table->string('caconical')->nullable();
             $table->string('duration')->nullable();
             $table->integer('short')->nullable();
             $table->string('status', 10);

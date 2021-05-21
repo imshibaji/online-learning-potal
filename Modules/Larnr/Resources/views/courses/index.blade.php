@@ -29,8 +29,8 @@
                     </div>
                     <div class="text-center px-4">
                         <div class="btn-group">
-                            <a href="{{ route('homecourse', $course->slag) }}" class="btn btn-primary">Learn More</a>
-                            <a href="{{ route('bill', ['cid'=> $course->id])}}" class="btn btn-warning">Enroll Now</a>
+                            <a href="{{ url('course/'. $course->slag) }}" class="btn btn-primary">Learn More</a>
+                            <a href="{{ url('bill/'. '?cid='. $course->id)}}" class="btn btn-warning">Enroll Now</a>
                             {{-- <button class="btn btn-warning" onclick="checkout('{{$course->title}}', {{$price}})">Enroll Now</button> --}}
                         </div>
                     </div>

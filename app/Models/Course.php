@@ -17,6 +17,9 @@ class Course extends Model
     //     'user_id'
     // ];
 
+    public function scopePublish(){
+        return $this->where('status', 'active');
+    }
     public function createdBy(){
         return $this->belongsTo('App\User');
     }
