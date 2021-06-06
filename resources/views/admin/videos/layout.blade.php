@@ -13,6 +13,9 @@
                         @section('quickbtn')
                             <div class="col text-right">
                                 <a href="{{url('/')}}/admin/video/create" class="btn btn-primary">Add New Video</a>
+                                @utype('admin')
+                                <a href="{{url('/')}}/admin/video/deleted/list" class="btn btn-info">Deleted List</a>
+                                @endutype
                             </div>
                         @show
                     </div>

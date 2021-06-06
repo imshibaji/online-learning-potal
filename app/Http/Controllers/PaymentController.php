@@ -18,6 +18,7 @@ class PaymentController extends Controller
 
     public function __construct()
     {
+        \Debugbar::disable();
         // Pay Auth Initiate
         $this->api = Instamojo::init($this->authType,[
             "client_id" =>  env('MOJO_CLIENT_ID', 'test_v9uNRGxgG45Tg0G95LMhYwGxgyO35YAOIgL'),

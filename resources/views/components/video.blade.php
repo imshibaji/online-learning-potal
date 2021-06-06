@@ -9,6 +9,8 @@
     poster="{{ $poster ??  url('images/poster.jpg') }}"
     @if (isset($type) && ($type=='video/youtube'))
         data-setup='{ "playbackRates": [1, 1.25, 1.5, 2], "techOrder": ["youtube"], "youtube": { "customVars": { "wmode": "transparent" ,"ytControls": 2 } } }'
+    @elseif(isset($type) && ($type=='video/vimeo'))
+        data-setup='{ "playbackRates": [1, 1.25, 1.5, 2], "techOrder": ["vimeo"], "vimeo": { "color": "#fbc51b"} } }'
     @else
         data-setup='{ "playbackRates": [1, 1.25, 1.5, 2] }'
     @endif
@@ -36,9 +38,10 @@
 @if (isset($type) && ($type=='video/youtube'))
 <script src="{{url('js/Youtube.min.js') }}"></script>
 @endif
+@if (isset($type) && ($type=='video/vimeo'))
+<script src="{{url('js/vimeo.min.js') }}"></script>
+@endif
 <script>
-// var player = videojs('my-video', {
-//   autoplay: 'muted',
-// });
+// var player = videojs('my-video', {});
 </script>
 @endsection

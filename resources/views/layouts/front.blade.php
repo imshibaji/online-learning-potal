@@ -9,7 +9,7 @@
 
     <title>{{ $title ?? 'Larnr Education'}} | Technology Learning Center</title>
     {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
-    <link rel="icon" href="favicon.ico" sizes="16x16 32x32" type="image/ico">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
     <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
@@ -45,9 +45,9 @@
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="https://www.larnr.com/articles">Articles</a>
                 </li>
-                <li class="nav-item {{ Request::is('/videos') ? 'active' : '' }}">
+                {{-- <li class="nav-item {{ Request::is('/videos') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="https://www.larnr.com/allvideos">Videos</a>
-                </li>
+                </li> --}}
                 <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="https://www.larnr.com/courses">Courses</a>
                 </li>

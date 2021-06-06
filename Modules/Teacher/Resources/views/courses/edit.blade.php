@@ -4,13 +4,17 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col">Course Create</div>
-            <div class="col text-right"><a href="{{ route('teachercourses.index') }}">Back to Course List</a></div>
+            <div class="col">Course Edit</div>
+            <div class="col text-right">
+                <a href="{{ route('teachercourses.index') }}">Back to Course List</a> |
+                <a href="{{ route('teachercourses.show', $course->id) }}">Course View</a>
+            </div>
         </div>
     </div>
     <div class="card-body">
-        <form action="{{route('admincourseupdate')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('teachercourses.update', $course->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <input type="hidden" name="id" value="{{$course->id}}">
             <div class="container">
                 <div class="row">
@@ -33,19 +37,30 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="status">Course Intro Video</label>
+                            <label for="status">Video Preview</label>
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     {{-- <x-video-uploader /> --}}
-                                    <x-video-selector vid="{{$course->video->id ?? null}}" />
+                                    {{-- <x-video-selector vid="{{$course->video->id ?? null}}" /> --}}
+                                    @isset($course->video->video_path)
+                                        <x-video-selector vid="{{$course->video->id ?? null}}" />
+                                        {{-- <x-video src="{{url('storage/'.$course->video->video_path)}}" poster="{{ url('storage/'.$course->video->image_path ) }}" /> --}}
+                                    @endisset
+                                    @isset($course->embed_code)
+                                        <x-video src="{{$course->embed_code}}" type="video/youtube" poster="{{ $course->image_path? url('storage/'.$course->image_path ) : null }}" />
+                                    @endisset
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="status">Embed YouTube video</label>
+                            <label for="status">YouTube video Link</label>
                             <div class="form-group">
                                 <textarea name="embed_code" class="form-control">{{$course->embed_code}}</textarea>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="catagory_id">Display Image</label>
+                            <x-image-uploader name="image" />
                         </div>
                         <div class="form-group">
                             <label for="catagory_id">Select Catagory</label>
@@ -56,9 +71,13 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <div class="form-group">
-                            <input type="text" id="duration" name="duration" class="form-control" placeholder="Input Total Course Duration" value="{{$course->duration}}">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="text" id="duration" name="duration" class="form-control" placeholder="Course Duration" value="{{$course->duration}}">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="language" name="language" class="form-control" placeholder="Course Language" value="{{$course->language}}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="status">Select Satus</label>
@@ -113,7 +132,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor', {
-        height:320,
+        height:640,
     });
 }
 

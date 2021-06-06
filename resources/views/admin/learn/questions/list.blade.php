@@ -84,7 +84,7 @@ td:hover{
 		helper: fixHelperModified,
 		stop: updateIndex
 	}).disableSelection();
-	
+
     $("tbody").sortable({
         distance: 5,
         delay: 100,

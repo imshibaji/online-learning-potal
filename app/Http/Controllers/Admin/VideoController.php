@@ -190,22 +190,41 @@ class VideoController extends Controller
     {
         $vid = Video::find($id);
         // Storage::disk('public')->delete([$vid->image_path, $vid->video_path]);
-        $vid->delete();
+        $out = $vid->delete();
 
-        return redirect()->route('video.index');
+        return [ 'status' => 200,
+            'message' => 'Video Deleted',
+            'out' => $out
+        ];
     }
 
     public function deletedList(){
-
+        $videos = Video::onlyTrashed()->paginate(8);
+        // dd($videos);
+        return view('admin.videos.deletedList',  compact('videos'));
     }
     public function restore($id){
-
+        $video = Video::onlyTrashed()->where('id', $id)->firstOrFail();
+        $video->restore();
+        return redirect(route('video.index'));
     }
     public function forceDelete($id){
+        $video = Video::onlyTrashed()->where('id', $id)->firstOrFail();
+        Storage::disk('public')->delete([$video->image_path, $video->video_path]);
+        $out = $video->forceDelete();
 
+        return [ 'status' => 200,
+            'message' => 'Video Forced Deleted',
+            'out' => $out
+        ];
     }
 
     public static function routes(){
         Route::resource('video', 'VideoController');
+        Route::prefix('video')->group(function(){
+            Route::get('deleted/list', 'VideoController@deletedList')->name('adminVideoDeleteList');
+            Route::post('clear/{id}', 'VideoController@forceDelete')->name('adminVideoForcedDelete');
+            Route::get('restore/{id}', 'VideoController@restore')->name('adminVideoRestore');
+        });
     }
 }

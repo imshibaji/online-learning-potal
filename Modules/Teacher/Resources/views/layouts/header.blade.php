@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-blue fixed-top">
-    <div class="container">
+    <div class="container-fluid">
     <div class="d-flex flex-grow-1">
         <a class="navbar-brand" href="{{url('/')}}">
             <img src="{{ url('/') }}/images/logo-dark.png" class="logo-img">

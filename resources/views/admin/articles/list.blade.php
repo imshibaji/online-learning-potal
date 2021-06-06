@@ -46,9 +46,9 @@
 <script src="{{url('/')}}/js/jqueryui/jquery-ui.min.js"></script>
 <script>
 function remove(id){
-    if(confirm('Are you sure? Course Id:'+id)){
-        $.post('{{url('/')}}/admin/article/'+id+'/delete', {_token: '<?php echo csrf_token() ?>'}, (res)=>{
-            // console.log(res);
+    if(confirm('Are you sure? Article Id:'+id)){
+        $.post('{{url('/')}}/admin/article/'+id, {_token: '<?php echo csrf_token() ?>', _method: 'delete'}, (res)=>{
+            console.log(res);
             if(res.out){
                 location.reload();
             }

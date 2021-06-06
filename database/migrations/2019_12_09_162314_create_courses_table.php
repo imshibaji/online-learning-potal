@@ -31,6 +31,8 @@ class CreateCoursesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('manager_user_id')->nullable();
             $table->string('embed_code')->nullable();
+            $table->string('image_path')->nullable();
+            $table->string('language')->nullable();
             $table->timestamps();
         });
     }

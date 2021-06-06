@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                     <label for="catagory_id">Display Image</label>
-                    <x-image-uploader src="{{ ($article->image_path)? url('storage/'. $article->image_path) : url('images/image-upload.jpg')  }}" />
+                    <x-image-uploader name="image" src="{{ ($article->image_path)? url('storage/'. $article->image_path) : url('images/image-upload.jpg')  }}" />
                 </div>
                 <div class="form-group">
                     <label for="catagory_id">Select User</label>

@@ -3,6 +3,7 @@
 namespace Modules\Larnr\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Topic;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -54,6 +55,16 @@ class CourseController extends Controller
         $course = Course::where('slag', $slug)->where('status', 'active')->first();
         $title = $course->title;
         return view('larnr::courses.course', compact('course', 'title'));
+    }
+
+    public function course_preview(Request $req){
+        $course = Course::where('id', $req->cid)->where('status', 'active')->first();
+        $topics = $course->topics()->orderBy('short')->get();
+        $topic = Topic::find($req->tid);
+
+        // $utopics = Auth::user()->topicAssignments;
+        // $assesments = Auth::user()->userAssesments()->where('topic_id', $req->tid)->get();
+        return view('larnr::courses.course-preview', compact([ 'course', 'topics', 'topic' ]));
     }
 
     /**

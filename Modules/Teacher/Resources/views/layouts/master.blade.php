@@ -31,7 +31,7 @@
     <body>
         @include('teacher::layouts.header')
         <div style="margin-top:60px">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col">
                         @if (session('status'))

@@ -2,6 +2,7 @@
 
 namespace Modules\Teacher\Entities;
 
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,5 +28,13 @@ class Teacher extends Model
 
     public function socials(){
         return $this->hasMany(Social::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
+    public function courses(){
+        return $this->user->courses;
     }
 }

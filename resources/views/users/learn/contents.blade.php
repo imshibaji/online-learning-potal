@@ -75,7 +75,7 @@
               </div>
             </form>
             @else
-              <h1 class="text-center">No Questions Prepaired.</h1>
+              <h1 class="text-center">No Questions Prepared.</h1>
             @endif
         </div>
     </div>

@@ -13,7 +13,9 @@
                 <div class="btn-group">
                     <a href="{{ url('admin/video/'. $video->id)}}" class="btn btn-primary">View</a>
                     <a href="{{ url('admin/video/'. $video->id . '/edit')}}" class="btn btn-warning">Edit</a>
-                    <a href="{{ url('admin/video/'. $video->id)}}" class="btn btn-danger">Delete</a>
+                    @utype('admin')
+                    <button class="btn btn-danger" onclick="remove('{{ $video->id }}')" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    @endutype
                   </div>
               </div>
             </div>
@@ -26,4 +28,20 @@
         {{ $videos->links('vendor.pagination.bootstrap-4') }}
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{url('/')}}/js/jqueryui/jquery-ui.min.js"></script>
+<script>
+function remove(id){
+    if(confirm('Are you sure? Video Id:'+id)){
+        $.post('{{url('/')}}/admin/video/'+id, {_token: '<?php echo csrf_token() ?>', _method: 'delete'}, (res)=>{
+            console.log(res);
+            if(res.out){
+                location.reload();
+            }
+        });
+    }
+}
+</script>
 @endsection

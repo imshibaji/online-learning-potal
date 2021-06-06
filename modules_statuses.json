@@ -1,8 +1,6 @@
 {
     "Larnr": true,
     "Shibaji": true,
-    "API": true,
     "Teacher": true,
-    "User": true,
-    "Email": true
+    "User": true
 }

@@ -99,9 +99,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\User', 'manage_by_user_id');
     }
 
-    public function assignments(){
-        return $this->hasMany('App\Models\Assignment');
-    }
+    // public function assignments(){
+    //     return $this->hasMany('App\Models\Assignment');
+    // }
 
     public function courseAssignments(){
         return $this->hasMany('App\Models\CourseAssignment');
@@ -115,8 +115,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\UserAssesment');
     }
 
+    // public function courses(){
+    //     return $this->hasManyThrough('App\Models\Assignment', 'App\Models\Course');
+    // }
     public function courses(){
-        return $this->hasManyThrough('App\Models\Assignment', 'App\Models\Course');
+        return $this->hasMany('App\Models\Course');
     }
 
     public function learning(){

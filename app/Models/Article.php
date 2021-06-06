@@ -11,8 +11,8 @@ class Article extends Model
     use SoftDeletes;
     use HasFactory;
 
-    public function scopePublish(){
-        return $this->where('status', 'free')->where('type', 'publish');
+    public function scopePublish($query){
+        return $query->where('type', 'publish')->where('status', 'free');
     }
     public function user(){
         return $this->belongsTo(User::class);

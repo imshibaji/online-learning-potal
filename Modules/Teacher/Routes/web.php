@@ -17,14 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::domain('teacher.larnr.com')->name('teacher')->group(function() {
     Route::middleware('auth')->group(function () {
         Route::get('/', 'TeacherController@index')->name('.home');
-        Route::post('/create', 'TeacherController@store')->name('.create');
-        Route::put('/update', 'TeacherController@update')->name('.update');
+        Route::get('/create', 'TeacherController@create')->name('.create');
+        Route::post('/create', 'TeacherController@store')->name('.store');
+        Route::get('/profile', 'TeacherController@profile')->name('.profile');
+        Route::put('/update/{id}', 'TeacherController@update')->name('.update');
 
         // Course Controller
         Route::resource('courses', 'CourseController');
+        Route::post('courses/short', 'CourseController@short')->name('courses.short');
 
         // Topics Controller
         Route::resource('topics', 'TopicController');
+        Route::post('topics/short', 'TopicController@short')->name('topics.short');
 
         // Question Controller
         Route::resource('questions', 'QuestionController');
@@ -33,6 +37,8 @@ Route::domain('teacher.larnr.com')->name('teacher')->group(function() {
         // Article Controller
         Route::resource('articles', 'ArticleController');
 
+        // Comment Controller
+        Route::resource('comments', 'CommentController');
 
         // Videos
         Route::get('/allvideos', function(){ return view('teacher::videos.index'); })->name('.videos');

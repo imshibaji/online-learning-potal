@@ -32,10 +32,6 @@ class Course extends Model
         return $this->hasMany('App\Models\Topic');
     }
 
-    public function assignments(){
-        return $this->hasMany('App\Models\Assignment');
-    }
-
     public function video(){
         return $this->morphOne(Video::class, 'videoable');
     }

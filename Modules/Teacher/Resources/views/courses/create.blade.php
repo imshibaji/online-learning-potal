@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="card-body">
-        <form action="{{route('admincoursecreate')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('teachercourses.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="container">
                 <div class="row">
@@ -33,20 +33,24 @@
 
                     {{-- Right Side --}}
                     <div class="col-md-4">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="status">Course Intro Video</label>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    {{-- <x-video-uploader /> --}}
+                                    {{-- <x-video-uploader /> --
                                     <x-video-selector />
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
-                            <label for="status">Embed YouTube video</label>
+                            <label for="status">YouTube video Link</label>
                             <div class="form-group">
                                 <textarea name="embed_code" class="form-control"></textarea>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="catagory_id">Display Image</label>
+                            <x-image-uploader name="image" />
                         </div>
                         <div class="form-group">
                             <label for="catagory_id">Select Catagory</label>
@@ -57,8 +61,13 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <input type="text" id="duration" name="duration" class="form-control" placeholder="Input Total Course Duration">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="text" id="duration" name="duration" class="form-control" placeholder="Course Duration">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="language" name="language" class="form-control" placeholder="Course Language">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="status">Select Satus</label>
@@ -113,7 +122,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor',{
-        height:320
+        height:420
     });
 }
 

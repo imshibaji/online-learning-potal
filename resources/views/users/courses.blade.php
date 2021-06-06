@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Course List</div>
+                <div class="card-header">My Courses</div>
 
                 <div class="card-body" style="min-height: 600px">
                     @if (session('status'))

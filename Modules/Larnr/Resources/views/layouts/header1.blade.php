@@ -10,9 +10,9 @@
             <li class="nav-item {{ Request::is('articles') ? 'active' : '' }}">
                 <a class="nav-link hover-nav" href="/articles">Articles</a>
             </li>
-            <li class="nav-item {{ Request::is('allvideos') ? 'active' : '' }}">
+            {{-- <li class="nav-item {{ Request::is('allvideos') ? 'active' : '' }}">
                 <a class="nav-link hover-nav" href="/allvideos">Videos</a>
-            </li>
+            </li> --}}
             <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
                 <a class="nav-link hover-nav" href="/courses">Courses</a>
             </li>
@@ -60,15 +60,12 @@
                         <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
                     </li>
                 @endutype
-                <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+                {{-- <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
-                </li>
+                </li> --}}
                 <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
                     <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link hover-nav" href="{{ route('userMyCourses') }}">MyCourses</a>
-                </li> --}}
                 @utype('admin')
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

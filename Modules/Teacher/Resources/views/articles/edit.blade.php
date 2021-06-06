@@ -5,7 +5,12 @@
     <div class="card-header">
         <div class="row">
             <div class="col">New Article</div>
-            <div class="col text-right"><a href="{{route('teacherarticles.index')}}">Back to Articles</a></div>
+            <div class="col text-right">
+                <a href="{{route('teacherarticles.index')}}">Back to Articles</a> |
+                <a href="{{route('teacherarticles.show', $article->id)}}" title="View">
+                   Article View
+                </a>
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -51,7 +56,7 @@
                             <label for="status">Youtube Video URL</label>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <textarea class="form-control" name="video" placeholder="Video Embed code from YouTube, Vimeo">{{$article->video_path}}</textarea>
+                                    <textarea class="form-control" name="video" placeholder="Related YouTube Video URL">{{$article->video_path}}</textarea>
                                 </div>
                             </div>
                         </div>

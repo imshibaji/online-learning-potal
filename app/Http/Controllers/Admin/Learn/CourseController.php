@@ -98,16 +98,27 @@ class CourseController extends Controller
     }
 
     public function delete($id){
-        $course = Course::find($id);
-        if($course->video){
-            $course->video()->update(['videoable_type' => null, 'videoable_id' => null]);
-        }
-        $out = $course->delete();
+        try {
+            $course = Course::find($id);
+            if($course->video){
+                $course->video()->update(['videoable_type' => null, 'videoable_id' => null]);
+            }
+            foreach($course->topics as $topic){
+                $topic->delete();
+            }
+            foreach($course->comments as $comment){
+                $comment->delete();
+            }
+            $out = $course->delete();
 
-        return [ 'status' => 200,
-            'message' => 'Course Deleted',
-            'out' => $out
-        ];
+            return [ 'status' => 200,
+                'message' => 'Course Deleted',
+                'out' => $out
+            ];
+        } catch (\Throwable $th) {
+            return $th;
+        }
+
     }
 
     public function short(Request $req){

@@ -16,10 +16,13 @@ class TopicController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $req)
     {
-        $topics = Topic::where('user_id', Auth::id())->orderBy('short')->get();
-        return view('teacher::topics.index', compact('topics'));
+        // $topics = Topic::where('user_id', Auth::id())->orderBy('short')->get();
+        $courses = Course::where('user_id', Auth::id())->orderBy('short')->get();
+        $course = Course::find($req->cid);
+        // dd($course);
+        return view('teacher::topics.index', compact('courses', 'course'));
     }
 
     /**
@@ -29,8 +32,8 @@ class TopicController extends Controller
     public function create(Request $req)
     {
         $courses = Course::where('status', 'active')->get();
-        $imp_course_id = $req->query('course');
-        return view('teacher::topics.create', compact('courses', 'imp_course_id'));
+        $course_id = $req->query('course');
+        return view('teacher::topics.create', compact('courses', 'course_id'));
     }
 
     /**
@@ -60,12 +63,13 @@ class TopicController extends Controller
             $topic->video()->save($video);
         }
 
-        if($result){
-            return redirect(route('teachercourses.show', $req->input('course_id')));
-            // return back();
-        }else{
-            return redirect(route('teachertopics.create'));
-        }
+        // if($result){
+        //     return redirect(route('teachercourses.show', $req->input('course_id')));
+        //     // return back();
+        // }else{
+        //     return redirect(route('teachertopics.create'));
+        // }
+        return redirect(route('teachertopics.edit', $topic->id));
     }
 
     /**
@@ -125,12 +129,13 @@ class TopicController extends Controller
         }
 
 
-        if($result){
-            return redirect(route('teachercourses.show', $req->input('course_id')));
-            // return back();
-        }else{
-            return redirect(route('teachertopics.edit'));
-        }
+        // if($result){
+        //     return redirect(route('teachercourses.show', $req->input('course_id')));
+        //     // return back();
+        // }else{
+        //     return redirect(route('teachertopics.edit'));
+        // }
+        return back();
     }
 
     /**
@@ -144,11 +149,29 @@ class TopicController extends Controller
         if($topic->video){
             $topic->video()->update(['videoable_type' => null, 'videoable_id' => null]);
         }
+        if($topic->comments){
+            foreach($topic->comments as $comment){
+                $comment->delete();
+            }
+        }
         $out = $topic->delete();
 
         return [ 'status' => 200,
             'message' => 'Topic Deleted',
             'out' => $out
         ];
+    }
+
+    public function short(Request $req){
+        $c = Topic::find($req->id);
+        $c->short = $req->short;
+        $c->save();
+
+        $out = [
+            'status' => 200,
+            'msg' => 'data saved'
+        ];
+
+        return $out;
     }
 }

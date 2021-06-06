@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-6">
             <p class="text-center text-md-right">
-                Developed By <a class="text-light" href="https://www.shibajidebnath.com" target="_blank">Shibaji Debnath</a>.
+                Developed By <a class="text-light" href="https://www.medust.com" target="_blank">Medust Technology Pvt. Ltd.</a>.
             </p>
         </div>
     </div>

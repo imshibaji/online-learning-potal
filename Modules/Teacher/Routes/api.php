@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Modules\Teacher\Entities\Teacher;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/teacher', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/teacher', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::domain('teacher.larnr.com')->group(function() {
+    Route::get('/', function(){
+        return ['message' =>'Teacher APIs'];
+    });
+
+    // Route::get('/email', function(){
+    //     return view('teacher::emails.article', [
+    //         'article'=> Article::find(5),
+    //         'user' => Auth::user()
+    //     ]);
+    // });
 });

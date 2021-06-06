@@ -58,7 +58,7 @@
 <script>
 function remove(id){
     if(confirm('Are you sure? Course Id:'+id)){
-        $.post("{{route('teacherarticles.destroy', "+id+")}}", {_token: '<?php echo csrf_token() ?>'}, (res)=>{
+        $.post('{{route("teacherarticles.store")}}/'+id, {_token: '<?php echo csrf_token() ?>', _method: 'delete'}, (res)=>{
             // console.log(res);
             if(res.out){
                 location.reload();

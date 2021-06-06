@@ -140,16 +140,19 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $article = Article::find($id);
         // Storage::disk('public')->delete([$article->image_path]);
-        $article->delete();
+        $out = $article->delete();
 
-        return redirect(route('article.index'));
+        return [ 'status' => 200,
+            'message' => 'Article Deleted',
+            'out' => $out
+        ];
     }
     public function deletedList(){
-        $articles = Article::onlyTrashed()->get();
-        return view('admin.articles.list',  compact('articles'));
+        $articles = Article::onlyTrashed()->paginate(5);
+        // dd($articles);
+        return view('admin.articles.deletedList',  compact('articles'));
     }
     public function restore($id){
         $article = Article::onlyTrashed()->where('id', $id)->firstOrFail();
@@ -160,12 +163,20 @@ class ArticleController extends Controller
     public function forceDelete($id){
         $article = Article::onlyTrashed()->where('id', $id)->firstOrFail();
         Storage::disk('public')->delete([$article->image_path]);
-        $article->forceDelete();
+        $out = $article->forceDelete();
 
-        return redirect(route('article.index'));
+        return [ 'status' => 200,
+            'message' => 'Article Forced Deleted',
+            'out' => $out
+        ];
     }
 
     public static function routes(){
         Route::resource('article', 'ArticleController');
+        Route::prefix('article')->group(function(){
+            Route::get('deleted/list', 'ArticleController@deletedList')->name('adminArticleDeleteList');
+            Route::post('clear/{id}', 'ArticleController@forceDelete')->name('adminArticleForcedDelete');
+            Route::get('restore/{id}', 'ArticleController@restore')->name('adminArticleRestore');
+        });
     }
 }

@@ -48,7 +48,7 @@
                                 <div class="col-md-12">
                                     {{-- <x-video-uploader /> --}}
                                     {{-- <x-uploader /> --}}
-                                    <textarea class="form-control" name="video" placeholder="Video Embed code from YouTube, Vimeo"></textarea>
+                                    <textarea class="form-control" name="video" placeholder="Related YouTube Video URL"></textarea>
                                 </div>
                             </div>
                         </div>

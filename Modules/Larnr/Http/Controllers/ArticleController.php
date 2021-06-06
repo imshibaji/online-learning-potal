@@ -42,7 +42,7 @@ class ArticleController extends Controller
     public function show($slug)
     {
         $article = Article::where('slug', $slug)->first();
-        $articles = Article::inRandomOrder()->limit(4)->get();
+        $articles = Article::inRandomOrder()->publish()->limit(4)->get();
         $title = $article->title;
         $keywords = $article->keywords;
         $description = $article->description;

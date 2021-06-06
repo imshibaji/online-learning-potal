@@ -9,7 +9,7 @@
 
     <title>{{ $title ?? 'Dashboard'}} | Larnr Education</title>
     {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
-    <link rel="icon" href="favicon.ico" sizes="16x16 32x32" type="image/ico">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet">--}}
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
     <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
@@ -47,9 +47,9 @@
                     <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="/">Main</a>
                     </li>
-                    <li class="nav-item {{ Request::is('/videos') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ Request::is('/videos') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="https://www.larnr.com/allvideos">Videos</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item {{ Request::is('courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="https://www.larnr.com/courses">Courses</a>
                     </li>
@@ -63,9 +63,9 @@
                     <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="http://larnr.com/courses">Articles</a>
                     </li>
-                    <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="http://larnr.com/allvideos">Videos</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item {{ Request::is('user/courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="http://larnr.com/courses">Courses</a>
                     </li>
@@ -108,9 +108,9 @@
                             <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
                         </li>
                     @endutype
-                    <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
                     </li>
@@ -147,9 +147,11 @@
                             {{-- <a class="dropdown-item" href="{{ route('usergems') }}">
                                 {{ __('Affiliate') }}
                             </a> --}}
+                            @utype('admin')
                             <a class="dropdown-item"" href="{{ route('teacher.home') }}">
                                 Teacher Room
                             </a>
+                            @endutype
                             <a class="dropdown-item" href="{{ route('transactions') }}">
                                 {{ __('Billing') }}
                             </a>
@@ -190,7 +192,7 @@
                     </p>
                 </div>
                 <div class="col-md text-center text-md-right">
-                    <p class="text-dark">Developed By <a class="text-info" href="https://www.shibajidebnath.com">Shibaji Debnath.</a>
+                    <p class="text-dark">Developed By <a class="text-info" href="https://www.medust.com">Medust Technology Pvt Ltd.</a>
                     </p>
                 </div>
             </div>

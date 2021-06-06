@@ -38,6 +38,8 @@ $routes = function(){
 
     Route::get('courses', 'CourseController@index');
     Route::get('course/{slug}', 'CourseController@show');
+    Route::get('/course-preview/{cid}', 'CourseController@course_preview');
+    Route::get('/course-preview/{cid}/{tid}', 'CourseController@course_preview');
 
 
     // Payment

@@ -4,6 +4,9 @@
 @section('quickbtn')
     <div class="col text-right">
         <a href="{{ url('admin/learn/course/list') }}" class="btn btn-primary">Course List</a>
+        <a href="{{ url('/admin/learn/course/edit/'. $course->id) }}" class="btn btn-warning" title="Edit">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+        </a>
     </div>
 @endsection
 

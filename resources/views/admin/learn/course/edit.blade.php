@@ -3,6 +3,10 @@
 @section('quickbtn')
     <div class="col text-right">
         <a href="{{ url('admin/learn/course/list') }}" class="btn btn-primary">Course List</a>
+        <a href="{{ url('/admin/learn/course/view/'. $course->id) }} " class="btn btn-warning" title="View">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            View
+        </a>
     </div>
 @endsection
 

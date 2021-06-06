@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-3">
     {{-- Learning Section --}}
     <div class="accordion" id="accordionExample">
         @foreach ($courses as $key => $learn )

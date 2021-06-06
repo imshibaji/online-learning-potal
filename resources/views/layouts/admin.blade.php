@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? 'Larnr Education'}} | Technology Learning Center</title>
     {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
-    <link rel="icon" href="favicon.ico" sizes="16x16 32x32" type="image/ico">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

@@ -105,15 +105,30 @@ class TopicController extends Controller
     }
 
     public function delete(Topic $topic){
-        if($topic->video){
-            $topic->video()->update(['videoable_type' => null, 'videoable_id' => null]);
-        }
-        $out = $topic->delete();
 
-        return [ 'status' => 200,
-            'message' => 'Topic Deleted',
-            'out' => $out
-        ];
+        try {
+            if($topic->video){
+                $topic->video()->update(['videoable_type' => null, 'videoable_id' => null]);
+            }
+            if($topic->questions){
+                foreach($topic->questions as $question){
+                    $question->delete();
+                }
+            }
+            if($topic->comments){
+                foreach($topic->comments as $comment){
+                    $comment->delete();
+                }
+            }
+            $out = $topic->delete();
+
+            return [ 'status' => 200,
+                'message' => 'Topic Deleted',
+                'out' => $out
+            ];
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     public function short(Request $req){

@@ -10,7 +10,7 @@
             </div>
             {{-- Course List --}}
             <ul class="list-group">
-                @foreach ($course->topics()->orderBy('short')->get() as $topic)
+                @foreach ($course->topics()->publish()->orderBy('short')->get() as $topic)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span><i class="fa fa-video"></i> {{$topic->title}}</span>
                         @if ($topic->premium_status == 'free')

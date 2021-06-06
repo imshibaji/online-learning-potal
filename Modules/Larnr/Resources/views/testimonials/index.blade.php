@@ -1,7 +1,7 @@
 @extends('larnr::layouts.master')
 
 @section('content')
-@include('larnr::testimonials.display')
+{{-- @include('larnr::testimonials.display') --}}
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-10">

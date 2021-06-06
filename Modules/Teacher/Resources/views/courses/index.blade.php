@@ -5,7 +5,9 @@
     <div class="card-header">
         <div class="row">
             <div class="col">Courses</div>
-            <div class="col text-right"><a href="{{ route('teachercourses.create') }}">Create New Course</a></div>
+            <div class="col text-right">
+                <a href="{{ route('teachercourses.create') }}">Create New Course</a>
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -71,46 +73,46 @@ td:hover{
 @section('scripts')
 <script src="{{url('/')}}/js/jqueryui/jquery-ui.min.js"></script>
 <script>
-	// var fixHelperModified = function(e, tr) {
-	// 	var $originals = tr.children();
-	// 	var $helper = tr.clone();
-	// 	$helper.children().each(function(index) {
-	// 		$(this).width($originals.eq(index).width())
-	// 	});
-	// 	return $helper;
-	// };
-    // var updateIndex = function(e, ui) {
-    //     // $('td.index', ui.item.parent()).each(function (i) {
-    //     //     $(this).html(i+1);
-    //     // });
-    //     // $('input[type=text]', ui.item.parent()).each(function (i) {
-    //     //     $(this).val(i + 1);
-    //     // });
-    //     $('input[type=hidden]', ui.item.parent()).each(function (i) {
-    //         var index = i+1;
+	var fixHelperModified = function(e, tr) {
+		var $originals = tr.children();
+		var $helper = tr.clone();
+		$helper.children().each(function(index) {
+			$(this).width($originals.eq(index).width())
+		});
+		return $helper;
+	};
+    var updateIndex = function(e, ui) {
+        // $('td.index', ui.item.parent()).each(function (i) {
+        //     $(this).html(i+1);
+        // });
+        // $('input[type=text]', ui.item.parent()).each(function (i) {
+        //     $(this).val(i + 1);
+        // });
+        $('input[type=hidden]', ui.item.parent()).each(function (i) {
+            var index = i+1;
 
-    //         var cid = $(this).val(); // Set Key
-    //         // console.log(cid,index); // Get Value
+            var cid = $(this).val(); // Set Key
+            // console.log(cid,index); // Get Value
 
-    //         $.post("{{url('/')}}/admin/learn/course/short", {_token: '<?php echo csrf_token() ?>',id: cid, short: index}, function(res){
-    //             // console.log('data shorted', res);
-    //             location.reload();
-    //         });
-    //     });
-    // };
+            $.post("{{route('teachercourses.short')}}", {_token: '<?php echo csrf_token() ?>',id: cid, short: index}, function(res){
+                // console.log('data shorted', res);
+                location.reload();
+            });
+        });
+    };
 
-	// $("#myTable tbody").sortable({
-	// 	helper: fixHelperModified,
-	// 	stop: updateIndex
-	// }).disableSelection();
+	$("#myTable tbody").sortable({
+		helper: fixHelperModified,
+		stop: updateIndex
+	}).disableSelection();
 
-    // $("tbody").sortable({
-    //     distance: 5,
-    //     delay: 100,
-    //     opacity: 0.6,
-    //     cursor: 'move',
-    //     update: function() {}
-    // });
+    $("tbody").sortable({
+        distance: 5,
+        delay: 100,
+        opacity: 0.6,
+        cursor: 'move',
+        update: function() {}
+    });
 
 
     function remove(id){

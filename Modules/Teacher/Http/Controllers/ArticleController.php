@@ -4,11 +4,14 @@ namespace Modules\Teacher\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Catagory;
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Modules\Teacher\Emails\ArticlePublished;
 
 class ArticleController extends Controller
 {
@@ -60,6 +63,7 @@ class ArticleController extends Controller
         $article->canonical = $request->canonical;
         $article->save();
 
+        $this->mails($article, $request);
         return redirect(route('teacherarticles.index'));
     }
 
@@ -112,11 +116,23 @@ class ArticleController extends Controller
         $article->catagory_id = $request->category_id;
         $article->status = $request->status;
         $article->type = $request->type;
-        $article->approved = 0;
+        $article->approved = 1;
         $article->canonical = $request->canonical;
         $article->save();
 
+        $this->mails($article, $request);
         return redirect(route('teacherarticles.index'));
+    }
+
+    // Email Sending
+    private function mails($article){
+        if($article->type == 'publish'){
+            $users = User::all();
+            foreach ($users as $user) {
+                Mail::to($user)
+                ->send(new ArticlePublished($article, $user));
+            }
+        }
     }
 
     /**
@@ -127,9 +143,9 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
-        // Storage::disk('public')->delete([$article->image_path]);
+        Storage::disk('public')->delete([$article->image_path]);
         $article->delete();
 
-        return redirect(route('teacherarticles.index'));
+        return ['did' => $id];
     }
 }

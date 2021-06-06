@@ -41,8 +41,12 @@
                                     @if ($topic->premium_status =="free")
                                         <h1 class="text-center">{{$topic->title}}</h1>
                                         <div class="py-3">
-                                            {!! $topic->embed_code !!}
-                                            <x-video src="{{url('storage/'.$topic->video->video_path)}}" poster="{{ url('storage/'.$topic->video->image_path ) }}" />
+                                            @isset($topic->video)
+                                                <x-video src="{{url('storage/'.$topic->video->video_path)}}" poster="{{ url('storage/'.$topic->video->image_path ) }}" />
+                                            @endisset
+                                            @isset($topic->embed_code)
+                                                <x-video src="{{$topic->embed_code}}" type="video/youtube" poster="{{ url('storage/'.$topic->image_path ) }}" />
+                                            @endisset
                                         </div>
                                         @include('users.learn.contents')
                                     @else
@@ -55,7 +59,12 @@
                                     <h1 class="text-center">{{ $course->title }}</h1>
                                     <div class="my-2">
                                         <div class="pb-2">
-                                            <x-video src="{{url('storage/'.$course->video->video_path)}}" poster="{{ url('storage/'.$course->video->image_path ) }}" />
+                                            @isset($topic->video)
+                                                <x-video src="{{url('storage/'.$topic->video->video_path)}}" poster="{{ url('storage/'.$topic->video->image_path ) }}" />
+                                            @endisset
+                                            @isset($topic->embed_code)
+                                                <x-video src="{{$topic->embed_code}}" type="video/youtube" poster="{{ url('storage/'.$topic->image_path ) }}" />
+                                            @endisset
                                         </div>
                                         {!! $course->details !!}
                                     </div>
