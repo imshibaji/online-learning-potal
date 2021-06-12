@@ -24,6 +24,17 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Sub Categories</td>
+                        <td colspan="3">
+                            <select id="details" name="catagory_id" class="form-control">
+                                <option value="0">None</option>
+                                @foreach ($catagories as $catagory)
+                                    <option value="{{$catagory->id}}">{{$catagory->title}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Status</td>
                         <td colspan="3">
                             <select id="status" name="status" class="form-control">

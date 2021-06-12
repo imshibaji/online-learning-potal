@@ -9,9 +9,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Modules\Teacher\Emails\ArticlePublished;
+use Modules\Teacher\Events\ArticlePublish;
 
 class ArticleController extends Controller
 {
@@ -63,7 +62,7 @@ class ArticleController extends Controller
         $article->canonical = $request->canonical;
         $article->save();
 
-        $this->mails($article, $request);
+        event(new ArticlePublish($article));
         return redirect(route('teacherarticles.index'));
     }
 
@@ -120,19 +119,8 @@ class ArticleController extends Controller
         $article->canonical = $request->canonical;
         $article->save();
 
-        $this->mails($article, $request);
+        event(new ArticlePublish($article));
         return redirect(route('teacherarticles.index'));
-    }
-
-    // Email Sending
-    private function mails($article){
-        if($article->type == 'publish'){
-            $users = User::all();
-            foreach ($users as $user) {
-                Mail::to($user)
-                ->send(new ArticlePublished($article, $user));
-            }
-        }
     }
 
     /**

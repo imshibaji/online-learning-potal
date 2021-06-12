@@ -33,6 +33,7 @@ $routes = function(){
     Route::get('partner', 'PartnerController@index');
 
     Route::get('articles', 'ArticleController@index');
+    Route::post('subscribe', 'ArticleController@subscribe')->name('subscribe');
     Route::get('article/{slug}', 'ArticleController@show');
     Route::post('article/comment', 'ArticleController@comment')->middleware('auth');
 

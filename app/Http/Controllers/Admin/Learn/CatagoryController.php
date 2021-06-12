@@ -15,7 +15,11 @@ class CatagoryController extends Controller
     }
 
     public function add(){
-        return view('admin.learn.catagory.add', ['title' => 'Catagory Add']);
+        $catagories = Catagory::orderBy('short')->get();
+        return view('admin.learn.catagory.add', [
+            'title' => 'Catagory Add',
+            'catagories' => $catagories
+        ]);
     }
 
     public function create(Request $req){
@@ -23,7 +27,7 @@ class CatagoryController extends Controller
         $catagory->title = $req->input('title');
         $catagory->details = $req->input('details');
         $catagory->status = $req->input('status');
-
+        $catagory->catagory_id = $req->input('catagory_id');
         $out = $catagory->save();
 
         return redirect(route('admincatagorylist'));
@@ -31,14 +35,21 @@ class CatagoryController extends Controller
 
     public function edit($id){
         $catagory = Catagory::find($id);
-        return view('admin.learn.catagory.edit', ['title' => 'Catagory Edit', 'catagory' => $catagory]);
+        $catagories = Catagory::orderBy('short')->get();
+        return view('admin.learn.catagory.edit', [
+            'title' => 'Catagory Edit',
+            'catagory' => $catagory,
+            'catagories' => $catagories
+        ]);
     }
 
     public function update(Request $req){
+
         $catagory = Catagory::find($req->id);
         $catagory->title = $req->input('title');
         $catagory->details = $req->input('details');
         $catagory->status = $req->input('status');
+        $catagory->catagory_id = $req->input('catagory_id');
 
         $out = $catagory->save();
         return redirect(route('admincatagorylist'));
@@ -53,9 +64,9 @@ class CatagoryController extends Controller
         $catagory = Catagory::find($id);
         $out = $catagory->delete();
 
-        return [ 'status' => 200, 
-            'message' => 'Catagory Deleted', 
-            'out' => $out 
+        return [ 'status' => 200,
+            'message' => 'Catagory Deleted',
+            'out' => $out
         ];
     }
 

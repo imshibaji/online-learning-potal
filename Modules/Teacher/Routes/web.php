@@ -13,12 +13,20 @@
 
 use App\Http\Controllers\Admin\ActivityController;
 use Illuminate\Support\Facades\Route;
+use Modules\Teacher\Events\ActivityEvent;
 
-Route::domain('teacher.larnr.com')->name('teacher')->group(function() {
-    Route::middleware('auth')->group(function () {
+Route::domain('teacher.larnr.com')->name('teacher')
+->middleware(['auth','verified'])->group(function() {
+
+    Route::get('/create', 'TeacherController@create')->name('.create');
+    Route::post('/create', 'TeacherController@store')->name('.store');
+
+    Route::get('publish/{msg}', function ($msg) {
+        event(new ActivityEvent($msg));
+    });
+
+    Route::middleware('teacher')->group(function () {
         Route::get('/', 'TeacherController@index')->name('.home');
-        Route::get('/create', 'TeacherController@create')->name('.create');
-        Route::post('/create', 'TeacherController@store')->name('.store');
         Route::get('/profile', 'TeacherController@profile')->name('.profile');
         Route::put('/update/{id}', 'TeacherController@update')->name('.update');
 

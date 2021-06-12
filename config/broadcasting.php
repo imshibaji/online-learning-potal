@@ -41,6 +41,18 @@ return [
             ],
         ],
 
+        // 'pusher' => [
+        //     'driver' => 'pusher',
+        //     'key' => env('PUSHER_KEY'),
+        //     'secret' => null,
+        //     'app_id' => env('PUSHER_APP_ID'),
+        //     'options' => [
+        //         'host' => 'app.larnr.com',
+        //         'port' => 6001,
+        //         'scheme' => 'http'
+        //     ],
+        // ],
+
         'ably' => [
             'driver' => 'ably',
             'key' => env('ABLY_KEY'),

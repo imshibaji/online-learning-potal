@@ -2,10 +2,22 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 // Bootstrap
 @import './bootstrap.min.css';
+@import './style.css';
 
 .bg-blue{
     background-color: #088cd8;
 }
+
+.box {
+    position: relative;
+    border: 1px solid #b8b8b8;
+    background-color: #ecf1f3;
+    // box-shadow: 0px 0px 3px #888888;
+}
+.box:hover {
+    animation: animatedBox 1s forwards;
+}
+
 @media(max-width: 768px){
     .hover-nav {
         text-align: center;
@@ -24,4 +36,63 @@
         border-radius: 2px;
         box-shadow: 0px 0px 8px #888888;
     }
+}
+
+@keyframes animatedBox {
+    from{
+        box-shadow: none;
+    }
+    to{
+        box-shadow: 0px 0px 25px #888888;
+    }
+}
+
+.testimonial{
+
+    .carousel-indicators{
+        margin-bottom: -1rem;
+        li{
+            background-color: black;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+    }
+
+    .flexback{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+
+        .textbox:hover{
+            animation: animatedBox 1s forwards;
+        }
+        .textbox{
+            background-color: #ecf1f3;
+            width: 100%;
+            min-height: 250px;
+            border-radius: 5px;
+            margin: 0 15px;
+
+            img{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+            h6{
+                color: #088cd8;
+                font-family: 'poppinssemibold';
+            }
+            p{
+                text-align: left;
+                width: 85%;
+                margin: 0 auto;
+                padding-left: 10px;
+                font-size: 14px;
+                line-height: 28px;
+            }
+
+        }
+    }
+
 }

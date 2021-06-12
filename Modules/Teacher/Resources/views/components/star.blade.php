@@ -1,4 +1,8 @@
+<p class="m-0"><i class="fa fa-heartbeat " aria-hidden="true"></i> {{$follows ?? 0}}</p>
 <div class="m-0">
+@php
+    $count = $star ?? 0;
+@endphp
 <small class="text-success">{{$count}}</small>
 @for ($i = 0; $i < floor($count); $i++)
     <i class="fa fa-star text-success" aria-hidden="true"></i>
@@ -13,6 +17,6 @@
     <i class="fa fa-star-o text-success" aria-hidden="true"></i>
 @endfor
 </div>
-<div class="m-0"><a href="{{$reviews_link ?? '#'}}"><span class="text-muted">{{$stared ?? '10'}} Reviews</span></a></div>
+<div class="m-0"><a href="{{$reviews_link ?? '#'}}"><span class="text-muted">{{$reviews ?? '10'}} Reviews</span></a></div>
 
 

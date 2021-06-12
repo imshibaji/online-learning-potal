@@ -4,6 +4,7 @@ namespace Modules\Larnr\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\Subscribe;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -26,6 +27,17 @@ class ArticleController extends Controller
         $description = 'This section for free Software development tutorials. you can learn software development learning free way';
 
         return view('larnr::articles.index', compact('articles', 'title', 'description'));
+    }
+
+    public function subscribe(Request $req){
+        Subscribe::updateOrCreate(
+        ['email' => $req->email],
+        [
+            'name' => $req->name,
+            'email' => $req->email
+        ]);
+        // $req->session()->flash('status', 'Thank you for suscribe.');
+        return back();
     }
 
     public function comment(Request $request){

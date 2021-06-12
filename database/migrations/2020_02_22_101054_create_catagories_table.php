@@ -19,6 +19,7 @@ class CreateCatagoriesTable extends Migration
             $table->string('details')->nullable();
             $table->integer('short')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->integer('catagory_id')->nullable();
             $table->timestamps();
         });
     }

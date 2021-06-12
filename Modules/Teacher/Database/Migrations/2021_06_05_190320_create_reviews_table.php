@@ -15,7 +15,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->float('rates')->default(0);
+            $table->float('ratings')->default(0);
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->integer('user_id')->nullable(); // Student Id

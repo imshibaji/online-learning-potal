@@ -1,11 +1,12 @@
 {{-- Articles Sections --}}
 <div class="container">
-    <div class="row my-5">
+    {{-- <h2 class="text-center p-0 m-0"><u>Top Articles</u></h2> --}}
+    <div class="row my-2">
         @foreach ($articles as $article)
         <div class="col-md-3 my-3">
             <div class="card h-100 box">
                 <a href="{{ url('article/'.$article->slug) }}">
-                    <img height="140" src="{{ url('storage/'.$article->image_path) }}" class="card-img-top" alt="{{$article->title}}">
+                    <img height="150" src="{{ url('storage/'.$article->image_path) }}" class="card-img-top" alt="{{$article->title}}">
                 </a>
                 <div class="card-body">
                     <div class="row">

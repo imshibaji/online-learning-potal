@@ -42,7 +42,6 @@
         {{-- Laravel Mix - CSS File --}}
         @yield('headers')
         <link rel="stylesheet" href="{{ asset('css/larnr.css') }}">
-        <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ url('/') }}/css/prism_coy.css">
         @yield('styles')
 
@@ -60,7 +59,7 @@
     </head>
     <body>
         @include('larnr::layouts.header1')
-        <div style="margin-top:60px">
+        <div style="margin-top:50px">
             @yield('content')
         </div>
         @include('larnr::layouts.footer')

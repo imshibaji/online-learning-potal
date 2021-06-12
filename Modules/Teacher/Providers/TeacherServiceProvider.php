@@ -2,8 +2,12 @@
 
 namespace Modules\Teacher\Providers;
 
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Routing\Router;
+use Modules\Teacher\Console\RedisSubscribe;
+use Modules\Teacher\Http\Middleware\TeacherCheck;
 
 class TeacherServiceProvider extends ServiceProvider
 {
@@ -24,6 +28,8 @@ class TeacherServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerCommands();
+        $this->registerMiddlewares(); // Custom Assignment
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
@@ -38,8 +44,32 @@ class TeacherServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(EventServiceProvider::class);
     }
 
+    protected function registerCommands(){
+        // Register the command if we are using the application via the CLI
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                RedisSubscribe::class,
+            ]);
+        }
+    }
+
+    /**
+     * Register middlewares.
+     *
+     * @return void
+     */
+    protected function registerMiddlewares(){
+        // Global Middleware Assignment
+        $kernel = $this->app->make(Kernel::class);
+        // $kernel->pushMiddleware(TeacherCheck::class);
+
+        // Router Middleware
+        $router = $this->app->make(Router::class);
+        $router->aliasMiddleware('teacher', TeacherCheck::class);
+    }
     /**
      * Register config.
      *

@@ -24,4 +24,7 @@ class Article extends Model
     public function category(){
         return $this->belongsTo(Catagory::class, 'catagory_id');
     }
+    public function tags(){
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
 }

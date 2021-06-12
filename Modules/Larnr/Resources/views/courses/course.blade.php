@@ -4,7 +4,7 @@
 @include('larnr::courses.course-display')
 <div class="container">
     <div class="row justify-content-center mb-5">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="my-2 text-justify">
                 {!! $course->details !!}
             </div>
@@ -25,23 +25,33 @@
             </ul>
             {{-- Course List --}}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card">
+                <div class="ribbon-left"><span>POPULAR</span></div>
+                @if($course->image_path)
+                    <a href="{{ url('course/'.$course->slag) }}">
+                        <img height="140" src="{{ url('storage/'.$course->image_path) }}" class="card-img-top" alt="{{$course->title}}">
+                    </a>
+                @endif
                 {{-- <div class="card-header"><h5>Course Description</h5></div> --}}
                 <div class="card-body">
-                    <p>Price:
-                    @if($course->offer_price != null)
-                        <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
-                        <strong class="text-success">₹{{ $course->offer_price }}/-</strong>
-                    @else
-                    <strong class="text-success">₹{{ $course->actual_price }}/-</strong>
-                    @endif
-                    </p>
-                    <p>Duration: <strong class="text-success">{{ $course->duration }}</strong></p>
-                    <p>Accessible: <strong class="text-success">{{ ucwords($course->accessible) }}</strong></p>
-                    <p>Mode: <strong>Online</strong></p>
-
-                    <p><a href="{{url('bill/'. '?cid='. $course->id)}}" class="btn btn-warning btn-sm">Buy Now</a></p>
+                    <div class="text-justify">
+                        {{$course->meta_desc}}.
+                    </div>
+                    <div class="py-3">
+                        <div>Price:
+                        @if($course->offer_price != null)
+                            <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
+                            <strong class="text-success">₹{{ $course->offer_price }}/-</strong>
+                        @else
+                            <strong class="text-success">₹{{ $course->actual_price }}/-</strong>
+                        @endif
+                        </div>
+                        <div>Duration: <strong class="text-success">{{ $course->duration }}</strong></div>
+                        <div>Accessible: <strong class="text-success">{{ ucwords($course->accessible) }}</strong></div>
+                        <div>Mode: <strong>Online</strong></div>
+                    </div>
+                    <div class=""><a href="{{url('bill/'. '?cid='. $course->id)}}" class="btn btn-warning btn-sm btn-block">Buy Now</a></div>
                 </div>
             </div>
         </div>

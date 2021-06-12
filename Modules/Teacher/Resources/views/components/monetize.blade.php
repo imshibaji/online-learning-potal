@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">Article Revenues</div>
+            <div class="card-header">Revenue Income</div>
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -35,30 +35,31 @@
     </div>
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">Course Revenues</div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      A list item
-                      <span class="badge badge-primary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      A second list item
-                      <span class="badge badge-primary badge-pill">2</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      A third list item
-                      <span class="badge badge-primary badge-pill">1</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        A third list item
-                        <span class="badge badge-primary badge-pill">1</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        A third list item
-                        <span class="badge badge-primary badge-pill">1</span>
-                    </li>
-                </ul>
+            <div class="card-header">Income Details</div>
+            <div class="card-body py-4">
+                <div class="row">
+                    <div class="col">Revenue Amount:</div>
+                    <div class="col text-right">₹100.00</div>
+                </div>
+                <div class="row">
+                    <div class="col">10% Tax Deduction:</div>
+                    <div class="col text-right">₹10.00</div>
+                </div>
+                <div class="row">
+                    <div class="col">12% Service Tax:</div>
+                    <div class="col text-right">₹12.00</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col"><h3>Payble Amount:</h3></div>
+                    <div class="col text-right"><h3>₹88.00</h3></div>
+                </div>
+                <p>Payment falls 25 to 30th day of the month in your account.</p>
+                <hr>
+                <div class="row">
+                    <div class="col"><a href="#">Register Your Bank Account</a></div>
+                    <div class="col text-right"><span class="text-warning">Not Varified</span></div>
+                </div>
             </div>
         </div>
     </div>

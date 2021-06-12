@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">Article Visitors</div>
+            <div class="card-header">Articles Visitors</div>
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -35,15 +35,15 @@
     </div>
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header">Course Buyers</div>
+            <div class="card-header">Course Sales</div>
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                      A list item
+                      Course Abc
                       <span class="badge badge-primary badge-pill">14</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                      A second list item
+                      My Acio
                       <span class="badge badge-primary badge-pill">2</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -74,14 +74,14 @@ const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const data = {
   labels: labels,
   datasets: [{
-    label: 'This Week Visitors',
+    label: 'Articles Visitors',
     data: [65, 59, 80, 81, 56, 55, 40],
     fill: false,
     backgroundColor: 'rgba(75, 192, 192, 0.8)',
     borderColor: 'rgb(75, 192, 192)',
     tension: 0.1
   },{
-    label: 'Last Week Visitors',
+    label: 'Courses Sales',
     data: [12, 43, 10, 5, 13, 24, 32],
     fill: false,
     backgroundColor: 'rgba(54, 162, 235, 0.8)',

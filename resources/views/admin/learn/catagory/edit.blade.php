@@ -12,6 +12,7 @@
             <div class="col-md">
             <form action="{{route('admincatagoryupdate')}}" method="POST">
                 @csrf
+                <input type="hidden" name="id" value="{{$catagory->id}}">
                 <table class="table">
                     <tr>
                         <td>Title</td>
@@ -20,6 +21,17 @@
                     <tr>
                         <td>Details</td>
                         <td colspan="3"><input type="text" id="details" name="details" class="form-control" value="{{$catagory->details}}"></td>
+                    </tr>
+                    <tr>
+                        <td>Sub Categories</td>
+                        <td colspan="3">
+                            <select id="details" name="catagory_id" class="form-control">
+                                <option value="0">None</option>
+                                @foreach ($catagories as $catagory)
+                                    <option value="{{$catagory->id}}">{{$catagory->title}}</option>
+                                @endforeach
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Status</td>

@@ -43,7 +43,7 @@
                                         <x-video src="{{url('storage/'.$topic->video->video_path)}}" poster="{{ url('storage/'.$topic->video->image_path ) }}" />
                                     @endisset
                                     @isset($topic->embed_code)
-                                        <x-video src="{{$topic->embed_code}}" type="video/youtube" poster="{{ url('storage/'.$topic->image_path ) }}" />
+                                        <x-video src="{{$topic->embed_code}}" type="video/youtube" poster="{{ $topic->image_path? url('storage/'.$topic->image_path ) : null }}" />
                                     @endisset
                                 </div>
                                 @include('users.learn.contents')

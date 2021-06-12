@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group">
                             <label for="catagory_id">Display Image</label>
-                            <x-image-uploader name="image" />
+                            <x-image-uploader name="image" src="{{ $course->image_path? url('storage/'.$course->image_path ) : null }}" />
                         </div>
                         <div class="form-group">
                             <label for="catagory_id">Select Catagory</label>

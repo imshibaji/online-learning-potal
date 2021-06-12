@@ -1,26 +1,43 @@
 {{-- Courses Sections --}}
-<div class="container">
-    <div class="row my-5">
+<div class="container py-4 mb-4">
+    <h2 class="text-center"><u>Top Courses</u></h2>
+    <div class="row my-2">
         @foreach ($courses as $course)
-        <div class="col-md-3 my-3">
+        <div class="col-md-4 mt-3">
             <div class="card h-100 box">
-            <h4 class="text-center mt-3"><a href="{{ url('course/'. $course->slag) }}">{{ $course->title }}</a></h4>
-            <div class="py-2">
-                <div class="text-justify px-2">
-                    {{$course->meta_desc}}.
+                <div class="ribbon-left"><span>POPULAR</span></div>
+                @if($course->image_path)
+                    <a href="{{ url('course/'.$course->slag) }}">
+                        <img height="200" src="{{ url('storage/'.$course->image_path) }}" class="card-img-top" alt="{{$course->title}}">
+                    </a>
+                @endif
+                <div class="card-body">
+                    <h5 class="text-justify"><a href="{{ url('course/'. $course->slag) }}">{{ $course->title }}</a></h5>
+                    <div class="pb-3">@include('larnr::components.course-list-star', ['star' => 4.5, 'reviews' => rand(40,50)])</div>
+                    <div class="py-2">
+                        <div class="text-justify">
+                            {{$course->meta_desc}}.
+                        </div>
+                        <div class="text-justify p-3">
+                            Duration: {{ $course->duration }}<br/>
+                            Price:
+                            @if($course->offer_price != null)
+                                <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
+                                <strong class="text-success">₹{{ $course->offer_price }}/-</strong>
+                            @else
+                                <strong class="text-success">₹{{ $course->actual_price }}/-</strong>
+                            @endif<br/>
+                            Accessible: <strong class="text-success">{{ ucwords($course->accessible) }}</strong>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="btn-group btn-block">
+                            <a href="{{ url('course/'. $course->slag) }}" class="btn btn-primary">Learn More</a>
+                            <a href="{{ url('bill/'. '?cid='. $course->id)}}" class="btn btn-warning">Enroll Now</a>
+                            {{-- <button class="btn btn-warning" onclick="checkout('{{$course->title}}', {{$price}})">Enroll Now</button> --}}
+                        </div>
+                    </div>
                 </div>
-                <div class="text-justify p-3">
-                    Duration: {{ $course->duration }}<br/>
-                    Price:
-                    @if($course->offer_price != null)
-                        <strong class="text-danger"><del>₹{{ $course->actual_price }}/-</del></strong>
-                        <strong class="text-success">₹{{ $course->offer_price }}/-</strong>
-                    @else
-                        <strong class="text-success">₹{{ $course->actual_price }}/-</strong>
-                    @endif<br/>
-                    Accessible: <strong class="text-success">{{ ucwords($course->accessible) }}</strong>
-                </div>
-            </div>
             </div>
         </div>
         @endforeach

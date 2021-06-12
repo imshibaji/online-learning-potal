@@ -7,7 +7,7 @@
                 <th scope="col" class="text-center">#</th>
                 {{-- <th scope="col">Short</th> --}}
                 <th>Catagory Name</th>
-                {{-- <th>Details</th> --}}
+                <th>Parent Catagory</th>
                 <th>Status</th>
                 <th class="text-center">Action</th>
             </tr>
@@ -29,7 +29,7 @@
                         <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}">
                     </td> --}}
                     <td style="width:50%">{{ $catagory->title }}</td>
-                    {{-- <td>{{ $catagory->details }}</td> --}}
+                    <td>{{ $catagory->parentCategory->title ?? '' }}</td>
                     <td>{{ $catagory->status }}</td>
                     <td class="text-center">
                         <div class="btn-group">
@@ -44,7 +44,7 @@
             @endforeach
         </tbody>
     </table>
-    
+
 @endsection
 
 @section('header')
@@ -90,7 +90,7 @@ td:hover{
 		helper: fixHelperModified,
 		stop: updateIndex
 	}).disableSelection();
-	
+
     $("tbody").sortable({
         distance: 5,
         delay: 100,

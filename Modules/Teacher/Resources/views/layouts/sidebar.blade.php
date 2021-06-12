@@ -4,12 +4,11 @@
         <div class="card-body p-3">
             <div class="row">
                 <div class="col-5 m-0 p-1">
-                   <div class="border p-1"><img class="img-fluid" width="190" src="{{ (Auth::user()->teacher->profile_picture)? url('storage/'. Auth::user()->teacher->profile_picture) : url('images/image-upload.jpg') }}"></div>
+                   <div class="border p-1"><img class="img-fluid" width="190" src="{{ (Auth::user()->teacher)? url('storage/'. Auth::user()->teacher->profile_picture) : url('images/image-upload.jpg') }}"></div>
                 </div>
                 <div class="col-7 m-0 p-1 pt-2">
                     <h6 class="mb-0">{{Auth::user()->fullname()}}</h6>
-                    <p class="m-0"><i class="fa fa-heartbeat " aria-hidden="true"></i> 500</p>
-                    @include('teacher::components.star', ['count' => 2.6])
+                    @include('teacher::components.star', ['star' => 0, 'reviews' => 0])
                 </div>
             </div>
         </div>
