@@ -50,7 +50,7 @@
                             @else
                                 <h1 class="text-center">You have no access on this course. Please enroll this course for full access.</h1>
                                 <div class="text-center">
-                                    <a href="{{route('bill', ['cid'=> $course->id])}}" class="btn btn-warning btn-lg">Enroll Now</a>
+                                    <a href="{{ route('checkout', ['cid' =>$course->id]) }}" class="btn btn-warning btn-lg">Enroll Now</a>
                                 </div>
                             @endif
                         @else

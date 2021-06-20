@@ -2,6 +2,8 @@
 
 namespace Modules\Teacher\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -17,7 +19,9 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('teacher::index');
+        $article = Article::where('user_id', Auth::id())->publish()->orderBy('id', 'desc')->first();
+        $comments = Comment::where('user_id', Auth::id())->where('commentable_id','!=', null)->limit(4)->get();
+        return view('teacher::index', compact('article', 'comments'));
     }
 
     public function page($page){
@@ -52,7 +56,7 @@ class TeacherController extends Controller
             $teacher->title = $req->title;
             $teacher->username = $req->username;
 
-            dd($req->file('profile_picture'));
+            // dd($req->file('profile_picture'));
 
             if($req->file('profile_picture')){
                 $img = 'teachers/' . basename(Storage::putFile('public/teachers', $req->file('profile_picture')));

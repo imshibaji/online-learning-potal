@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title') Email Varification Page @endsection
 
 @section('content')
 <div class="container">

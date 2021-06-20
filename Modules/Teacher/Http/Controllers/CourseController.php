@@ -63,6 +63,8 @@ class CourseController extends Controller
         $course->offer_price = $req->input('offer_price');
         $course->user_id = Auth::id();
         $course->canonical = $req->canonical;
+        $course->mode = $req->mode;
+        $course->session_time = $req->session_time;
 
         $out = $course->save();
 
@@ -129,6 +131,8 @@ class CourseController extends Controller
         $course->offer_price = $req->input('offer_price');
         $course->user_id = Auth::id();
         $course->canonical = $req->canonical;
+        $course->mode = $req->mode;
+        $course->session_time = $req->session_time;
 
         $out = $course->save();
 

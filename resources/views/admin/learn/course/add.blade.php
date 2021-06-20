@@ -32,19 +32,14 @@
             {{-- Right Side --}}
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="status">Course Intro Video</label>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            {{-- <x-video-uploader /> --}}
-                            <x-video-selector />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="status">Embed YouTube video</label>
+                    <label for="status">YouTube video Link</label>
                     <div class="form-group">
                         <textarea name="embed_code" class="form-control"></textarea>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="catagory_id">Display Image</label>
+                    <x-image-uploader name="image" />
                 </div>
                 <div class="form-group">
                     <label for="catagory_id">Select Catagory</label>
@@ -75,6 +70,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="text" id="mode" name="mode" class="form-control" placeholder="Training Mode">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="session_time" name="session_time" class="form-control" placeholder="Session Start Time">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="status">Price</label>
                     <div class="form-group row">
@@ -90,7 +93,7 @@
                     <label for="status">Canonical URL</label>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" name="canonical" />
+                            <input type="text" class="form-control" name="canonical" placeholder="URL Link" />
                         </div>
                     </div>
                 </div>
@@ -109,7 +112,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor',{
-        height:420
+        height:480
     });
 }
 
@@ -117,7 +120,7 @@ $('#title').keyup(() => {
     var name = $("#title").val();
     name = name.toLowerCase();
 
-    var slag = name.replace(/ /g, '_');
+    var slag = name.replace(/ /g, '-');
     $('#slag').val(slag);
 });
 </script>

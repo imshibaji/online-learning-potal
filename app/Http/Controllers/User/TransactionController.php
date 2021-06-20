@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
+    public function __construct() {
+        $this->middleware(['auth', 'verified']);
+        \Debugbar::disable();
+    }
     public function index(){
         $balance = Money::where('user_id', Auth::id())->get()->last()->balance_amt ?? 0;
         $totalPaid = Money::where('user_id', Auth::id())->get()->sum('addition_amt');
@@ -16,8 +20,8 @@ class TransactionController extends Controller
         $money = Money::where('user_id', Auth::id())->orderBy('id', 'DESC')->paginate(12);
 
         $fields = [
-            'details', 
-            'created_at', 
+            'details',
+            'created_at',
             [
                 'key' =>'addition_amt',
                 'label' => 'Credit'

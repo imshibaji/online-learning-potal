@@ -16,7 +16,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::where('user_id', Auth::id())->get();
+        $comments = Comment::where('user_id', Auth::id())
+        ->where('commentable_id','!=', null)->get();
+
         return view('teacher::comments.index', compact('comments'));
     }
 

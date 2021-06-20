@@ -33,6 +33,10 @@ class CreateCoursesTable extends Migration
             $table->string('embed_code')->nullable();
             $table->string('image_path')->nullable();
             $table->string('language')->nullable();
+            $table->string('mode')->nullable();
+            $table->string('session_time')->nullable();
+            $table->string('ribbon')->nullable();
+            $table->integer('sales')->default(0);
             $table->timestamps();
         });
     }

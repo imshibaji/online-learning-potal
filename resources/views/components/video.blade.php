@@ -1,6 +1,6 @@
 <div>
 <video
-    id="my-video"
+    id="{{ $id ?? 'my-video' }}"
     class="video-js vim-css vjs-fluid"
     controls
     preload="auto"
@@ -30,9 +30,10 @@
 <style>
 .video-js .vjs-big-play-button {background-color: #088cd8;top: 45%;left: 45%;font-size: 25px;line-height: 50px;height: 50px;width: 50px;border-radius: 50%;}
 </style>
-
 @endsection
-@section('scripts')
+
+
+@section('footers')
 @parent
 <script src="{{url('js/video.min.js') }}"></script>
 @if (isset($type) && ($type=='video/youtube'))
@@ -41,7 +42,7 @@
 @if (isset($type) && ($type=='video/vimeo'))
 <script src="{{url('js/vimeo.min.js') }}"></script>
 @endif
-<script>
+{{--<script>
 // var player = videojs('my-video', {});
-</script>
+</script>--}}
 @endsection

@@ -23,7 +23,11 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 
         // appending custom middleware
-        \App\Http\Middleware\HttpsProtocol::class
+        \App\Http\Middleware\HttpsProtocol::class,
+
+        // Autometed Sitemap generator
+        \App\Http\Middleware\Sitemap::class,
+        \App\Http\Middleware\VititorTracking::class,
     ];
 
     /**

@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid" style="background: url(/images/student-boy-2.jpeg);background-repeat: no-repeat;background-size: cover;background-position: 30% 30%;">
+<div class="jumbotron jumbotron-fluid" style="background: url(/images/student-boy2-copy.jpg);background-repeat: no-repeat;background-size: cover;background-position: 30% 30%;">
     <div class="container">
         <div class="row">
             <div class="col-md-7 p-4" style="background:rgba(15, 15, 15, 0.7);">

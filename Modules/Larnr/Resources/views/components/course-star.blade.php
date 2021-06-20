@@ -3,7 +3,7 @@
 @php
     $count = $star ?? 0;
 @endphp
-<small class="text-primary">{{$count}}</small>
+<span class="badge badge-success">{{$language ?? 'Hindi'}}</span>
 @for ($i = 0; $i < floor($count); $i++)
     <i class="fa fa-star text-warning" aria-hidden="true"></i>
 @endfor
@@ -16,6 +16,7 @@
 @for ($i=$count; $i < 5; $i++)
     <i class="fa fa-star-o text-warning" aria-hidden="true"></i>
 @endfor
+<small class="text-warning">{{$count - 1}}</small>
 <span class="text-white">({{$reviews ?? '10'}} Reviews)</span>
 <span class="text-white">{{$enrolled ?? '987'}} Students enrolled</span>
 </div>

@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">Tutor / Instituion Details</div>
+    <div class="card-header">Create A Tutor / Instituion Account</div>
     <div class="card-body">
+        <p>This Information may be display as <strong>public profile</strong>. If you are a business so input your business details or you are indivudual person then you can use your own name.</p>
         <form action="{{ route('teacher.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
@@ -63,7 +64,7 @@
 
             <div class="form-group form-check">
                 <input type="checkbox" name="accepted" class="form-check-input" id="accept">
-                <label class="form-check-label" for="accept">I Accept terms and conditions</label>
+                <label class="form-check-label" for="accept">I Accept <a href="https://larnr.com/tac">terms and conditions</a>.</label>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

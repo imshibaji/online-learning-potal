@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-blue fixed-top">
     <a href="/" class="navbar-brand">
-        <img src="{{ url('/') }}/images/logo-dark.png" class="logo-img">
+        <img src="{{ url('/') }}/images/logo-dark.png" alt="Larnr Education" class="logo-img">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
         <span class="navbar-toggler-icon"></span>
@@ -99,7 +99,7 @@
                             {{ __('Billing') }}
                         </a>
                         <a class="dropdown-item"" href="{{ route('teacher.home') }}">
-                            Teacher Room
+                            {{ __('Teacher Room') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();

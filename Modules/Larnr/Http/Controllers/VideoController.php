@@ -19,6 +19,11 @@ class VideoController extends Controller
     public function video($id){
         $video = Video::find(base64_decode($id));
         $videos = Video::inRandomOrder()->limit(4)->get();
+
+        if(!isset($video->title)){
+            return redirect('/articles', 301);
+        }
+
         $title = $video->title;
         $keywords = $video->keywords;
         $description = $video->description;

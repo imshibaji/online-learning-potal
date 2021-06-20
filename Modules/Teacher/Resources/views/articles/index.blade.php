@@ -10,37 +10,57 @@
     </div>
     <div class="card-body">
         <div class="row p-1 my-0">
-            <table class="table table-hover" id="myTable">
+            <table class="table table-hover {{count($articles)>0? 'table-responsive' : null}}" id="myTable">
                 <thead>
                     <tr>
-                        <th>Image</th>
+                        <th class="text-center">Image</th>
                         <th>Article Details</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th class="text-center">Action</th>
+                        {{-- <th class="text-center">Visibility</th> --}}
+                        <th class="text-center">Free</th>
+                        <th class="text-center">Visibility</th>
+                        <th class="text-center">Likes</th>
+                        {{-- <th class="text-center">Action</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($articles as $article)
+                    @forelse ($articles as $article)
                         <tr>
-                            <td>@if(isset($article->image_path))<img src="{{url('storage/'.$article->image_path)}}" class="img-fluid" width="200px">@else No Image @endif</td>
+                            <td style="max-width: 130px">
+                                @if(isset($article->image_path))<img src="{{url('storage/'.$article->image_path)}}" class="img-fluid" width="100%">@else No Image @endif
+                                <div class="btn-group btn-block">
+                                    <a href="{{route('teacherarticles.show', $article->id)}}" class="btn btn-primary btn-sm" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="{{route('teacherarticles.edit', $article->id)}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    @utype('admin')
+                                    <button class="btn btn-danger btn-sm" onclick="remove('{{ $article->id }}')" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    @endutype
+                                </div>
+                            </td>
                             <td style="width:50%">
                                 <h4>{{ $article->title }}</h4>
                                 <p>{{$article->description}}</p>
                             </td>
-                            <td>{{ $article->type }}</td>
-                            <td>{{ $article->status }}</td>
+                            {{-- <td class="text-center">{{ Str::ucfirst($article->type) }}</td> --}}
                             <td class="text-center">
-                                <div class="btn-group">
-                                    <a href="{{route('teacherarticles.show', $article->id)}}" class="btn btn-primary" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    <a href="{{route('teacherarticles.edit', $article->id)}}" class="btn btn-warning" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                    @utype('admin')
-                                    <button class="btn btn-danger" onclick="remove('{{ $article->id }}')" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    @endutype
-                                </div>
+                                @if($article->status == 'free')
+                                    <i class="fa fa-check fa-lg text-success" aria-hidden="true"></i>
+                                @else
+                                    <i class="fa fa-lock fa-lg text-warning" aria-hidden="true"></i>
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                <p class="p-0 m-0">{{ Str::ucfirst($article->type) }}</p>
+                                <p class="p-0 m-0">{{ $article->views }} Views</p>
+                            </td>
+                            <td class="text-center">
+                                <p class="p-0 m-0"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{ $article->likes }}</p>
+                                <p class="p-0 m-0"><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{ $article->dislikes }}</p>
                             </td>
                         </tr>
-                    @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="5" class="text-center"><h1>No Articles Created</h1></td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

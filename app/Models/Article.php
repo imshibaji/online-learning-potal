@@ -12,7 +12,8 @@ class Article extends Model
     use HasFactory;
 
     public function scopePublish($query){
-        return $query->where('type', 'publish')->where('status', 'free');
+        return $query->where('type', 'publish')->where('status', 'free')
+        ->where('image_path', '!=', null)->where('approved', 1);
     }
     public function user(){
         return $this->belongsTo(User::class);

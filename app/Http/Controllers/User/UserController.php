@@ -104,7 +104,7 @@ class UserController extends Controller
 
             $utopics = Auth::user()->topicAssignments;
             $assesments = Auth::user()->userAssesments()->where('topic_id', $req->tid)->get();
-            return view('users.course-details', compact([ 'course', 'topics', 'topic', 'assesments' ]));
+            return view('users.course-details', compact('course', 'topics', 'topic', 'assesments'));
         }catch(Exception $e){
             return view('errors.404');
         }

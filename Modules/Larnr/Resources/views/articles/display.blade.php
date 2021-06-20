@@ -8,6 +8,8 @@
                 <div class="lead text-white" >
                     <form action="{{route('subscribe')}}" method="POST">
                         @csrf
+                        @honeypot
+                        @captchaHTML
                         <h5 class="text-white">Subscribe yourself for regular updates</h5>
                         <div class="row">
                           <div class="col-md">

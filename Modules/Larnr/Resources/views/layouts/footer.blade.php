@@ -29,7 +29,7 @@
 <!-- Footer -->
 <!-- Copyright -->
 <div class="copyright">
-    <div class="row">
+    <div class="row m-0 m-md-none">
         <div class="col-md-6">
             <p class="text-center text-md-left">
                 &copy; Copyright By Larnr Education. {{ date('Y') }}.
@@ -41,6 +41,5 @@
             </p>
         </div>
     </div>
-
 </div>
 <!-- Copyright -->

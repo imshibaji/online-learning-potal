@@ -32,7 +32,7 @@ class TopicController extends Controller
     public function create(Request $req)
     {
         $courses = Course::where('status', 'active')->get();
-        $course_id = $req->query('course');
+        $course_id = $req->query('cid');
         return view('teacher::topics.create', compact('courses', 'course_id'));
     }
 
@@ -80,6 +80,7 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = Topic::find($id);
+        return $topic;
         return view('teacher::topics.show', compact('topic'));
     }
 

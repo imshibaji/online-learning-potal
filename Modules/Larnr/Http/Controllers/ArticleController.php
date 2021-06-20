@@ -36,8 +36,8 @@ class ArticleController extends Controller
             'name' => $req->name,
             'email' => $req->email
         ]);
-        // $req->session()->flash('status', 'Thank you for suscribe.');
-        return back();
+        $req->session()->flash('status', 'Thank you for suscribe.');
+        return redirect(url('/articles'));
     }
 
     public function comment(Request $request){
@@ -55,23 +55,14 @@ class ArticleController extends Controller
     {
         $article = Article::where('slug', $slug)->first();
         $articles = Article::inRandomOrder()->publish()->limit(4)->get();
-        $title = $article->title;
-        $keywords = $article->keywords;
-        $description = $article->description;
-        $og_type = null;
-        $og_url = url('article/'. $article->slug);
-        $og_image= url('storage/'.$article->image_path);
-        $og_video = url('storage/'.$article->video_path);
-        $author = ($article->user)? $article->user->fname .' '. $article->user->lname : null;
-        $canonical = $article->canonical ?? null;
 
+        if(!isset($article->title)){
+            return redirect('/articles', 301);
+        }
         // $video->views = ($video->type=='publish')? $video->views + rand(1,10) : $video->views;
-        $article->views = $article->views + rand(1,10);
+        $article->views = $article->views + 1;
         $article->save();
 
-
-        return view('larnr::articles.single', compact('article', 'articles', 'title',
-        'keywords', 'description','og_type', 'og_url',
-        'og_image', 'og_video', 'author','canonical'));
+        return view('larnr::articles.single', compact('article', 'articles'));
     }
 }

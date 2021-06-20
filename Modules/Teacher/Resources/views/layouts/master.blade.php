@@ -43,7 +43,9 @@
                 </div>
                 <div class="row">
                     @include('teacher::layouts.sidebar')
-                    <div class="col-md-9">
+                    <div class="col-md-9" style="height: 92vh;
+                    overflow-y: scroll; -ms-overflow-style: none;
+                    scrollbar-width: 5px; scrollbar-color: #088cd8">
                         @yield('content')
                     </div>
                 </div>

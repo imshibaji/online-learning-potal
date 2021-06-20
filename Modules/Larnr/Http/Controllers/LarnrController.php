@@ -7,6 +7,9 @@ use App\Models\Course;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\SitemapGenerator;
 
 use function PHPSTORM_META\map;
@@ -22,7 +25,7 @@ class LarnrController extends Controller
     {
         $videos = Video::publish()->inRandomOrder()->limit(4)->get();
         $articles = Article::publish()->inRandomOrder()->limit(4)->get();
-        $courses = Course::publish()->inRandomOrder()->limit(4)->get();
+        $courses = Course::publish()->inRandomOrder()->limit(3)->get();
         // return $videos;
         return view('larnr::index', compact('videos', 'articles', 'courses'));
     }
@@ -66,9 +69,15 @@ class LarnrController extends Controller
     }
 
     public function sitemapGen(){
-         SitemapGenerator::create('https://www.larnr.com')->writeToFile(public_path('sitemap.xml'));
-         return redirect('/sitemap.xml');
+        //  SitemapGenerator::create('https://larnr.com')->writeToFile(public_path('sitemap.xml'));
+        //  return redirect('/sitemap.xml');
+        return Response::view('sitemap')->header('Content-Type', 'application/xml');
     }
+
+    public function visitors(){
+        return Cache::get('visitors');
+    }
+
     public function tac(){
         return view('larnr::tac');
     }

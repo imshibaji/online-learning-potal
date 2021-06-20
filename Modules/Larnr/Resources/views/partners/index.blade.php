@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-10">
             <h1 style="margin-top: 10px;">Partners</h1>
-            <p>Updated at 2021-04-02</p> <br>
+            <p>Welcome for your interest to be part of our online teaching group. If you have any learning skills and that skills will be helping to other. So fill up this form.</p>
 
         </div>
     </div>

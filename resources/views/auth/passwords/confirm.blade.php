@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title') Confirm your password @endsection
 
 @section('content')
 <div class="container">

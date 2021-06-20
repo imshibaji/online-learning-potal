@@ -14,9 +14,9 @@
         <table class="table table-hover" id="myTable">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">Image</th>
                     {{-- <th scope="col">Short</th> --}}
-                    <th>Course Name</th>
+                    <th>Course Details</th>
                     {{-- <th>Description</th> --}}
                     <th>Duration</th>
                     <th>Status</th>
@@ -25,20 +25,33 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($courses as $course)
+                @forelse ($courses as $course)
                     <tr id="{{ $course->short }}">
                         <td class="index text-center">
-                            {{ $course->short ?? '#' }}
+                            {{-- {{ $course->short ?? '#' }} --}}
                             <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
                             {{-- <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}"> --}}
+                            <img src="{{ isset($course->image_path) ? url('storage/'.$course->image_path) : url('images/image-upload.jpg')}}" class="img-fluid" width="100%">
                         </td>
-                        <td style="width:50%">{{ $course->title }}</td>
+                        <td style="width:50%">
+                            <h6>{{ $course->title }}</h6>
+                            <p>{{ $course->meta_desc }}</p>
+                        </td>
                         {{-- <td>{{ $course->meta_desc }}</td> --}}
-                        <td>
+                        <td class="text-center">
                            {{ $course->duration }}
                         </td>
-                        <td>{{ $course->status }}</td>
-                        <td>{{ $course->accessible }}</td>
+                        <td class="text-center">
+                            @if($course->status == 'active')
+                                <i class="fa fa-check fa-lg text-success" aria-hidden="true"></i>
+                            @else
+                                <i class="fa fa-lock fa-lg text-warning" aria-hidden="true"></i>
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            <p class="p-0 m-0">{{ Str::ucfirst($course->accessible) }}</p>
+                            <p class="p-0 m-0">{{ $course->sales }} Sales</p>
+                        </td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <a href="{{route('teachercourses.show', $course->id)}}" class="btn btn-primary" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -49,7 +62,11 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center"><h1>No Course Created</h1></td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
 

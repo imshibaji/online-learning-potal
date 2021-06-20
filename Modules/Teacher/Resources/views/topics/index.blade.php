@@ -43,7 +43,7 @@
                     <h6 class="text-md-right text-center">Do you want to add new topic?</h5>
                 </div>
                 <div class="col-md-2 text-center">
-                    <a href="{{ route('teachertopics.create', ['course' => $course->id]) }}" class="btn btn-sm btn-success my-auto">Add Topic</a>
+                    <a href="{{ route('teachertopics.create', ['cid' => $course->id]) }}" class="btn btn-sm btn-success my-auto">Add Topic</a>
                 </div>
             </div>
 
@@ -56,6 +56,7 @@
                         {{-- <th>Description</th> --}}
                         <th>Duration</th>
                         <th>Status</th>
+                        <th>Preview</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -78,6 +79,13 @@
                             {{ $dur->hours? $dur->hours.': ' : ''.$dur->minutes.':'.$dur->seconds.'' }}
                         </td>
                         <td>{{$topic->status}}</td>
+                        <td class="text-center">
+                            @if($topic->premium_status=='free')
+                                <i class="fa fa-check fa-lg text-success" aria-hidden="true"></i>
+                            @else
+                                <i class="fa fa-lock fa-lg text-warning" aria-hidden="true"></i>
+                            @endif
+                        </td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <a href="{{route('teachertopics.show', $topic->id)}}" class="btn btn-primary" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>

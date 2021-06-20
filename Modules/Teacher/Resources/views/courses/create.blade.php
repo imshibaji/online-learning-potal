@@ -69,6 +69,14 @@
                                 <input type="text" id="language" name="language" class="form-control" placeholder="Course Language">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="text" id="mode" name="mode" class="form-control" placeholder="Training Mode">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="session_time" name="session_time" class="form-control" placeholder="Session Start Time">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="status">Select Satus</label>
                             <div class="form-group row">
@@ -122,7 +130,7 @@
 <script>
 window.onload = function(){
     CKEDITOR.replace('editor',{
-        height:420
+        height:480
     });
 }
 
@@ -130,7 +138,7 @@ $('#title').keyup(() => {
     var name = $("#title").val();
     name = name.toLowerCase();
 
-    var slag = name.replace(/ /g, '_');
+    var slag = name.replace(/ /g, '-');
     $('#slag').val(slag);
 });
 </script>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-blue fixed-top">
     <div class="d-flex flex-grow-1">
         <a class="navbar-brand" href="{{url('/')}}">
-            <img src="{{ url('/') }}/images/logo-dark.png" class="logo-img">
+            <img src="{{ url('/') }}/images/logo-dark.png" alt="Larnr Education" class="logo-img">
             {{-- Larnr Education --}}
         </a>
         <form action="/search" class="mr-2 my-auto w-100 d-none d-sm-inline-block order-1">

@@ -26,8 +26,9 @@ class CreateArticlesTable extends Migration
             $table->string('status', 10)->default('free');
             $table->integer('user_id')->nullable();
             $table->integer('catagory_id')->nullable();
-            $table->integer('views')->default(0);
-            $table->integer('likes')->default(0);
+            $table->bigInteger('views')->default(0);
+            $table->bigInteger('likes')->default(0);
+            $table->bigInteger('dislikes')->default(0);
             $table->string('type', 10)->default('draft');
             $table->boolean('approved')->default(0);
             $table->timestamps();

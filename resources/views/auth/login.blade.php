@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title') User Login @endsection
 
 @section('content')
 <div class="bg-dark" style="min-height: 82vh">

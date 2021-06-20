@@ -4,10 +4,10 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col">Topic Create</div>
+            <div class="col">New Topic</div>
             <div class="col text-right">
                 <a href="{{ route('teachercourses.index') }}">Back to Course List</a> |
-                <a href="{{ route('teachertopics.index', ['cid' =>$course_id]) }}">Topics View</a>
+                <a href="{{ route('teachertopics.index', ['cid' => $course_id]) }}">Topics View</a>
             </div>
         </div>
     </div>

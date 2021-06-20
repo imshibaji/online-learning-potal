@@ -4,7 +4,7 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col">Topic Edit</div>
+            <div class="col">Course: {{$topic->course->title}}</div>
             <div class="col text-right">
                 <a href="{{ route('teachercourses.index') }}">Back to Course List</a> |
                 <a href="{{ route('teachertopics.index', ['cid' => $course_id]) }}">Topics View</a>

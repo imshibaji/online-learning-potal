@@ -73,7 +73,7 @@
 
             <div class="form-group form-check">
                 <input type="checkbox" name="accepted" class="form-check-input" id="accept">
-                <label class="form-check-label" for="accept">I Accept terms and conditions</label>
+                <label class="form-check-label" for="accept">I Accept <a href="https://larnr.com/tac">terms and conditions</a></label>
             </div>
 
             <button type="submit" class="btn btn-primary">Save</button>

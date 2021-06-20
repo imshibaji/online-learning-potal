@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? 'Larnr Education'}} | Technology Learning Center</title>
+    {{-- Theame Color --}}
+    <meta name="theme-color" content="#3490dc">
     {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
     <!-- CSRF Token -->
@@ -105,6 +107,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item"" href="{{ route('teacher.home') }}">
+                                {{ __('Teacher Room') }}
+                            </a>
                             <a class="dropdown-item" href="{{ route('admin-profile') }}">
                                 {{ __('Profile') }}
                             </a>

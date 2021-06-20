@@ -1,14 +1,17 @@
 {{-- Course / Topics Details --}}
 <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item d-block d-md-none">
+        <a class="nav-link" id="menus-tab" data-toggle="tab" href="#menus" role="tab" aria-controls="menus" aria-selected="true">Course Index</a>
+    </li>
     <li class="nav-item">
-      <a class="nav-link active" id="topic-tab" data-toggle="tab" href="#topic" role="tab" aria-controls="topic" aria-selected="true">Course Contents</a>
+      <a class="nav-link active" id="topic-tab" data-toggle="tab" href="#topic" role="tab" aria-controls="topic" aria-selected="true">Details</a>
     </li>
     @if(count($assesments ?? []) == 0)
-      <li class="nav-item">
+      <li class="nav-item d-none d-md-block">
         <a class="nav-link" id="exam-tab" data-toggle="tab" href="#exam" role="tab" aria-controls="exam" aria-selected="false">Assignments</a>
       </li>
     @else
-      <li class="nav-item">
+      <li class="nav-item d-none d-md-block">
         <a class="nav-link" id="assesment-tab" data-toggle="tab" href="#assesment" role="tab" aria-controls="assesment" aria-selected="false">Assesments Report</a>
       </li>
     @endif
@@ -19,8 +22,29 @@
 
   {{-- Course Contents --}}
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="topic" role="tabpanel" aria-labelledby="topic-tab">
+    <div class="tab-pane fade show" id="menus" role="tabpanel" aria-labelledby="menus-tab">
+        <div class="scrollbar" style="height: 45vh">
+            {{-- Menu Index --}}
+            <div class="list-group pb-2">
+                <a href="{{ url('/') }}/user/course-details/{{$course->id}}" class="list-group-item list-group-item-action {{ Request::is('user/course-details/'.$course->id) ? 'active' : '' }}">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    Course Overview
+                </a>
+                @foreach ($topics as $ta)
+                    @if($ta->status == 'active')
+                        <a id="Label{{$ta->id}}" href="{{ url('/') }}/user/course-details/{{$course->id}}/{{$ta->id}}#Label{{$ta->id}}" class="list-group-item list-group-item-action {{ Request::is('user/course-details/'.$course->id.'/'.$ta->id) ? 'active' : '' }}">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            {{ $ta->title }}
+                        </a>
+                    @endIf
+                @endforeach
+            </div>
+            {{-- End Menu Index --}}
+        </div>
+    </div>
 
+    <div class="tab-pane fade show active" id="topic" role="tabpanel" aria-labelledby="topic-tab">
+        {{-- Topics Details --}}
         <div class="p-3">
             @if ($topic)
                 <div>{!! $topic->details !!}</div>

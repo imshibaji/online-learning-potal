@@ -1,17 +1,20 @@
 @extends('teacher::layouts.master')
 
 @section('content')
-<div class="card">
-    <div class="card-header">Dashboard</div>
-    <div class="card-body">
-        <h1>Hello World</h1>
-        <p>
-            This view is loaded from module: {!! config('teacher.name') !!}
-        </p>
-        @component('teacher::components.enquery')
-            @slot('name') Shibaji Debnath @endslot
-            @slot('email') ixxxxxx@gmail.com @endslot
-        @endcomponent
+<div id="dashboard" class="row">
+    <div class="col-md-5 mb-3">
+        @include('teacher::dashboard.article')
+    </div>
+    <div class="col-md-7 mb-3">
+        @include('teacher::dashboard.intro')
+        {{-- @include('teacher::dashboard.income')
+        @include('teacher::dashboard.enquery') --}}
+    </div>
+    <div class="col-md-8 mb-3">
+        @include('teacher::dashboard.comments')
+    </div>
+    <div class="col-md-4 mb-3">
+        @include('teacher::dashboard.analytics')
     </div>
 </div>
 @endsection

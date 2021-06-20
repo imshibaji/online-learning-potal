@@ -45,6 +45,16 @@
                     </li>
                 </div>
                 <li class="nav-item">
+                    @utype('admin')
+                        <li class="nav-item">
+                            <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
+                        </li>
+                    @endutype
+                    @utype('stuff')
+                        <li class="nav-item">
+                            <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
+                        </li>
+                    @endutype
                     <a class="nav-link hover-nav" href="{{ route('user') }}">Student Dashboard</a>
                 </li>
                 <li class="nav-item dropdown">

@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title') Reset Your password @endsection
 
 @section('content')
 <div class="container">

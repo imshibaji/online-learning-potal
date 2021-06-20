@@ -8,6 +8,10 @@ use Illuminate\Routing\Controller;
 
 class SponsorController extends Controller
 {
+    public function __construct()
+    {
+        \Debugbar::disable();
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable

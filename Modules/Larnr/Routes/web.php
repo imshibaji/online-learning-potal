@@ -12,8 +12,8 @@
 */
 
 use App\Http\Controllers\Admin\ActivityController;
-use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
+use Modules\Larnr\Http\Controllers\PaymentController;
 
 $routes = function(){
     Route::get('/', 'LarnrController@index');
@@ -26,6 +26,9 @@ $routes = function(){
 
     // Sitemap
     Route::get('sitemap', 'LarnrController@sitemapGen');
+
+    // Visitors
+    Route::get('visitors', 'LarnrController@visitors')->middleware('auth');
 
 
     Route::get('testimonial', 'TestimonialController@index');
@@ -44,8 +47,8 @@ $routes = function(){
 
 
     // Payment
-    Route::get('/bill', [PaymentController::class,'bill']);
-    Route::any('/payment', [PaymentController::class, 'pay']);
+    Route::get('/checkout/{cid}', [PaymentController::class,'course_purchase'])->name('checkout');
+    Route::any('/payment', [PaymentController::class, 'pay'])->middleware('auth');
 
     // Video Controller
     Route::get('allvideos', 'VideoController@allVideos');
@@ -60,5 +63,7 @@ $routes = function(){
     // Route::redirect('{any}', '/', 301);
 };
 
+Route::redirect('www.larnr.com', 'larnr.com', 301);
+// Route::group(['domain' => 'www.larnr.com', 'name' => 'larnrcom.'], $routes);
+
 Route::domain('larnr.com')->group($routes);
-Route::group(['domain' => 'www.larnr.com'], $routes);

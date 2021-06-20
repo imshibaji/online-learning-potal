@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title') User Registration @endsection
 
 @section('content')
 <div class="container">

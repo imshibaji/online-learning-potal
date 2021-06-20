@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'Dashboard'}} | Larnr Education</title>
+    <title>@section('title') Dashboard @show | Larnr Education</title>
+    {{-- Theame Color --}}
+    <meta name="theme-color" content="#3490dc">
     {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
     {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet">--}}
@@ -108,9 +110,9 @@
                             <a class="nav-link hover-nav" href="{{ route('admin') }}">Admin Dashboard</a>
                         </li>
                     @endutype
-                    {{-- <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
                     </li>

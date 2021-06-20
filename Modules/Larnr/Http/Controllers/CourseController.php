@@ -53,8 +53,12 @@ class CourseController extends Controller
     public function show($slug)
     {
         $course = Course::where('slag', $slug)->where('status', 'active')->first();
-        $title = $course->title;
-        return view('larnr::courses.course', compact('course', 'title'));
+
+        if(!isset($course->title)){
+            return redirect('/courses', 301);
+        }
+
+        return view('larnr::courses.course', compact('course'));
     }
 
     public function course_preview(Request $req){

@@ -10,6 +10,7 @@
     <title>@yield('title') | Technology Learning Center</title>
     <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
+    <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
     <link href="{{ url('/') }}/css/app.css" rel="stylesheet">
 
 <!-- Fonts -->

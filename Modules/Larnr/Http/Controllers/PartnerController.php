@@ -8,6 +8,11 @@ use Illuminate\Routing\Controller;
 
 class PartnerController extends Controller
 {
+    public function __construct()
+    {
+        \Debugbar::disable();
+    }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
