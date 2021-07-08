@@ -3,13 +3,18 @@
 namespace Modules\Larnr\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Contact;
 use App\Models\Course;
+use App\Models\PartnerEnquery;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Modules\Larnr\Emails\ContactEnquery;
+use Modules\Larnr\Emails\PartnerEnquery as EmailsPartnerEnquery;
 use Spatie\Sitemap\SitemapGenerator;
 
 use function PHPSTORM_META\map;
@@ -89,5 +94,24 @@ class LarnrController extends Controller
     }
     public function contact(){
         return view('larnr::contact');
+    }
+    public function contactPost(Request $req){
+        $contactData = $req->input();
+        $contact = Contact::create($contactData);
+
+        Mail::to('imshibaji@gmail.com')->send(new ContactEnquery($contact));
+        $req->session()->flash('status', 'Thank you for contacting with us.');
+        return back();
+    }
+
+
+    public function partnerEnqueryPost(Request $req){
+        $partnerData = $req->input();
+        $partner = PartnerEnquery::create($partnerData);
+
+        Mail::to('imshibaji@gmail.com')->send(new EmailsPartnerEnquery($partner));
+        $req->session()->flash('status', 'Thank you for contacting with us.');
+
+        return back();
     }
 }

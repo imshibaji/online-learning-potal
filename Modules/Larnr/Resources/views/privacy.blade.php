@@ -1,9 +1,9 @@
 @extends('larnr::layouts.master')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-10">
+        <div class="col-12">
             <h1 style="margin-top: 10px;">Privacy Policy</h1>
             <p>Updated at 2021-04-02</p> <br>
 

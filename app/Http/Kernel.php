@@ -14,7 +14,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
+        \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
@@ -26,8 +26,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\HttpsProtocol::class,
 
         // Autometed Sitemap generator
-        \App\Http\Middleware\Sitemap::class,
-        \App\Http\Middleware\VititorTracking::class,
+        // // \App\Http\Middleware\Sitemap::class,
+        // // \App\Http\Middleware\VititorTracking::class,
     ];
 
     /**

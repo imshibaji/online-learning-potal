@@ -12,16 +12,16 @@ class ArticlePublishEmail extends Mailable
     use Queueable, SerializesModels;
 
     public $article;
-    public $user;
+    // public $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($article, $user)
+    public function __construct($article)
     {
         $this->article = $article;
-        $this->user = $user;
+        // $this->user = $user;
     }
 
     /**
@@ -31,6 +31,9 @@ class ArticlePublishEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Article: '. $this->article->title)->view('teacher::emails.article');
+        // return $this->subject('Article: '. $this->article->title)->view('teacher::emails.article');
+        return $this->subject('Article: '. $this->article->title)->markdown(
+            'teacher::emails.article'
+        );
     }
 }

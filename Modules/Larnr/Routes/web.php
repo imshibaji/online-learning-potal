@@ -11,6 +11,7 @@
 |
 */
 
+use App\Events\MyEvent;
 use App\Http\Controllers\Admin\ActivityController;
 use Illuminate\Support\Facades\Route;
 use Modules\Larnr\Http\Controllers\PaymentController;
@@ -23,6 +24,16 @@ $routes = function(){
     Route::get('privacy', 'LarnrController@privacy');
     Route::get('about', 'LarnrController@about');
     Route::get('contact', 'LarnrController@contact');
+    Route::post('contact', 'LarnrController@contactPost');
+
+    // Event
+    Route::get('/ev', function(){
+        return event(new MyEvent());
+    });
+    // Event
+    Route::get('/res', function(){
+        return view('larnr::resp');
+    });
 
     // Sitemap
     Route::get('sitemap', 'LarnrController@sitemapGen');
@@ -34,6 +45,7 @@ $routes = function(){
     Route::get('testimonial', 'TestimonialController@index');
     Route::get('sponsor', 'SponsorController@index');
     Route::get('partner', 'PartnerController@index');
+    Route::post('partner', 'PartnerController@store');
 
     Route::get('articles', 'ArticleController@index');
     Route::post('subscribe', 'ArticleController@subscribe')->name('subscribe');

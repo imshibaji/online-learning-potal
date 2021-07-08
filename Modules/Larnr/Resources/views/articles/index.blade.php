@@ -1,6 +1,6 @@
 @extends('larnr::layouts.master')
 
-@section('title', 'Best Software Development Tutorials articles')
+@section('title', 'Best Professional Skills Articles and Videos by indian languages')
 @section('keywords', 'articles,tutorials,Hindi Tutorials, Courses, tutorials, best hindi tutorials, software development tutorials')
 @section('description', 'Learning Articles and tutorials with various type of topics, this tutorials have various type educational contents.')
 @section('og_url', url('articles'))

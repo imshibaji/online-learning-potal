@@ -2,9 +2,12 @@
 
 namespace Modules\Larnr\Http\Controllers;
 
+use App\Models\PartnerEnquery;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Mail;
+use Modules\Larnr\Emails\PartnerEnquery as EmailsPartnerEnquery;
 
 class PartnerController extends Controller
 {
@@ -36,9 +39,22 @@ class PartnerController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $partner = PartnerEnquery::updateOrCreate(
+            ['email' => $req->email],
+            [
+                'name' => $req->name,
+                'mobile' => $req->mobile,
+                'email' => $req->email,
+                'subject' => $req->subject,
+                'message' => $req->message,
+            ]
+        );
+        Mail::to('imshibaji@gmail.com')->send(new EmailsPartnerEnquery($partner));
+        $req->session()->flash('status', 'Thank you for contacting with us.');
+
+        return back();
     }
 
     /**

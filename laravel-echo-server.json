@@ -1,24 +1,16 @@
 {
-	"authHost": "http://app.larnr.com",
+	"authHost": "http://localhost",
 	"authEndpoint": "/broadcasting/auth",
-	"clients": [
-		{
-			"appId": "test",
-			"key": "5c709e0d225e71e932a649526448636e"
-		}
-	],
+	"clients": [],
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {
-			"port": "6379",
-			"host": "127.0.0.1"
-		},
+		"redis": {},
 		"sqlite": {
 			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
 	},
 	"devMode": true,
-	"host": "app.larnr.com",
+	"host": "larnr.com",
 	"port": "6001",
 	"protocol": "http",
 	"socketio": {},
@@ -32,9 +24,9 @@
 		"redis": true
 	},
 	"apiOriginAllow": {
-		"allowCors": true,
-		"allowOrigin": "http://127.0.0.1",
-		"allowMethods": "GET, POST",
-		"allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
+		"allowCors": false,
+		"allowOrigin": "",
+		"allowMethods": "",
+		"allowHeaders": ""
 	}
 }

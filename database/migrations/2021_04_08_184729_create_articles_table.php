@@ -29,6 +29,7 @@ class CreateArticlesTable extends Migration
             $table->bigInteger('views')->default(0);
             $table->bigInteger('likes')->default(0);
             $table->bigInteger('dislikes')->default(0);
+            $table->integer('shares')->default(0);
             $table->string('type', 10)->default('draft');
             $table->boolean('approved')->default(0);
             $table->timestamps();

@@ -72,20 +72,22 @@ export default {
     },
     async mounted(){
       this.getDatas();
-      
-      setInterval(this.getDatas, 36000);
+
+      const minutes = (60 * 1000) * 1;
+      setInterval(this.getDatas, minutes);
     },
     methods: {
         async getDatas(){
-          const users = await axios.get('/admin/api/users');
-          const income = await axios.get('/admin/api/income');
-          const expanse = await axios.get('/admin/api/expanse');
-          const online = await axios.get('/admin/api/online');
+            const users = await axios.get('/admin/api/users');
+            const income = await axios.get('/admin/api/income');
+            const expanse = await axios.get('/admin/api/expanse');
+            const online = await axios.get('/admin/api/online');
 
-          this.income = income.data;
-          this.expanse = expanse.data;
-          this.online = online.data.toString();
-          this.allUser = users.data.length.toString();
+            this.income = income.data;
+            this.expanse = expanse.data;
+            this.online = online.data.toString();
+            this.allUser = users.data.length.toString();
+
           // console.log(this.online);
         },
         formatPrice(value) {

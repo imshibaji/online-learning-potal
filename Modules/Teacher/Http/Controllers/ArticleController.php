@@ -14,6 +14,16 @@ use Modules\Teacher\Events\ArticlePublish;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if($user->user_type != 'admin'){
+                \Debugbar::disable();
+            }
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -50,7 +60,7 @@ class ArticleController extends Controller
         $article->video_path = $request->video;
 
         if($request->file('image')){
-            $img = 'thumbnails/'.basename(Storage::putFile('public/thumbnails', $request->file('image')));
+            $img = 'thumbnails/'.basename(Storage::putFile('public/thumbnails', $request->file('image')->getRealPath()));
             $article->image_path = $img;
          }
 
@@ -63,7 +73,7 @@ class ArticleController extends Controller
         $article->save();
 
         event(new ArticlePublish($article));
-        return redirect(route('teacherarticles.index'));
+        return redirect(route('teacherarticles.edit', $article->id));
     }
 
     /**
@@ -107,7 +117,7 @@ class ArticleController extends Controller
 
         if($request->file('image')){
             Storage::disk('public')->delete([$article->image_path]);
-            $img = 'thumbnails/'.basename(Storage::putFile('public/thumbnails', $request->file('image')));
+            $img = 'thumbnails/'.basename(Storage::putFile('public/thumbnails', $request->file('image')->getRealPath()));
             $article->image_path = $img;
          }
 
@@ -120,7 +130,7 @@ class ArticleController extends Controller
         $article->save();
 
         event(new ArticlePublish($article));
-        return redirect(route('teacherarticles.index'));
+        return back();
     }
 
     /**

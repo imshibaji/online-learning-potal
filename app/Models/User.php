@@ -165,4 +165,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function courseManager(){
         return $this->hasMany('App\Models\Course', 'manager_user_id');
     }
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
 }

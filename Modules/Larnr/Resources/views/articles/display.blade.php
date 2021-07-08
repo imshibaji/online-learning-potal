@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7 p-4" style="background:rgba(15, 15, 15, 0.7);">
-                <h4 class="display-6 text-white">Learn Software Development by</h4>
-                <h1 class="display-4 text-white">Free Tutorial Articles</h1>
+                <h4 class="display-6 text-white">Learn Professional Skills from</h4>
+                <h1 class="display-4 text-white">Articles and Videos</h1>
                 <p class="lead text-white">You can learn skills development tutorials articles and videos from teachers.</p>
                 <div class="lead text-white" >
                     <form action="{{route('subscribe')}}" method="POST">

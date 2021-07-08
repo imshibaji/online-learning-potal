@@ -11,12 +11,17 @@
 @section('canonical', $article->canonical)
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
     <div class="row mx-0 mx-md-none">
         <div class="col-md-9 p-0 py-sm-2">
             <div class="card mx-0 mt-2 m-md-2 mx-md-none">
                 @if(isset($article->video_path))
                     <x-video poster="{{ url('storage/'.$article->image_path) }}" src="{{$article->video_path}}" type="video/youtube" />
+
+                @else
+                    <div class="mt-0" style="height: 350px; overflow: hidden; margin-top: -100px">
+                        <img width="100%" src="{{ url('storage/'.$article->image_path) }}" alt="{{$article->title}}" />
+                    </div>
                 @endif
                 <div class="card-header my-auto">
                     <div class="row">

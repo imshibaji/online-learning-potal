@@ -20,7 +20,7 @@
                     <div>{{item.city}}, {{item.region}}, {{item.country}}</div>
                 </td>
                 <td class="wrapword">
-                    <div>{{item.page_name}}</div> 
+                    <div>{{item.page_name}}</div>
                     <div>Path: {{item.page_path}}</div>
                     <div>Reffer: {{item.referer}} </div>
                 </td>
@@ -45,7 +45,7 @@
             </li>
         </ul>
     </nav>
-</div> 
+</div>
 </template>
 <style scoped>
 .page-link{
@@ -54,7 +54,7 @@
 .wrapword {
     width: 35%;
     white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
-    white-space: -webkit-pre-wrap;          /* Chrome & Safari */ 
+    white-space: -webkit-pre-wrap;          /* Chrome & Safari */
     white-space: -pre-wrap;                 /* Opera 4-6 */
     white-space: -o-pre-wrap;               /* Opera 7 */
     white-space: pre-wrap;                  /* CSS3 */
@@ -76,7 +76,9 @@ export default {
     },
     async mounted(){
         this.pageBtn();
-        setInterval(this.pageBtn, 36000);
+
+        const minutes = (60 * 1000) * 1;
+        setInterval(this.pageBtn, minutes);
     },
     methods:{
         async pageBtn(url){
@@ -87,7 +89,7 @@ export default {
             this.items = activity.data.data;
 
             console.log('Max Activity Count: '+deleteActivityData.data);
-            
+
             this.items = this.items.map((item) =>{
                 this.users.forEach((user)=>{
                     if(user.id == item.user_id){
@@ -106,7 +108,7 @@ export default {
             this.page = activity.data.path;
 
             // console.log(activity);
-            
+
         },
         deviceInfo(userAgent) {
             var ua = userAgent;
@@ -114,7 +116,7 @@ export default {
             var ff = false;
             var chrome = false;
             var browser = '';
-    
+
             //Javascript Browser Detection - Internet Explorer
             if (/MSIE (\d+\.\d+);/.test(ua)) //test for MSIE x.x; True or False
             {
@@ -122,7 +124,7 @@ export default {
                 var ieversion = new Number(RegExp.$1); //gets browser version
                 browser = ("ie: " + msie + ' version:' + ieversion);
             }
-    
+
             //Javascript Browser Detection - FireFox
             else if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.ua))//test for Firefox/x.x or Firefox x.x
             {
@@ -130,19 +132,19 @@ export default {
                 var ffversion = new Number(RegExp.$1) //gets browser version
                 browser = ("FF: " + ff + ' version:' + ieversion);
             }
-    
+
             //Javascript Browser Detection - Chrome
             else if (ua.lastIndexOf('Chrome/') > 0) {
                 var version = ua.substr(ua.lastIndexOf('Chrome/') + 7, 2);
                 browser = ("chrome " + version);
             }
-    
+
             //Javascript Browser Detection - Safari
             else if (ua.lastIndexOf('Safari/') > 0) {
                 var version = ua.substr(ua.lastIndexOf('Safari/') + 7, 2);
                 browser = ("Safari " + version);
             }
-    
+
             //Javascript Browser Detection - Android
             else if (ua.indexOf("Android") >= 0) {
                 var androidversion = parseFloat(ua.slice(ua.indexOf("Android") + 8));
@@ -151,10 +153,10 @@ export default {
                     browser = ("Android JSBrowser "+ androidversion);
                 }
             }
-    
+
             //Javascript Browser Detection - Mobile
             else if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(ua)) {
-    
+
                 // Check if the orientation has changed 90 degrees or -90 degrees... or 0
                 window.addEventListener("orientationchange", function () {
                     return (window.orientation);
@@ -165,7 +167,7 @@ export default {
             // "Windows"    for all versions of Windows
             // "MacOS"      for all versions of Macintosh OS
             // "Linux"      for all versions of Linux
-            // "UNIX"       for all other UNIX flavors 
+            // "UNIX"       for all other UNIX flavors
             // "Unknown OS" indicates failure to detect the OS
 
             var OSName="Unknown OS";

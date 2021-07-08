@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if($user->user_type != 'admin'){
+                \Debugbar::disable();
+            }
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable

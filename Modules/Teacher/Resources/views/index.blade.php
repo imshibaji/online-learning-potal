@@ -14,7 +14,8 @@
         @include('teacher::dashboard.comments')
     </div>
     <div class="col-md-4 mb-3">
-        @include('teacher::dashboard.analytics')
+        {{-- @include('teacher::dashboard.analytics') --}}
+        @include('teacher::dashboard.visitors')
     </div>
 </div>
 @endsection

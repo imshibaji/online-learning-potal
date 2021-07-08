@@ -13,12 +13,23 @@ use Modules\Teacher\Entities\Teacher;
 
 class TeacherController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if($user->user_type != 'admin'){
+                \Debugbar::disable();
+            }
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
+
         $article = Article::where('user_id', Auth::id())->publish()->orderBy('id', 'desc')->first();
         $comments = Comment::where('user_id', Auth::id())->where('commentable_id','!=', null)->limit(4)->get();
         return view('teacher::index', compact('article', 'comments'));

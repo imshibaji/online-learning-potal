@@ -1,8 +1,8 @@
-@component('mail::layout')
+@component('teacher::emails.common.layout')
 {{-- Header --}}
 @slot('header')
-@component('mail::header', ['url' => $appLink ?? config('app.url')])
-{{ $appName ?? config('app.name') }}
+@component('mail::header', ['url' => $appLink])
+{{ $appName }}
 @endcomponent
 @endslot
 
