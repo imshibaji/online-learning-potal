@@ -83,7 +83,7 @@ class TeacherController extends Controller
             $teacher->type = $req->type;
             $teacher->user_id = Auth::id();
             $teacher->premium_status = $req->premium_status;
-            $teacher->toc = $req->toc;
+            $teacher->toc = ($req->toc == 1)? true : false;
             $teacher->save();
 
             session()->flash('status', 'Profile is updated');
@@ -129,7 +129,7 @@ class TeacherController extends Controller
             $teacher->type = $req->type;
             $teacher->user_id = Auth::id();
             $teacher->premium_status = $req->premium_status;
-            $teacher->toc = ($req->accepted == 'on')? true : false;
+            $teacher->toc = ($req->toc == 1)? true : false;
             $teacher->save();
 
             session()->flash('status', 'Profile is updated');
