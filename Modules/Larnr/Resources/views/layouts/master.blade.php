@@ -67,6 +67,7 @@
         @yield('footers')
         <script src="{{ asset('js/larnr.js') }}"></script>
         <script src="{{url('/')}}/js/jquery.min.js"></script>
+        <script src="{{url('/')}}/js/bootstrap.min.js"></script>
         <script src="{{url('/')}}/js/script.js"></script>
         <script src="{{url('/')}}/js/prism_patched.min.js"></script>
         @yield('scripts')

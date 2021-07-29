@@ -84,7 +84,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-2 d-none d-sm-block">
+                        <button id="talk" type="button" class="btn btn-success btn-block">
+                            <i class="fa fa-microphone" aria-hidden="true"></i>
+                            Voice
+                        </button>
+                    </div>
+                    <div class="col-md-2 d-none  d-sm-block">
+                        <button id="say" type="button" class="btn btn-success btn-block">
+                            <i class="fa fa-volume-up" aria-hidden="true"></i>
+                            Speak
+                        </button>
+                    </div>
+                    <div class="col-md-8 col-12">
                         <input type="submit" class="btn btn-success btn-block" value="Submit">
                     </div>
                 </div>
@@ -101,13 +113,20 @@ window.onload = function(){
         height:285
     });
 }
-
 $('#title').keyup(() => {
     var name = $("#title").val();
     name = name.toLowerCase();
 
-    var slag = name.replace(/ /g, '-');
+    var slag = convertToSlug(name);
     $('#slag').val(slag);
 });
+function convertToSlug(Text)
+{
+    return Text
+        .toLowerCase()
+        .replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-')
+        ;
+}
 </script>
 @endsection

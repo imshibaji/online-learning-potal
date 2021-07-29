@@ -23,8 +23,8 @@ $routes = function(){
     Route::get('tac', 'LarnrController@tac');
     Route::get('privacy', 'LarnrController@privacy');
     Route::get('about', 'LarnrController@about');
-    Route::get('contact', 'LarnrController@contact');
-    Route::post('contact', 'LarnrController@contactPost');
+    Route::get('support', 'LarnrController@contact');
+    Route::post('support', 'LarnrController@contactPost');
 
     // Event
     Route::get('/ev', function(){
@@ -49,8 +49,13 @@ $routes = function(){
 
     Route::get('articles', 'ArticleController@index');
     Route::post('subscribe', 'ArticleController@subscribe')->name('subscribe');
+    Route::post('subnow', 'ArticleController@subnow')->name('subnow');
+
     Route::get('article/{slug}', 'ArticleController@show');
     Route::post('article/comment', 'ArticleController@comment')->middleware('auth');
+    Route::post('article/like', 'ArticleController@likes');
+    Route::post('article/dislike', 'ArticleController@dislikes');
+    Route::post('article/share', 'ArticleController@share');
 
     Route::get('courses', 'CourseController@index');
     Route::get('course/{slug}', 'CourseController@show');

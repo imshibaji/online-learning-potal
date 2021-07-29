@@ -3,10 +3,12 @@
 namespace Modules\Larnr\Providers;
 
 use AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider;
+use App\Models\Course;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Blade;
 use Modules\Larnr\Http\Middleware\Authentication;
 
 class LarnrServiceProvider extends ServiceProvider
@@ -28,6 +30,7 @@ class LarnrServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerBladeSyntaxs();
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
@@ -58,6 +61,24 @@ class LarnrServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
         );
+    }
+
+    /**
+     * Register Blade Systax
+     *
+     * @return void
+     */
+    public function registerBladeSyntaxs()
+    {
+        Blade::if('havecourses', function()
+        {
+            $courses = Course::publish()->get();
+            return (isset($courses) && count($courses)>0)? true : false;
+        });
+        Blade::if('havearticles', function()
+        {
+            return (isset($courses) && count($courses)>0)? true : false;
+        });
     }
 
     /**

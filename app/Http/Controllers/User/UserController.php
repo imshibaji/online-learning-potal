@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
+use App\Models\Comment;
 use App\Models\Course;
 use App\Models\CourseAssignment;
 use App\Models\Topic;
@@ -98,13 +99,14 @@ class UserController extends Controller
             $course = Course::find($req->id);
             $topics = $course->topics()->orderBy('short')->get();
             $topic = Topic::find($req->tid);
+            $comments = isset($req->tid)? $topic->comments()->where('user_id', Auth::id())->get() : [];
 
             // $topic = $course->topics()->orderBy('short')->paginate(1);
             // dd($topic);
 
             $utopics = Auth::user()->topicAssignments;
             $assesments = Auth::user()->userAssesments()->where('topic_id', $req->tid)->get();
-            return view('users.course-details', compact('course', 'topics', 'topic', 'assesments'));
+            return view('users.course-details', compact('course', 'topics', 'topic', 'assesments', 'comments'));
         }catch(Exception $e){
             return view('errors.404');
         }
@@ -223,6 +225,45 @@ class UserController extends Controller
         $asses->delete();
 
         return back();
+    }
+
+    public function topicComment(Request $req){
+
+        if($req->cid != 0){
+            $comment = Comment::find($req->cid);
+        }else{
+            $comment = new Comment();
+        }
+        $comment->message = $req->message;
+        $comment->user_id = Auth::id();
+
+        if($req->rid != 0){
+            $comment->comment_id = $req->rid;
+            $comment->save();
+        }else if($req->cid != 0){
+            $comment->save();
+        }else{
+            $topic = Topic::find($req->tid);
+            $topic->comments()->save($comment);
+        }
+
+        // dd($topic->comments);
+
+        session()->flash('status', 'Your comment posted Successfully.');
+        return back();
+    }
+
+    public function commentDelete(Request $req){
+        // dd($req->cid);
+        $comment = Comment::find($req->cid);
+        $comment->delete();
+
+        session()->flash('status', 'Your comment deleted Successfully.');
+        return [
+            'status' => 200,
+            'message'=> 'Comment is deleted..',
+            'out' => $comment->id
+        ];
     }
 
 

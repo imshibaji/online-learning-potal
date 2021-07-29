@@ -21,7 +21,7 @@
                 <a class="nav-link" href="/privacy">Privacy</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact us</a>
+                <a class="nav-link" href="/support">Need Support</a>
             </li>
         </ul>
     </div>

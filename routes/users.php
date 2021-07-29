@@ -29,6 +29,10 @@ Route::get('learn', 'UserController@learn')->name('userlearn');
 Route::get('reports', 'UserController@reports')->name('userreports');
 Route::get('jobs', 'UserController@jobs')->name('userjobs');
 
+// Comments Section
+Route::post('topic-comment', 'UserController@topicComment')->name('usertopiccomment');
+Route::post('comment-delete', 'UserController@commentDelete')->name('usercommentdelete');
+
 // Not Requires now
 Route::get('transaction', 'TransactionController@index')->name('transactions');
 Route::get('gems', 'TransactionController@gems')->name('usergems');

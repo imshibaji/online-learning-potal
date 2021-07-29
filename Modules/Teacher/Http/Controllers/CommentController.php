@@ -38,7 +38,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        return view('teacher::create');
+        return view('teacher::comments.create');
     }
 
     /**
@@ -48,7 +48,13 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = new Comment();
+        $comment->message = $request->message;
+        $comment->user_id = Auth::id();
+        $comment->comment_id = $request->cid;
+        $comment->save();
+
+        return back();
     }
 
     /**
@@ -58,7 +64,8 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        return view('teacher::show');
+        $comment = Comment::find($id);
+        return view('teacher::comments.show', compact('comment'));
     }
 
     /**
@@ -68,7 +75,8 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        return view('teacher::edit');
+        $comment = Comment::find($id);
+        return view('teacher::comments.edit', compact('comment'));
     }
 
     /**
@@ -79,7 +87,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = Comment::find($id);
+        $comment->message = $request->message;
+        $comment->user_id = Auth::id();
+        $comment->comment_id = $request->cid;
+        $comment->save();
+
+        return back();
     }
 
     /**

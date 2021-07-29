@@ -1,4 +1,5 @@
 {{-- Courses Sections --}}
+@havecourses
 <div class="container py-4 mb-4">
     <h2 class="text-center"><u>Top Courses</u></h2>
     <div class="row my-2">
@@ -50,4 +51,5 @@
         @endforeach
     </div>
 </div>
+@endhavecourses
 {{-- Courses Sections --}}

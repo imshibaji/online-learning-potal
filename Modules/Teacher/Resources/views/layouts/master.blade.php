@@ -56,6 +56,7 @@
         {{-- <script src="{{ mix('js/teacher.js') }}"></script> --}}
         @yield('footers')
         <script src="{{ asset('js/larnr.js') }}"></script>
+        <script src="{{ asset('js/teacher.js') }}"></script>
         <script src="{{url('/')}}/js/jquery.min.js"></script>
         <script src="{{url('/')}}/js/script.js"></script>
         <script src="{{url('/')}}/vendors/ckeditor/ckeditor.js"></script>

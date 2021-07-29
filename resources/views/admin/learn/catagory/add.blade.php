@@ -29,7 +29,7 @@
                             <select id="details" name="catagory_id" class="form-control">
                                 <option value="0">None</option>
                                 @foreach ($catagories as $catagory)
-                                    <option value="{{$catagory->id}}">{{$catagory->title}}</option>
+                                    <option @if($cat_id !=null && $cat_id==$catagory->id) selected @endif value="{{$catagory->id}}">{{$catagory->title}}</option>
                                 @endforeach
                             </select>
                         </td>

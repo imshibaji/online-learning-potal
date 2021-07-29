@@ -50,6 +50,7 @@
                         </td>
                         <td class="text-center">
                             <p class="p-0 m-0">{{ Str::ucfirst($course->accessible) }}</p>
+                            <p class="p-0 m-0">{{ $course->views }} Views</p>
                             <p class="p-0 m-0">{{ $course->sales }} Sales</p>
                         </td>
                         <td class="text-center">

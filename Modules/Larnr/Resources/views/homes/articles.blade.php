@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-12 m-0">
                             <a class="my-0" href="{{ url('article/'.$article->slug) }}">
-                                <h6 class="card-title my-1">{{ Str::substr($article->title, 0, 40) }}</h6>
+                                <h6 class="card-title my-1">{{ Str::substr($article->title, 0, 40) }}...</h6>
                             </a>
                             <small class="my-1 card-text">{{ Str::substr($article->description, 0, 50)}}...</small><br>
                             <small class="my-1 card-text text-muted">{{($article->user)? $article->user->fname .' '. $article->user->lname : 'Larnr Education'}} | {{$article->views}}views </small>

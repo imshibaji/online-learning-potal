@@ -6,6 +6,7 @@ use App\Models\PartnerEnquery;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Modules\Larnr\Emails\PartnerEnquery as EmailsPartnerEnquery;
 
@@ -13,7 +14,17 @@ class PartnerController extends Controller
 {
     public function __construct()
     {
-        \Debugbar::disable();
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if(isset($user)){
+                if($user->user_type != 'admin'){
+                    \Debugbar::disable();
+                }
+            }else{
+                \Debugbar::disable();
+            }
+            return $next($request);
+        });
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Models\PartnerEnquery;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
@@ -23,7 +24,18 @@ class LarnrController extends Controller
 {
     public function __construct()
     {
-        \Debugbar::disable();
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if(isset($user)){
+                if($user->user_type != 'admin'){
+                    \Debugbar::disable();
+                }
+            }else{
+                \Debugbar::disable();
+            }
+
+            return $next($request);
+        });
     }
 
     public function index()

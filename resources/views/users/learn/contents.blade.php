@@ -6,6 +6,7 @@
     <li class="nav-item">
       <a class="nav-link active" id="topic-tab" data-toggle="tab" href="#topic" role="tab" aria-controls="topic" aria-selected="true">Details</a>
     </li>
+    {{--
     @if(count($assesments ?? []) == 0)
       <li class="nav-item d-none d-md-block">
         <a class="nav-link" id="exam-tab" data-toggle="tab" href="#exam" role="tab" aria-controls="exam" aria-selected="false">Assignments</a>
@@ -15,9 +16,10 @@
         <a class="nav-link" id="assesment-tab" data-toggle="tab" href="#assesment" role="tab" aria-controls="assesment" aria-selected="false">Assesments Report</a>
       </li>
     @endif
-    {{-- <li class="nav-item">
+    --}}
+    <li class="nav-item">
       <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Comments</a>
-    </li> --}}
+    </li>
   </ul>
 
   {{-- Course Contents --}}
@@ -183,31 +185,9 @@
         </div>
     </div>
     @endif
-    {{-- <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-        <div class="p-3">
-            <form>
-              <textarea class="form-control"></textarea>
-            </form>
-        </div>
 
-        <hr>
-
-        <div class="p-3">
-          <div class="media">
-            <img src="/images/computer-user-icon.png" width="40" class="mr-3" alt="...">
-            <div class="media-body">
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-              <div class="media mt-3">
-                <a class="mr-3" href="#">
-                  <img src="/images/computer-teacher-icon.png" width="60" class="mr-3" alt="...">
-                </a>
-                <div class="media-body">
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div> --}}
+    {{-- Comments --}}
+    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+         <x-discussions :topic="$topic" :comments="$comments" />
+    </div>
 </div>

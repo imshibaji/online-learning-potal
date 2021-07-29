@@ -15,7 +15,7 @@
       position: relative;
       top: 15%; /* 25% of parent */
       font-size: 100%; /* 50% of parent */
-      line-height: 100%; /* 50% of parent */
+      line-height: 100%; /*50% of parent */
       color: #fff;
       font-family: "Courier New", monospace;
       font-weight: bold;

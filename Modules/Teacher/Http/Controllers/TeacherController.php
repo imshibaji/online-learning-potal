@@ -32,7 +32,8 @@ class TeacherController extends Controller
 
         $article = Article::where('user_id', Auth::id())->publish()->orderBy('id', 'desc')->first();
         $comments = Comment::where('user_id', Auth::id())->where('commentable_id','!=', null)->limit(4)->get();
-        return view('teacher::index', compact('article', 'comments'));
+        $totalViews = Auth::user()->articles()->sum('views') + Auth::user()->courses()->sum('views');
+        return view('teacher::index', compact('article', 'comments', 'totalViews'));
     }
 
     public function page($page){

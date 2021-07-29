@@ -74,7 +74,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col"><input type="submit" class="btn btn-success btn-block" value="Submit"></div>
+                    <div class="col-md-2 d-none d-sm-block">
+                        <button id="talk" type="button" class="btn btn-success btn-block">
+                            <i class="fa fa-microphone" aria-hidden="true"></i>
+                            Voice
+                        </button>
+                    </div>
+                    <div class="col-md-2 d-none  d-sm-block">
+                        <button id="say" type="button" class="btn btn-success btn-block">
+                            <i class="fa fa-volume-up" aria-hidden="true"></i>
+                            Speak
+                        </button>
+                    </div>
+                    <div class="col-md-8 col-12">
+                        <input type="submit" class="btn btn-success btn-block" value="Submit">
+                    </div>
                 </div>
             </div>
         </form>

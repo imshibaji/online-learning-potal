@@ -19,8 +19,8 @@
                     <x-video poster="{{ url('storage/'.$article->image_path) }}" src="{{$article->video_path}}" type="video/youtube" />
 
                 @else
-                    <div class="mt-0" style="height: 350px; overflow: hidden; margin-top: -100px">
-                        <img width="100%" src="{{ url('storage/'.$article->image_path) }}" alt="{{$article->title}}" />
+                    <div class="mt-0" style="height:fit-content; max-height: 350px; overflow: hidden; margin-top: -100px">
+                        <img width="100%" src="{{ ($article->image_path)? url('storage/'.$article->image_path) : url('images/image-upload.jpg') }}" alt="{{$article->title}}" />
                     </div>
                 @endif
                 <div class="card-header my-auto">
@@ -33,14 +33,30 @@
 
                         </div>
                         <div class="col-md-4 text-md-right">
-                            <div><small class="my-1 card-text text-muted">{{$author ?? 'Larnr Education'}} <span class="d-none d-sm-inline"> | </span> {{$article->views}}views </small></div>
-                            <div class="d-none d-sm-block"><a class="btn btn-warning btn-sm" href="https://app.larnr.com?w=EnrollNow">Enroll Now</a></div>
+                            <div class="row">
+                                <div class="col-md-12 col-6"><small class="my-1 card-text text-muted">{{$author ?? 'Larnr Education'}} <span class="d-none d-sm-inline"> | </span> {{$article->views}}views </small></div>
+                                <div class="col-md-12 col-6 text-right"><button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target="#subscribeModal">Subscribe</button></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     {{-- <h6>Details</h6> --}}
                     {!! $article->details !!}
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="p-2 px-md-2 text-center text-md-left m-0">
+                            <button id="like" onclick="like({{$article->id}})" class="btn btn-outline-secondary btn-sm"><i class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></i> <span id="likeDisp">{{$article->likes}}Likes</span></button>
+                            <button id="dislike" onclick="dislike({{$article->id}})" class="btn btn-outline-secondary btn-sm"><i class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></i> <span id="dislikeDisp">{{$article->dislikes}}Dislikes</span></button>
+                        </div>
+                    </div>
+                    <div class="col-md-8 text-center">
+                        <div class="p-2 px-md-2 text-center m-0">
+                            <div onclick="share({{$article->id}})" class="addthis_inline_share_toolbox"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     @if (session('status'))
@@ -64,11 +80,13 @@
                 <div class="col-6 col-md-12 my-2">
                     <div class="card box my-0 pb-0 h-100 h-sm-none">
                         <a style="text-decoration: none" href="{{ url('article/'.$article->slug) }}">
-                            <img src="{{ url('storage/'.$article->image_path) }}" class="card-img-top" alt="{{$article->title}}">
+                            <div style="height:fit-content; max-height: 350px; overflow: hidden;">
+                                <img src="{{($article->image_path)? url('storage/'.$article->image_path) : url('images/image-upload.jpg') }}" class="card-img-top" alt="{{$article->title}}">
+                            </div>
                             <div class="card-body p-1 p-sm-3">
-                                <h6 class="card-title my-1">{{ Str::substr($article->title, 0, 35) }}</h6>
+                                <h6 class="card-title my-1">{{ Str::substr($article->title, 0, 35) }}...</h6>
                                 <small class="d-none d-md-inline card-text text-dark">{{ Str::substr($article->description, 0, 60)}}...</small><br class="d-none d-md-inline">
-                                <small class="my-1 card-text text-muted">{{($article->user)? $article->user->fname .' '. $article->user->lname : 'Larnr Education'}} <span class="d-none d-sm-inline"> | </span> {{$article->views}}views</small>
+                                <small class="my-1 card-text text-muted">{{ ($article->user)? $article->user->fname .' '. $article->user->lname : 'Larnr Education' }} <span class="d-none d-sm-inline"> | </span> {{$article->views}}views</small>
                             </div>
                         </a>
                     </div>
@@ -78,4 +96,42 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6101207219bceae7"></script>
+<script>
+function like(id){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $.post('/article/like',{_token: CSRF_TOKEN, id: id}).then(res=>{
+        $('#likeDisp').html(res.count+'Likes');
+        $('#like').attr('disabled', true);
+        $('#dislike').attr('disabled', true);
+    });
+}
+function dislike(id){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $.post('/article/dislike',{_token: CSRF_TOKEN, id: id}).then(res=>{
+        $('#dislikeDisp').html(res.count+'Dislikes');
+        $('#like').attr('disabled', true);
+        $('#dislike').attr('disabled', true);
+    });
+}
+function share(id){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $.post('/article/share',{_token: CSRF_TOKEN, id: id}).then(res=>{
+        // console.log(res);
+        // $('#dislikeDisp').html(res.count+'Shares');
+    });
+}
+function subscribe(id){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $.post('/article/share',{_token: CSRF_TOKEN, id: id}).then(res=>{
+        // console.log(res);
+        // $('#dislikeDisp').html(res.count+'Shares');
+    });
+}
+</script>
+@include('larnr::articles.subscribe')
 @endsection

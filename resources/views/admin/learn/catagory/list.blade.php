@@ -6,8 +6,7 @@
             <tr>
                 <th scope="col" class="text-center">#</th>
                 {{-- <th scope="col">Short</th> --}}
-                <th>Catagory Name</th>
-                <th>Parent Catagory</th>
+                <th style="width:70%">Catagory Name</th>
                 <th>Status</th>
                 <th class="text-center">Action</th>
             </tr>
@@ -18,29 +17,33 @@
                     $dur = json_decode($catagory->duration, true);
                     // var_dump($dur['hours']);
                 @endphp
-                <tr id="{{ $catagory->short }}">
-                    <td class="index text-center">
-                        {{ $catagory->short ?? '#' }}
-                        <input type="hidden" name="cid" id="cid" value="{{ $catagory->id }}">
-                        {{-- <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}"> --}}
-                    </td>
-                    {{-- <td class="indexInput">
-                        <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
-                        <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}">
-                    </td> --}}
-                    <td style="width:50%">{{ $catagory->title }}</td>
-                    <td>{{ $catagory->parentCategory->title ?? '' }}</td>
-                    <td>{{ $catagory->status }}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <a href="{{url('/')}}/admin/learn/catagory/view/{{ $catagory->id }}" class="btn btn-info">View</a>
-                            <a href="{{url('/')}}/admin/learn/catagory/edit/{{ $catagory->id }}" class="btn btn-warning">Edit</a>
-                            @utype('admin')
-                            <button class="btn btn-danger" onclick="remove('{{ $catagory->id }}')">Delete</button>
-                            @endutype
-                        </div>
-                    </td>
-                </tr>
+                @if($catagory->catagory_id == null)
+                    <tr id="{{ $catagory->short }}">
+                        <td class="index text-center">
+                            {{ $catagory->short ?? '#' }}
+                            <input type="hidden" name="cid" id="cid" value="{{ $catagory->id }}">
+                            {{-- <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}"> --}}
+                        </td>
+                        {{-- <td class="indexInput">
+                            <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
+                            <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}">
+                        </td> --}}
+                        <td style="width:70%">
+                            <h4 class="p-0">{{ $catagory->title }}</h4>
+                            <p class="p-0">{{ $catagory->details }}</p>
+                        </td>
+                        <td>{{ $catagory->status }}</td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a href="{{url('/')}}/admin/learn/catagory/view/{{ $catagory->id }}" class="btn btn-info">View</a>
+                                <a href="{{url('/')}}/admin/learn/catagory/edit/{{ $catagory->id }}" class="btn btn-warning">Edit</a>
+                                @utype('admin')
+                                <button class="btn btn-danger" onclick="remove('{{ $catagory->id }}')">Delete</button>
+                                @endutype
+                            </div>
+                        </td>
+                    </tr>
+                @endif
             @endforeach
         </tbody>
     </table>

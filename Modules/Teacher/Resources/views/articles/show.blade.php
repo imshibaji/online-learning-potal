@@ -31,22 +31,25 @@
             </div>
             <div class="col-md order-1 order-md-2">
                 @if(isset($article->video_path))
-                    <x-video poster="{{ url('storage/'.$article->image_path) }}" src="{{$article->video_path}}" type="video/youtube" />
+                    <x-video poster="{{ ($article->image_path)? url('storage/'.$article->image_path) : url('images/image-upload.jpg') }}" src="{{$article->video_path}}" type="video/youtube" />
                 @else
                     <div class="mt-0">
-                        <img class="img-fluid mb-3" src="{{ url('storage/'.$article->image_path) }}" alt="{{$article->title}}" />
+                        <img class="img-fluid mb-3" src="{{ ($article->image_path)? url('storage/'.$article->image_path) : url('images/image-upload.jpg') }}" alt="{{$article->title}}" />
                     </div>
                 @endif
             </div>
         </div>
 
-        <h1 class="mt-3">{{$article->title}}</h1>
-        <div class="mb-4">
+        <h4 class="mt-3">{{$article->title}}</h4>
+        <div class="mb-0">
             @if ($article->keywords != "")
                 @foreach(explode(',', $article->keywords) as $keyword)
                     <span class="badge bg-secondary text-white">{{$keyword}}</span>
                 @endforeach
             @endif
+        </div>
+        <div class="mb-4">
+            <small>{{$article->description}}</small>
         </div>
         {!! $article->details !!}
     </div>

@@ -29,7 +29,7 @@
                 And you have queries then you can submitted your questions or queries.</p>
         </div>
         <div class="col-md-6 py-3">
-            <form action="{{ url('contact') }}" method="post">
+            <form action="{{ url('support') }}" method="post">
                 @csrf
                 @captchaHTML
                 <div class="mb-3">

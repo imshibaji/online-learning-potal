@@ -13,7 +13,6 @@
             <thead class="thead-inverse">
                 <tr>
                     <th>Comments Details</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,16 +21,41 @@
                     <td>
                     <div class="media">
                         @if($cmt->commentable)
-                        <img src="{{ url('storage/'.$cmt->commentable->image_path)}}" class="mr-3" width="60px" alt="{{$cmt->commentable->title}}">
+                        <div class="mt-2">
+                            <img src="{{ ($cmt->commentable->image_path)? url('storage/'.$cmt->commentable->image_path) : url('images/image-upload.jpg') }}" class="mr-3" width="60px" alt="{{$cmt->commentable->title}}">
+                        </div>
                         <div class="media-body">
-                            <h5 class="m-0"><span class="text-success">{{$cmt->commentable->title}}</span></h5>
-                            <p class="p-0 m-0"><strong>{{$cmt->user->fullname()}}: </strong> {{$cmt->message}}</p>
+                            <h5 class="m-0">
+                                {{-- View Btn --}}
+                                <a class="text-success" href="{{route('teachercomments.show', $cmt->id)}}">
+                                    <span>{{$cmt->commentable->title}}</span>
+                                </a>
+                            </h5>
+
+                            <p class="p-0 m-0">
+                                <strong>{{$cmt->user->fullname()}}: </strong> {{$cmt->message}}
+                                <span class="m-0 ml-2">
+                                    {{-- Edit Btn --}}
+                                    <a class="btn btn-link p-0" href="{{route('teachercomments.edit', $cmt->id)}}" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    {{-- Delete Btn --}}
+                                    <a class="btn btn-link text-danger p-0" href="{{route('teachercomments.destroy', $cmt->id)}}" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                </span>
+                            </p>
                             @if($cmt->replies)
                                 @foreach ($cmt->replies as $reply)
                                     <div class="media mt-1 ml-3">
                                         <div class="media-body">
                                             <h6 class="m-0">Replied:</h6>
-                                            <p><strong>{{$reply->user->fullname()}}: </strong>{{$reply->message}}</p>
+                                            <p class="mb-0 pb-0">
+                                                <strong>{{$reply->user->fullname()}}: </strong>{{$reply->message}}
+                                                <span class="m-0 ml-2">
+                                                    {{-- Edit Btn --}}
+                                                    <a class="btn btn-link p-0" href="{{route('teachercomments.edit', $reply->id)}}" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    {{-- Delete Btn --}}
+                                                    <a class="btn btn-link text-danger p-0" href="{{route('teachercomments.destroy', $reply->id)}}" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </span>
+                                            </p>
+
                                         </div>
                                     </div>
                                 @endforeach
@@ -39,15 +63,6 @@
                         </div>
                         @endif
                     </div>
-                    </td>
-                    <td>
-                        <div class="btn-group btn-block">
-                            <a href="{{route('teachercomments.show', $cmt->id)}}" class="btn btn-primary" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                            <a href="{{route('teachercomments.edit', $cmt->id)}}" class="btn btn-warning" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            @utype('admin')
-                            <button class="btn btn-danger" onclick="remove('{{ $cmt->id }}')" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            @endutype
-                        </div>
                     </td>
                 </tr>
                 @empty

@@ -26,11 +26,7 @@
                     @forelse ($articles as $article)
                         <tr>
                             <td style="max-width: 130px">
-                                @if(isset($article->image_path))
-                                    <img src="{{url('storage/'.$article->image_path)}}" width="100%" height="90px">
-                                @else
-                                    No Image
-                                @endif
+                                <img src="{{ $article->image_path? url('storage/'.$article->image_path) : url('images/image-upload.jpg') }}" width="100%" height="90px">
                                 <div class="btn-group btn-block">
                                     <a href="{{route('teacherarticles.show', $article->id)}}" class="btn btn-primary btn-sm" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     <a href="{{route('teacherarticles.edit', $article->id)}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

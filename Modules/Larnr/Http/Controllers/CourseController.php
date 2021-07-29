@@ -7,12 +7,23 @@ use App\Models\Topic;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
     public function __construct()
     {
-        \Debugbar::disable();
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if(isset($user)){
+                if($user->user_type != 'admin'){
+                    \Debugbar::disable();
+                }
+            }else{
+                \Debugbar::disable();
+            }
+            return $next($request);
+        });
     }
     /**
      * Display a listing of the resource.
@@ -57,6 +68,7 @@ class CourseController extends Controller
         if(!isset($course->title)){
             return redirect('/courses', 301);
         }
+
 
         return view('larnr::courses.course', compact('course'));
     }

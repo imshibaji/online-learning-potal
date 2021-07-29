@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->string('video_path')->nullable();
             $table->string('keywords')->nullable();
             $table->string('description')->nullable();
-            $table->string('caconical')->nullable();
+            $table->string('canonical')->nullable();
             $table->text('details')->nullable();
             $table->string('status', 10)->default('free');
             $table->integer('user_id')->nullable();

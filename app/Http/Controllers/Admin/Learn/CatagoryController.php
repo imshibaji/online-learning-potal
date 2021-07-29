@@ -14,11 +14,12 @@ class CatagoryController extends Controller
         return view('admin.learn.catagory.list', ['title' => 'Catagory List', 'catagories' => $catagories]);
     }
 
-    public function add(){
+    public function add(Request $req){
         $catagories = Catagory::orderBy('short')->get();
         return view('admin.learn.catagory.add', [
             'title' => 'Catagory Add',
-            'catagories' => $catagories
+            'catagories' => $catagories,
+            'cat_id' => $req->catId
         ]);
     }
 
@@ -30,7 +31,12 @@ class CatagoryController extends Controller
         $catagory->catagory_id = $req->input('catagory_id');
         $out = $catagory->save();
 
-        return redirect(route('admincatagorylist'));
+        // return redirect(route('admincatagorylist'));
+        if($req->input('catagory_id')){
+            return redirect(route('admincatagoryview', $req->input('catagory_id')));
+        }else{
+            return redirect(route('admincatagorylist'));
+        }
     }
 
     public function edit($id){
@@ -52,7 +58,12 @@ class CatagoryController extends Controller
         $catagory->catagory_id = $req->input('catagory_id');
 
         $out = $catagory->save();
-        return redirect(route('admincatagorylist'));
+        // return redirect(route('admincatagorylist'));
+        if($req->input('catagory_id')){
+            return redirect(route('admincatagoryview', $req->input('catagory_id')));
+        }else{
+            return redirect(route('admincatagorylist'));
+        }
     }
 
     public function view($id){

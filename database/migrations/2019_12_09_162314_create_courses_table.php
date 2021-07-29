@@ -21,7 +21,7 @@ class CreateCoursesTable extends Migration
             $table->text('details')->nullable();
             $table->string('meta_keys')->nullable();
             $table->string('meta_desc')->nullable();
-            $table->string('caconical')->nullable();
+            $table->string('canonical')->nullable();
             $table->string('duration')->nullable();
             $table->integer('short')->nullable();
             $table->string('status', 10);
@@ -37,6 +37,7 @@ class CreateCoursesTable extends Migration
             $table->string('session_time')->nullable();
             $table->string('ribbon')->nullable();
             $table->integer('sales')->default(0);
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }

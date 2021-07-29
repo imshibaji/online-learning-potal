@@ -72,7 +72,7 @@
             </div>
 
             <div class="form-group form-check">
-                <input type="checkbox" name="toc" class="form-check-input" id="toc">
+                <input type="checkbox" name="accepted" class="form-check-input" id="toc">
                 <label class="form-check-label" for="toc">I Accept <a href="https://larnr.com/tac">terms and conditions</a></label>
             </div>
 

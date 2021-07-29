@@ -13,7 +13,17 @@ class VideoController extends Controller
 {
     public function __construct()
     {
-        \Debugbar::disable();
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if(isset($user)){
+                if($user->user_type != 'admin'){
+                    \Debugbar::disable();
+                }
+            }else{
+                \Debugbar::disable();
+            }
+            return $next($request);
+        });
     }
 
     public function video($id){

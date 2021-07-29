@@ -23,7 +23,12 @@
                             <input type="text" id="title" name="title" class="form-control" placeholder="Input Course Title" value="{{$course->title}}">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="slag" name="slag" class="form-control form-control-sm" placeholder="course_title_slag" value="{{$course->slag}}">
+                            <div class="input-group">
+                                <input type="text" id="slag" name="slag" class="form-control form-control-sm" placeholder="course_title_slag" value="{{$course->slag}}">
+                                <div class="input-group-append">
+                                    <button id="slagbtn" class="btn btn-outline-secondary btn-sm" type="button" id="button-addon2">Set Title as Slug</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <textarea name="details" id="editor" class="form-control" placeholder="Main Course Content">{{$course->details}}</textarea>
@@ -60,7 +65,7 @@
                         </div>
                         <div class="form-group">
                             <label for="catagory_id">Display Image</label>
-                            <x-image-uploader name="image" src="{{ $course->image_path? url('storage/'.$course->image_path ) : null }}" />
+                            <x-image-uploader name="image" src="{{ $course->image_path? url('storage/'.$course->image_path ) : url('images/image-upload.jpg') }}" />
                         </div>
                         <div class="form-group">
                             <label for="catagory_id">Select Catagory</label>
@@ -126,7 +131,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-2 d-none d-sm-block">
+                        <button id="talk" type="button" class="btn btn-success btn-block">
+                            <i class="fa fa-microphone" aria-hidden="true"></i>
+                            Voice
+                        </button>
+                    </div>
+                    <div class="col-md-2 d-none  d-sm-block">
+                        <button id="say" type="button" class="btn btn-success btn-block">
+                            <i class="fa fa-volume-up" aria-hidden="true"></i>
+                            Speak
+                        </button>
+                    </div>
+                    <div class="col-md-8 col-12">
                         <input type="submit" class="btn btn-success btn-block" value="Submit">
                     </div>
                 </div>
@@ -143,13 +160,30 @@ window.onload = function(){
         height:700,
     });
 }
-
-$('#title').keyup(() => {
-    var name = $("#title").val();
-    name = name.toLowerCase();
-
-    var slag = name.replace(/ /g, '-');
-    $('#slag').val(slag);
+$('#slagbtn').click(() => {
+    if(confirm('Do you want to change the slug?')){
+        var name = $("#title").val();
+        var slag = convertToSlug(name);
+        $('#slag').val(slag);
+    }
 });
+var oldSlag = $('#slag').val();
+$('#slag').change(() => {
+    var name = $('#slag').val();
+    if(confirm('Do you want to change the slug? If it changed then it have seo problem')){
+        $('#slag').val(name);
+    }else{
+        console.log(oldSlag);
+        $('#slag').val(oldSlag);
+    }
+});
+function convertToSlug(Text)
+{
+    return Text
+        .toLowerCase()
+        .replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-')
+        ;
+}
 </script>
 @endsection

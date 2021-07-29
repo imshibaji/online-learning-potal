@@ -27,8 +27,8 @@
                         <td colspan="3">
                             <select id="details" name="catagory_id" class="form-control">
                                 <option value="0">None</option>
-                                @foreach ($catagories as $catagory)
-                                    <option value="{{$catagory->id}}">{{$catagory->title}}</option>
+                                @foreach ($catagories as $cat)
+                                    <option @if($cat->id == $catagory->catagory_id) selected @endif value="{{$cat->id}}">{{$cat->title}}</option>
                                 @endforeach
                             </select>
                         </td>

@@ -13,5 +13,5 @@
 {{-- @include('larnr::homes.teachers') --}}
 {{-- @include('larnr::homes.testimonials') --}}
 {{-- @include('larnr::homes.partner') --}}
-@include('larnr::homes.sponsor')
+{{-- @include('larnr::homes.sponsor') --}}
 @endsection
