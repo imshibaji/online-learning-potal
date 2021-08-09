@@ -4,7 +4,7 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col">Courses</div>
+            <div class="col">Total {{count(Auth::user()->courses()->where('status','active')->get())}} Courses Published</div>
             <div class="col text-right">
                 <a href="{{ route('teachercourses.create') }}">Create New Course</a>
             </div>
@@ -21,17 +21,24 @@
                     <th>Duration</th>
                     <th>Status</th>
                     <th>Accessible</th>
-                    <th class="text-center">Action</th>
+                    {{-- <th class="text-center">Action</th> --}}
                 </tr>
             </thead>
             <tbody>
                 @forelse ($courses as $course)
                     <tr id="{{ $course->short }}">
-                        <td class="index text-center">
+                        <td class="index text-center" style="max-width: 130px">
                             {{-- {{ $course->short ?? '#' }} --}}
                             <input type="hidden" name="cid" id="cid" value="{{ $course->id }}">
                             {{-- <input size="2" type="hidden" name="short" id="index" value="{{ $course->short }}"> --}}
-                            <img src="{{ isset($course->image_path) ? url('storage/'.$course->image_path) : url('images/image-upload.jpg')}}" class="img-fluid" width="100%">
+                            <img src="{{ isset($course->image_path) ? url('storage/'.$course->image_path) : url('images/image-upload.jpg')}}" class="img-fluid" width="100%" height="90px">
+                            <div class="btn-group btn-block">
+                                <a href="{{route('teachercourses.show', $course->id)}}" class="btn btn-primary btn-sm" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                <a href="{{route('teachercourses.edit', $course->id)}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                @utype('admin')
+                                <button class="btn btn-danger btn-sm" onclick="remove('{{ $course->id }}')" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                @endutype
+                            </div>
                         </td>
                         <td style="width:50%">
                             <h6>{{ $course->title }}</h6>
@@ -53,7 +60,7 @@
                             <p class="p-0 m-0">{{ $course->views }} Views</p>
                             <p class="p-0 m-0">{{ $course->sales }} Sales</p>
                         </td>
-                        <td class="text-center">
+                        {{-- <td class="text-center">
                             <div class="btn-group">
                                 <a href="{{route('teachercourses.show', $course->id)}}" class="btn btn-primary" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                 <a href="{{route('teachercourses.edit', $course->id)}}" class="btn btn-warning" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -61,7 +68,7 @@
                                 <button class="btn btn-danger" onclick="remove('{{ $course->id }}')" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                 @endutype
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
                 @empty
                     <tr>

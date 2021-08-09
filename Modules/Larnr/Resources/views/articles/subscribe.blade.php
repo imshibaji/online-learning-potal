@@ -13,6 +13,7 @@
                 @csrf
                 @honeypot
                 @captchaHTML
+                    <input type="hidden" name="auid" value="{{$article->user->id}}" />
                 <div class="row">
                     <div class="col-12 p-2">
                         <input type="text" name="name" required class="form-control my-1 my-md-0" placeholder="Your Name">
@@ -37,12 +38,14 @@ setTimeout(function(){
     $('#subscribeModal').modal('show');
 }, 60000);
 function subsnow(form) {
+    var a = form[name="auid"].value;
     var n = form[name="name"].value;
     var e = form[name="email"].value;
     var m = form[name="mobile"].value;
-    console.log(n, e, m);
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    $.post('/subnow',{_token: CSRF_TOKEN, name: n, email:e, mobile: m}).then(res=>{
+    // console.log(n, e, m, CSRF_TOKEN);
+    $.post('/subnow',{_token: CSRF_TOKEN, auid: a, name: n, email:e, mobile: m}).then(res=>{
+        console.log(res);
         $('#subs_thanks').html(`
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             ${res.message}

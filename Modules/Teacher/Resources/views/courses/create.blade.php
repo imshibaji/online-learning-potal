@@ -83,7 +83,7 @@
                                 <div class="col-md-6">
                                     <select name="status" class="form-control">
                                         <option value="active">Active</option>
-                                        <option value="inactive">InActive</option>
+                                        <option selected value="inactive">InActive</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">

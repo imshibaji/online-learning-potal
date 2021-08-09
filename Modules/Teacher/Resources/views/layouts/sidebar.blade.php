@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-7 m-0 p-1 pt-2">
                     <h6 class="mb-0">{{Auth::user()->fullname()}}</h6>
-                    @include('teacher::components.star', ['star' => 0, 'reviews' => 0])
+                    @include('teacher::components.star', ['follows' => count(Auth::user()->subscribers),  'star' => 0, 'reviews' => 0])
                 </div>
             </div>
         </div>
@@ -30,7 +30,12 @@
             <i class="fa fa-book" aria-hidden="true"></i>
             Courses
         </a>
-        <a href="{{ route('teacher.page', ['page'=>'topics']) }}" class="list-group-item list-group-item-action {{ Request::is('teacher/audios') ? 'active' : '' }}">
+        <a href="{{ route('teacher.page', ['page'=>'sections']) }}" class="list-group-item list-group-item-action {{ Request::is('sections') ? 'active' : '' }}">
+            {{-- <i class="fa fa-book" aria-hidden="true"></i> --}}
+            <i class="fa fa-columns" aria-hidden="true"></i>
+            Sections
+        </a>
+        <a href="{{ route('teacher.page', ['page'=>'topics']) }}" class="list-group-item list-group-item-action {{ Request::is('topics') ? 'active' : '' }}">
             {{-- <i class="fa fa-book" aria-hidden="true"></i> --}}
             <i class="fa fa-columns" aria-hidden="true"></i>
             Topics

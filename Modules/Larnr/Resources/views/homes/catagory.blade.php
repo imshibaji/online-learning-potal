@@ -1,32 +1,32 @@
 <div id="catagory" class="container">
     <div class="row my-5">
         <a href="#" class="col-md-4 px-3 my-2">
-            <div class="cat m-0 p-0" style="background-image: url('https://www.plm.automation.siemens.com/media/global/en/is-820219790-640x360_tcm27-49149.jpg');">
+            <div class="cat m-0 p-0" style="background-image: url('/images/service-1.jpeg');">
                 <div class="cat-2 cat-text">Software and Website Development Tutorials</div>
             </div>
         </a>
         <a href="#" class="col-md-4 px-3 my-2">
-            <div class="cat m-0 p-0" style="background-image: url('https://assets.pandaily.com/uploads/2020/05/esport-mobile-games.png');">
+            <div class="cat m-0 p-0" style="background-image: url('/images/service-2.png');">
                 <div class="cat-5 cat-text">Mobile Apps and Games Development Tutorials</div>
             </div>
         </a>
         <a href="#" class="col-md-4 px-3 my-2">
-            <div class="cat m-0 p-0" style="background-image: url('https://assets.entrepreneur.com/content/3x2/2000/20190820185239-GettyImages-985550942.jpeg');">
+            <div class="cat m-0 p-0" style="background-image: url('/images/service-3.jpeg');">
                 <div class="cat-6 cat-text">Online Digital Marketing and SEO Tutorials</div>
             </div>
         </a>
         <a href="#" class="col-md-4 px-3 my-2">
-            <div class="cat m-0 p-0" style="background-image: url('https://darvideo.tv/wp-content/uploads/2019/10/Motion-Design-2.png');">
+            <div class="cat m-0 p-0" style="background-image: url('/images/service-4.png');">
                <div class="cat-1 cat-text">Graphics and Motion Graphics Design Tutorials</div>
             </div>
         </a>
         <a href="#" class="col-md-4 px-3 my-2">
-            <div class="cat m-0 p-0" style="background-image: url('https://www.myamcat.com/blog/wp-content/uploads/2017/11/bd.jpg');">
+            <div class="cat m-0 p-0" style="background-image: url('/images/service-5.jpeg');">
                 <div class="cat-3 cat-text">Business Development Skills Tutorials</div>
             </div>
         </a>
         <a href="#" class="col-md-4 px-3 my-2">
-            <div class="cat m-0 p-0" style="background-image: url('https://linesmag.com/wp-content/uploads/2020/04/featured-image-.jpg');">
+            <div class="cat m-0 p-0" style="background-image: url('/images/service-6.jpeg');">
                 <div class="cat-4 cat-text">Art and Craft, Handmade Products Making Tutorials</div>
             </div>
         </a>

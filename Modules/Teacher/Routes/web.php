@@ -34,8 +34,13 @@ Route::domain('teacher.larnr.com')->name('teacher')
         Route::resource('courses', 'CourseController');
         Route::post('courses/short', 'CourseController@short')->name('courses.short');
 
+        // Sections Controller
+        Route::resource('sections', 'SectionController');
+        Route::post('sections/short', 'SectionController@short')->name('sections.short');
+
         // Topics Controller
         Route::resource('topics', 'TopicController');
+        Route::post('topics/getsections', 'TopicController@getSections')->name('topics.sections');
         Route::post('topics/short', 'TopicController@short')->name('topics.short');
 
         // Question Controller

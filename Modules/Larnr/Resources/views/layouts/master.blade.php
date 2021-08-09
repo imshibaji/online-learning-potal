@@ -38,6 +38,8 @@
         {{-- <link rel="icon" href="{{ url('/') }}/imgs/app-icon-114.png" type="image/png" sizes="16x16"> --}}
         <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" type="image/ico">
         {{-- <link href="{{ url('/') }}/css/bootstrap.min.css" rel="stylesheet"> --}}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
         <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
         {{-- Laravel Mix - CSS File --}}
         @yield('headers')
@@ -65,9 +67,10 @@
         @include('larnr::layouts.footer')
         {{-- Laravel Mix - JS File --}}
         @yield('footers')
-        <script src="{{ asset('js/larnr.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
         <script src="{{url('/')}}/js/jquery.min.js"></script>
         <script src="{{url('/')}}/js/bootstrap.min.js"></script>
+        {{-- <script src="{{ asset('js/larnr.js') }}"></script> --}}
         <script src="{{url('/')}}/js/script.js"></script>
         <script src="{{url('/')}}/js/prism_patched.min.js"></script>
         @yield('scripts')

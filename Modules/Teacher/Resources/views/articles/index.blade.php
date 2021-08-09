@@ -4,7 +4,7 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col">Articles</div>
+            <div class="col">Total {{count(Auth::user()->articles()->where('type','publish')->get())}} Articles Published</div>
             <div class="col text-right"><a href="{{route('teacherarticles.create')}}">Create New Article</a></div>
         </div>
     </div>

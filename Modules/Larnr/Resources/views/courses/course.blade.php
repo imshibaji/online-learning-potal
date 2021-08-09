@@ -15,25 +15,57 @@
 <div class="container">
     <div class="row justify-content-center mb-5">
         <div class="col-md-8">
-            <div class="my-2 text-justify">
-                {!! $course->details !!}
+            <div class="my-3 text-justify">
+                <h3>Highlights</h3>
+                <p>{{ $course->meta_desc }}</p>
+                <p class="text-center"><a class="btn btn-link btn-sm" href="#details">Read More...</a></p>
             </div>
             {{-- Course List --}}
+            <h4>Course Index</h4>
+            {{-- <h5>This Course has total {{count($course->sections()->where('status', 'active')->get())}} sections and {{count($course->topics()->where('status', 'active')->get())}} topics</h5> --}}
             <ul id="course_list" class="list-group">
-                @foreach ($course->topics()->publish()->orderBy('short')->get() as $topic)
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#coursePreview">
-                        <span><i class="fa fa-play-circle-o"></i> {{$topic->title}}</span>
-                        @if ($topic->premium_status == 'free')
-                            <button class="btn btn-primary btn-sm text-white d-none d-md-block">
-                                <i class="fa fa-play"></i> Preview
-                            </button>
-                        @else
-                            <button  class="btn btn-sm btn-warning d-none d-md-block">
-                                <i class="fa fa-trophy"></i> Premium
-                            </button>
+                <div class="accordion" id="accordionExample">
+                    @foreach ($course->sections as $k => $section)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{$section->id}}">
+                          <button class="accordion-button {{($k == 0)? '' : 'collapsed'}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$section->id}}" aria-expanded="{{($k == 0)? 'true' : 'false'}}" aria-controls="collapse{{$section->id}}">
+                            {{$section->title}}
+                          </button>
+                        </h2>
+                        <div id="collapse{{$section->id}}" class="accordion-collapse collapse {{($k == 0)? 'show' : 'hide'}}" aria-labelledby="heading{{$section->id}}" data-bs-parent="#accordionExample">
+                          <div class="accordion-body p-0">
+                              @foreach ($section->topics()->publish()->orderBy('short')->get() as $topic)
+                                  <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#coursePreview">
+                                      <span><i class="fa fa-play-circle-o"></i> {{$topic->title}}</span>
+                                      @if ($topic->premium_status == 'free')
+                                          <button class="btn btn-primary btn-sm text-white d-none d-md-block">
+                                              <i class="fa fa-play"></i> Preview
+                                          </button>
+                                      @else
+                                          <button  class="btn btn-sm btn-warning d-none d-md-block">
+                                              <i class="fa fa-trophy"></i> Premium
+                                          </button>
+                                      @endif
+                                  </li>
+                              @endforeach
+                          </div>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    <hr id="details" class="my-3">
+                    <div class="my-4 text-justify">
+                        {!! $course->details !!}
+                    </div>
+                    <h3>Course Tags</h3>
+                    <div class="mb-3">
+                        @if ($course->meta_keys != "")
+                            @foreach(explode(',', $course->meta_keys) as $keyword)
+                                <span class="badge bg-success text-white">{{$keyword}}</span>
+                            @endforeach
                         @endif
-                    </li>
-                @endforeach
+                    </div>
+                </div>
             </ul>
             {{-- Course List --}}
         </div>

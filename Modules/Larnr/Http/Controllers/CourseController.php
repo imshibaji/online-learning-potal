@@ -68,7 +68,8 @@ class CourseController extends Controller
         if(!isset($course->title)){
             return redirect('/courses', 301);
         }
-
+        $course->views++;
+        $course->save();
 
         return view('larnr::courses.course', compact('course'));
     }

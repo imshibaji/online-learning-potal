@@ -5,7 +5,12 @@
     <div class="card-header">
         <div class="row">
             <div class="col">Articles</div>
-            <div class="col text-right"><a href="{{ route('teacherarticles.edit', $article->id) }}">Edit Course</a></div>
+            <div class="col text-right">
+                <a href="{{ route('teacherarticles.edit', $article->id) }}">Edit Course</a> |
+                <a href="https://larnr.com/article/{{$article->slug}}" title="View" target="_blank">
+                    Live View
+                </a>
+            </div>
         </div>
     </div>
     <div class="card-body">

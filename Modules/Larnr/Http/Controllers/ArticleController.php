@@ -40,14 +40,19 @@ class ArticleController extends Controller
     }
 
     public function subscribe(Request $req){
-        Subscribe::updateOrCreate(
-        ['email' => $req->email],
-        [
-            'name' => $req->name,
-            'email' => $req->email
-        ]);
-        $req->session()->flash('status', 'Thank you for suscribe.');
-        return redirect(url('/articles'));
+        try {
+            Subscribe::updateOrCreate(
+                ['email' => $req->email],
+                [
+                    'name' => $req->name,
+                    'email' => $req->email
+                ]
+            );
+            $req->session()->flash('status', 'Thank you for suscribe.');
+            return redirect(url('/articles'));
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     public function comment(Request $request){
@@ -77,15 +82,23 @@ class ArticleController extends Controller
     }
 
     public function subnow(Request $req){
-        Subscribe::updateOrCreate(
-        ['email' => $req->email],
-        [
-            'name' => $req->name,
-            'email' => $req->email,
-            'mobile' => $req->mobile
-        ]);
-        // $req->session()->flash('status', 'Thank you for suscribe.');
-        return ['status' => 'OK','message' => 'Thank you for Subscribe'];
+        // dd($req->input());
+        try {
+            Subscribe::updateOrCreate(
+                ['email' => $req->email],
+                [
+                    'name' => $req->name,
+                    'email' => $req->email,
+                    'mobile' => $req->mobile,
+                    'user_id' => $req->auid
+                ]
+            );
+
+            // $req->session()->flash('status', 'Thank you for suscribe.');
+            return ['status' => 'OK','message' => 'Thank you for Subscribe'];
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     public function likes(Request $req){

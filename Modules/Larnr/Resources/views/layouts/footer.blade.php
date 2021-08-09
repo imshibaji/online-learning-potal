@@ -5,9 +5,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/about">About us</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link active" href="/testimonial">Testimonials</a>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item">
                 <a class="nav-link active" href="/sponsor">Sponserships</a>
             </li> --}}
@@ -21,7 +21,7 @@
                 <a class="nav-link" href="/privacy">Privacy</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/support">Need Support</a>
+                <a class="nav-link" href="/support">Support</a>
             </li>
         </ul>
     </div>
@@ -37,9 +37,9 @@
                 </p>
             </div>
             <div class="col-md-6">
-                <p class="text-center text-md-right">
+                {{-- <p class="text-center text-md-right">
                     Developed By <a class="text-light" href="https://www.medust.com" target="_blank">Medust Technology Pvt. Ltd.</a>.
-                </p>
+                </p> --}}
             </div>
         </div>
     </div>

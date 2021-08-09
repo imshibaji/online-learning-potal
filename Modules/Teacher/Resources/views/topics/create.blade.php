@@ -27,17 +27,18 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="cat_id">Select Course</label>
-                            <select name="course_id" id="cat_id" class="form-control">
+                            <select name="course_id" id="course_id" class="form-control">
                                 @foreach ($courses as $course)
                                 <option @if($course_id == $course->id) selected @endif value="{{$course->id}}">{{$course->title}}</option>
                                 @endforeach
                             </select>
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="video">Video</label>
-                            {{-- <x-video-uploader name="embed_code" /> --
-                            <x-video-selector />
-                        </div> --}}
+                        <div class="form-group">
+                            <label for="section">Select Secction</label>
+                            <select name="section_id" id="section" class="form-control">
+                                <option value="0">None</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="status">YouTube video Link</label>
                             <div class="form-group">
@@ -106,6 +107,7 @@ window.onload = function(){
       // Remove the redundant buttons from toolbar groups defined above.
       removeButtons: 'Cut,Copy,Paste,PasteText,PasteFromWord'
     });
+    getSections();
 }
 $('#hours, #minutes, #seconds').keyup(()=>{
     var hours = $('#hours').val();
@@ -115,5 +117,23 @@ $('#hours, #minutes, #seconds').keyup(()=>{
     var totsec = (hours*3600)+(minutes*60)+(seconds*1) || '';
     $('#totsec').val(totsec);
 });
+$('#course_id').change(getSections);
+function getSections() {
+    var id = $('#course_id').val();
+    var section = $('#section');
+    section.empty();
+    section.html('<option value="0">None</option>');
+    var section_id = "{{$section_id ?? 0}}";
+    $.post("{{route('teachertopics.sections')}}", {_token: '<?php echo csrf_token() ?>', cid:id}).then(function(datas) {
+        console.log(datas);
+        datas.forEach(data => {
+            var opt = document.createElement('option');
+            opt.value = data.id;
+            opt.innerHTML = data.title;
+            opt.selected = (data.id == section_id)? true : false;
+            section.append(opt);
+        });
+    });
+}
 </script>
 @endsection

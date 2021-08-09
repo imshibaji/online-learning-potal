@@ -22,7 +22,7 @@
                     </a>
                 @endif
                 <div class="card-body">
-                    <h5 class="text-justify"><a href="{{ url('course/'. $course->slag) }}">{{ $course->title }}</a></h5>
+                    <h5 class="text-center"><a href="{{ url('course/'. $course->slag) }}">{{ $course->title }}</a></h5>
                     <div class="pb-3">
                         @include('larnr::components.course-list-star', [
                             'star' => 4.5,

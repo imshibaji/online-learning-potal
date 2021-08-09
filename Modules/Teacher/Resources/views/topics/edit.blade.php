@@ -7,7 +7,8 @@
             <div class="col">Course: {{$topic->course->title}}</div>
             <div class="col text-right">
                 <a href="{{ route('teachercourses.index') }}">Back to Course List</a> |
-                <a href="{{ route('teachertopics.index', ['cid' => $course_id]) }}">Topics View</a>
+                <a href="{{ route('teachersections.show', $topic->section->id) }}">Section View</a> |
+                <a href="{{ route('teachertopics.index', ['cid' => $course_id]) }}">All Topics</a>
             </div>
         </div>
     </div>
@@ -29,10 +30,16 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="cat_id">Select Catagory</label>
-                            <select name="course_id" id="cat_id" class="form-control">
+                            <select name="course_id" id="course_id" class="form-control">
                                 @foreach ($courses as $course)
                                     <option value="{{$course->id}}" @if($course->id === $topic->course->id) selected @endif>{{$course->title}}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="section">Select Secction</label>
+                            <select name="section_id" id="section" class="form-control">
+                                <option value="0">None</option>
                             </select>
                         </div>
                         @if($topic->video || $topic->embed_code)
@@ -71,19 +78,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="status">Select Status</label>
-                            <select name="status" id="status" class="form-control">
-                                <option value="active" @if($topic->status == 'active') selected @endIf>Active</option>
-                                <option value="inactive" @if($topic->status == 'inactive') selected @endIf>InActive</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="pstatus">Premium Status</label>
-                            <select name="premium_status" id="pstatus" class="form-control">
-                                <option value="free" @if($topic->premium_status == 'free') selected @endIf>Free</option>
-                                <option value="premium" @if($topic->premium_status == 'premium') selected @endIf>Premium</option>
-                            </select>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="active" @if($topic->status == 'active') selected @endIf>Active</option>
+                                    <option value="inactive" @if($topic->status == 'inactive') selected @endIf>InActive</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pstatus">Premium</label>
+                                <select name="premium_status" id="pstatus" class="form-control">
+                                    <option value="free" @if($topic->premium_status == 'free') selected @endIf>Free</option>
+                                    <option value="premium" @if($topic->premium_status == 'premium') selected @endIf>Premium</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,6 +128,7 @@ window.onload = function(){
       // Remove the redundant buttons from toolbar groups defined above.
       removeButtons: 'Cut,Copy,Paste,PasteText,PasteFromWord'
     });
+    getSections();
 }
 $('#hours, #minutes, #seconds').keyup(()=>{
     var hours = $('#hours').val();
@@ -128,5 +138,23 @@ $('#hours, #minutes, #seconds').keyup(()=>{
     var totsec = (hours*3600)+(minutes*60)+(seconds*1) || '';
     $('#totsec').val(totsec);
 });
+$('#course_id').change(getSections);
+function getSections() {
+    var id = $('#course_id').val();
+    var section = $('#section');
+    section.empty();
+    section.html('<option value="0">None</option>');
+    var section_id = "{{$topic->section->id ?? 0}}";
+    $.post("{{route('teachertopics.sections')}}", {_token: '<?php echo csrf_token() ?>', cid:id}).then(function(datas) {
+        console.log(datas);
+        datas.forEach(data => {
+            var opt = document.createElement('option');
+            opt.value = data.id;
+            opt.innerHTML = data.title;
+            opt.selected = (data.id == section_id)? true : false;
+            section.append(opt);
+        });
+    });
+}
 </script>
 @endsection

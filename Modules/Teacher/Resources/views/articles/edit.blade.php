@@ -8,7 +8,10 @@
             <div class="col text-right">
                 <a href="{{route('teacherarticles.index')}}">Back to Articles</a> |
                 <a href="{{route('teacherarticles.show', $article->id)}}" title="View">
-                   Article View
+                    View Details
+                </a> |
+                <a href="https://larnr.com/article/{{$article->slug}}" title="View" target="_blank">
+                    Live View
                 </a>
             </div>
         </div>

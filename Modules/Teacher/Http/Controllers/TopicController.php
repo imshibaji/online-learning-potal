@@ -3,8 +3,10 @@
 namespace Modules\Teacher\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Section;
 use App\Models\Topic;
 use App\Models\Video;
+use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -36,14 +38,31 @@ class TopicController extends Controller
     }
 
     /**
+     * Get All Sections Data
+     * @return section[]
+     */
+    public function getSections(Request $req){
+        try {
+            $course = Course::find($req->cid);
+            $sections = $course->sections()->orderBy('short')->get();
+            return $sections;
+        } catch (Exception $ex) {
+            return $ex;
+        }
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
     public function create(Request $req)
     {
-        $courses = Course::where('status', 'active')->get();
+        $courses = Course::where('user_id', Auth::id())->orderBy('short')->get();
+        $sections = Section::where('status', 'active')->orderBy('short')->get();
         $course_id = $req->query('cid');
-        return view('teacher::topics.create', compact('courses', 'course_id'));
+        $section_id = $req->query('sid');
+        return view('teacher::topics.create', compact('courses','sections', 'course_id','section_id'));
     }
 
     /**
@@ -62,6 +81,7 @@ class TopicController extends Controller
         $topic->premium_status = $req->input('premium_status');
         $topic->user_id = Auth::id();
         $topic->course_id = $req->input('course_id');
+        $topic->section_id = $req->input('section_id');
 
         $result = $topic->save();
 
@@ -72,13 +92,6 @@ class TopicController extends Controller
             $video = Video::find($req->vid);
             $topic->video()->save($video);
         }
-
-        // if($result){
-        //     return redirect(route('teachercourses.show', $req->input('course_id')));
-        //     // return back();
-        // }else{
-        //     return redirect(route('teachertopics.create'));
-        // }
         return redirect(route('teachertopics.edit', $topic->id));
     }
 
@@ -90,7 +103,7 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = Topic::find($id);
-        return $topic;
+        // return $topic;
         return view('teacher::topics.show', compact('topic'));
     }
 
@@ -101,7 +114,7 @@ class TopicController extends Controller
      */
     public function edit($id)
     {
-        $courses = Course::where('status', 'active')->get();
+        $courses = Course::where('user_id', Auth::id())->orderBy('short')->get();
         $topic = Topic::find($id);
 
         return view('teacher::topics.edit',[
@@ -128,6 +141,7 @@ class TopicController extends Controller
         $topic->premium_status = $req->input('premium_status');
         $topic->user_id = Auth::id();
         $topic->course_id = $req->input('course_id');
+        $topic->section_id = $req->input('section_id');
 
         $result = $topic->save();
 

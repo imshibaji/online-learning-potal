@@ -24,6 +24,7 @@ class CreateTopicsTable extends Migration
             $table->string('premium_status', 10);
             $table->integer('user_id');
             $table->bigInteger('course_id');
+            $table->bigInteger('section_id')->nullable();
             $table->timestamps();
         });
     }

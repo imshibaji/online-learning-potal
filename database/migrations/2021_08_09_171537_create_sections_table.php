@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubscribesTable extends Migration
+class CreateSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSubscribesTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscribes', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('mobile')->nullable();
-            $table->bigInteger('user_id')->nullable();
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->integer('course_id')->nullable();
+            $table->string('status', 10)->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSubscribesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscribes');
+        Schema::dropIfExists('sections');
     }
 }

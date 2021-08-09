@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ url('/') }}/css/font-awesome.min.css">
         {{-- Laravel Mix - CSS File --}}
         @yield('headers')
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/larnr.css') }}">
         <link href="{{ url('/') }}/css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ url('/') }}/css/prism_coy.css">
@@ -55,6 +56,7 @@
         {{-- Laravel Mix - JS File --}}
         {{-- <script src="{{ mix('js/teacher.js') }}"></script> --}}
         @yield('footers')
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
         <script src="{{ asset('js/larnr.js') }}"></script>
         <script src="{{ asset('js/teacher.js') }}"></script>
         <script src="{{url('/')}}/js/jquery.min.js"></script>

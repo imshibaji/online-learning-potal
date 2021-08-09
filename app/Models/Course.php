@@ -28,6 +28,10 @@ class Course extends Model
         return $this->belongsTo('App\User', 'manager_user_id');
     }
 
+    public function sections(){
+        return $this->hasMany(Section::class);
+    }
+
     public function topics(){
         return $this->hasMany('App\Models\Topic');
     }

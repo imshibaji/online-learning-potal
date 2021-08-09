@@ -3,7 +3,7 @@
         <a href="/" class="navbar-brand">
             <img src="{{ url('/') }}/images/logo-dark.png" alt="Larnr Education" class="logo-img">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5" aria-controls="navbar5" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse" id="navbar5">
@@ -65,7 +65,7 @@
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
                     </li> --}}
                     <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
-                        <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
+                        <a class="nav-link hover-nav" href="{{url('user/my-courses')}}">My Courses</a>
                     </li>
                     @utype('admin')
                     <li class="nav-item dropdown">

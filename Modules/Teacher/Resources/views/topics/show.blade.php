@@ -7,6 +7,7 @@
             <div class="col">Topic View</div>
             <div class="col text-right">
                 <a href="{{ route('teachertopics.index', ['cid' => $topic->course->id]) }}">Back to Topics List</a> |
+                <a href="{{ route('teachersections.show', $topic->section->id) }}">Section View</a> |
                 <a href="{{ route('teachertopics.edit', $topic->id) }}">Edit Topic</a>
             </div>
         </div>
