@@ -19,8 +19,8 @@ class CreateArticlesTable extends Migration
             $table->string('slug');
             $table->string('image_path')->nullable();
             $table->string('video_path')->nullable();
-            $table->string('keywords')->nullable();
-            $table->string('description')->nullable();
+            $table->string('keywords', 500)->nullable();
+            $table->string('description', 500)->nullable();
             $table->string('canonical')->nullable();
             $table->text('details')->nullable();
             $table->string('status', 10)->default('free');

@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->name('user1')
@@ -20,6 +22,8 @@ Route::prefix('user')->name('user1')
     Route::get('/course-details/{id}/{tid?}', 'UserController@course_details')->name('.details');
 
     // Comments Section
-    Route::post('topic-comment', 'UserController@topicComment')->name('.topic.comment');
-    Route::post('comment-delete', 'UserController@commentDelete')->name('.comment.delete');
+    Route::post('topic-comment', 'CommentController@store')->name('.topic.comment');
+    Route::post('comment-delete', 'CommentController@delete')->name('.comment.delete');
+
+    Route::get('videotracker', 'UserController@videoTracker')->name('.video.time');
 });

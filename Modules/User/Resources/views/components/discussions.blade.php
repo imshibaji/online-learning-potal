@@ -50,7 +50,7 @@
     </div>
     <hr />
     <div class="p-3">
-        <form action="{{ route('user.topic.comment') }}" method="POST">
+        <form action="{{ route('user1.topic.comment') }}" method="POST">
             @csrf
             <input type="hidden" id="tid" name="tid" value="{{$topic->id}}" />
             <input type="hidden" id="cid" name="cid" value="0" />
@@ -75,7 +75,7 @@ function reply(comment_id) {
 }
 function remove(id){
         if(confirm('Are you sure? Comment id: '+id)){
-        $.post('{{route("user.comment.delete")}}', { _token: '<?php echo csrf_token() ?>', cid:id}, (res)=>{
+        $.post('{{route("user1.comment.delete")}}', { _token: '<?php echo csrf_token() ?>', cid:id}, (res)=>{
             // console.log(res);
             if(res.out){
                 location.reload();

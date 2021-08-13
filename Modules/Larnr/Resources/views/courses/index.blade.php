@@ -32,7 +32,7 @@
                     </div>
                     <div class="py-2">
                         <div class="text-justify">
-                            {{$course->meta_desc}}.
+                            {{ Str::substr($course->meta_desc, 0, 100) }}...
                         </div>
                         <div class="text-justify p-3">
                             Duration: {{ $course->duration }}<br/>

@@ -12,6 +12,9 @@ class video extends Component
     public $src;
     public $type;
     public $url;
+    public $trackerLink;
+    public $courseId;
+    public $topicId;
     /**
      * Create a new component instance.
      *
@@ -23,7 +26,10 @@ class video extends Component
         $poster = null,
         $src = null,
         $type = null,
-        $url = null
+        $url = null,
+        $trackerLink = null,
+        $courseId = null,
+        $topicId = null
     )
     {
         $this->width = $width;
@@ -32,6 +38,9 @@ class video extends Component
         $this->src = $src;
         $this->type = $type;
         $this->url = $url;
+        $this->trackerLink = $trackerLink;
+        $this->courseId = $courseId;
+        $this->topicId = $topicId;
     }
 
     /**

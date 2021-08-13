@@ -25,7 +25,7 @@
             {{-- <h5>This Course has total {{count($course->sections()->where('status', 'active')->get())}} sections and {{count($course->topics()->where('status', 'active')->get())}} topics</h5> --}}
             <ul id="course_list" class="list-group">
                 <div class="accordion" id="accordionExample">
-                    @foreach ($course->sections as $k => $section)
+                    @foreach ($course->sections()->orderBy('short')->get() as $k => $section)
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{$section->id}}">
                           <button class="accordion-button {{($k == 0)? '' : 'collapsed'}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$section->id}}" aria-expanded="{{($k == 0)? 'true' : 'false'}}" aria-controls="collapse{{$section->id}}">
@@ -69,6 +69,8 @@
             </ul>
             {{-- Course List --}}
         </div>
+
+        {{-- Sticky Description --}}
         <div class="col-md-4 mt-3 mt-md-0">
             <div class="card sidebar-fixed">
                 @if($course->ribbon)
@@ -109,7 +111,7 @@
                 @endif
                 <div class="card-body">
                     <div class="text-justify">
-                        {{$course->meta_desc}}.
+                        {{ Str::substr($course->meta_desc, 0, 100) }}...
                     </div>
                     <div class="py-3">
                         <div>Price:

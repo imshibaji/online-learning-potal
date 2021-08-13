@@ -42,7 +42,7 @@
                         </td>
                         <td style="width:50%">
                             <h6>{{ $course->title }}</h6>
-                            <p>{{ $course->meta_desc }}</p>
+                            <p>{{ Str::substr($course->meta_desc, 0, 160) }}...</p>
                         </td>
                         {{-- <td>{{ $course->meta_desc }}</td> --}}
                         <td class="text-center">

@@ -27,7 +27,14 @@
                                 <x-video src="{{url('storage/'.$topic->video->video_path)}}" poster="{{ url('storage/'.$topic->video->image_path ) }}" />
                             @endisset
                             @isset($topic->embed_code)
-                                <x-video src="{{$topic->embed_code}}" type="video/youtube" poster="{{ $topic->image_path? url('storage/'.$topic->image_path ) : null }}" />
+                                <x-video
+                                    src="{{$topic->embed_code}}"
+                                    type="video/youtube"
+                                    poster="{{ $topic->image_path? url('storage/'.$topic->image_path ) : null }}"
+                                    trackerLink="{{route('user1.video.time')}}"
+                                    courseId="{{$topic->course->id}}"
+                                    topicId="{{$topic->id}}"
+                                />
                             @endisset
                         </div>
                         <div class="card">
@@ -35,7 +42,7 @@
                                 <h5>{{$topic->title}}</h5>
                             </div>
                             <div class="card-body p-0">
-                                @include('users.learn.contents')
+                                @include('user::learn.contents')
                             </div>
                         </div>
                     @else
@@ -126,7 +133,7 @@
 @endsection
 
 @section('scripts')
-<script src="{{url('/')}}/js/prism_patched.min.js"></script>
+<script src="{{url('/')}}/js/prism_patched.min.js"></scrip>
 {{-- <script src="{{url('/')}}/js/prism.js"></script> --}}
 @endsection
 

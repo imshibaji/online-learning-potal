@@ -188,6 +188,8 @@
 
     {{-- Comments --}}
     <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-         <x-discussions :topic="$topic" :comments="$comments" />
+         {{-- <x-discussions :topic="$topic" :comments="$comments" /> --}}
+         @component('user::components.discussions', ['topic'=> $topic, 'comments'=> $comments ])
+         @endcomponent
     </div>
 </div>

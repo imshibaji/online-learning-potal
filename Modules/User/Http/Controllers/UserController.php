@@ -50,6 +50,9 @@ class UserController extends Controller
         return view('user::home', compact(['inspaire', 'courses']));
     }
 
+    /**
+     * User Course List
+     */
     public function my_courses(Request $req){
         $courses = Auth::user()->courseAssignments;
         $assesments = Auth::user()->userAssesments()->where('topic_id', $req->tid)->get();
@@ -67,6 +70,9 @@ class UserController extends Controller
         // return $learnings;
     }
 
+    /**
+     * User Learning Section
+     */
     public function course_details(Request $req){
         try{
             $course = Course::find($req->id);
@@ -86,102 +92,30 @@ class UserController extends Controller
         }
     }
 
-    public function topicComment(Request $req){
+    /**
+     *  Video Time Tracker
+     */
+    public function videoTracker(Request $req){
+        try {
+            $ct = $req->ct;
+            $rt = $req->rt;
+            $dt = $req->dt;
+            $cid = $req->cid;
+            $tid = $req->tid;
+            $stat = $req->status;
+            $user = Auth::id();
 
-        if($req->cid != 0){
-            $comment = Comment::find($req->cid);
-        }else{
-            $comment = new Comment();
+            return [
+                'current_time' =>  $ct,
+                'remain_time' =>  $rt,
+                'duration' => $dt,
+                'course' => $cid,
+                'topic' => $tid,
+                'status' => $stat,
+                'user' => $user
+            ];
+        } catch (Exception $e) {
+            return $e;
         }
-        $comment->message = $req->message;
-        $comment->user_id = Auth::id();
-
-        if($req->rid != 0){
-            $comment->comment_id = $req->rid;
-            $comment->save();
-        }else if($req->cid != 0){
-            $comment->save();
-        }else{
-            $topic = Topic::find($req->tid);
-            $topic->comments()->save($comment);
-        }
-
-        // dd($topic->comments);
-
-        session()->flash('status', 'Your comment posted Successfully.');
-        return back();
-    }
-
-    public function commentDelete(Request $req){
-        // dd($req->cid);
-        $comment = Comment::find($req->cid);
-        $comment->delete();
-
-        session()->flash('status', 'Your comment deleted Successfully.');
-        return [
-            'status' => 200,
-            'message'=> 'Comment is deleted..',
-            'out' => $comment->id
-        ];
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('user::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('user::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('user::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
