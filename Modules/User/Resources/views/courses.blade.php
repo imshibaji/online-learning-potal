@@ -34,7 +34,7 @@
                                         </div> --}}
                                     </div>
                                     <div class="text-center px-4">
-                                        <a href="{{ route('user1.details', $learn->course->id) }}" class="btn btn-primary btn-block">Learn More</a>
+                                        <a href="{{ route('user1.details', [$learn->course->id, $learn->course->topics()->first()->id]) }}" class="btn btn-primary btn-block">Learn More</a>
                                     </div>
                                 </div>
                                 {{-- @endif --}}

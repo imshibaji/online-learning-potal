@@ -29,7 +29,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::where('user_id', Auth::id())->orderBy('short')->paginate(5);
+        $courses = Course::where('user_id', Auth::id())->orderBy('short')->get();
         // return $courses;
         return view('teacher::courses.index', compact('courses'));
     }

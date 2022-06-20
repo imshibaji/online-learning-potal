@@ -113,8 +113,11 @@
                     <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('user')}}">Dashboard <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
                         <a class="nav-link hover-nav" href="{{route('userMyCourses')}}">My Courses</a>
+                    </li> --}}
+                    <li class="nav-item {{ Request::is('user/my-courses') ? 'active' : '' }}">
+                        <a class="nav-link hover-nav" href="https://larnr.com/user/my-courses">My Courses</a>
                     </li>
                     @utype('admin')
                     <li class="nav-item dropdown">

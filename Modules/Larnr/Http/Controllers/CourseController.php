@@ -36,6 +36,13 @@ class CourseController extends Controller
             'courses' => Course::where('status', 'active')->orderBy('short')->get()
         ]);
     }
+    public function sitemap()
+    {
+
+        return view('larnr::courses.sitemap', [
+            'courses' => Course::where('status', 'active')->get()
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

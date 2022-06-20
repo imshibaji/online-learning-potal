@@ -101,7 +101,9 @@ class PaymentController extends Controller
             $pay->save();
 
             // print_r($response);
-            return view('users.payment', compact('pay'));
+
+            // return view('larnr::checkouts.payment', compact('pay'));
+            return redirect($pay->longurl);
         }
         catch (Exception $e) {
             print('Error: ' . $e->getMessage());
@@ -134,7 +136,7 @@ class PaymentController extends Controller
             }
             // print_r($response);
 
-            return view('users.preport', compact('payment_status'));
+            return view('larnr::checkouts.preport', compact('payment_status'));
         }
         catch (Exception $e) {
             print('Error: ' . $e->getMessage());

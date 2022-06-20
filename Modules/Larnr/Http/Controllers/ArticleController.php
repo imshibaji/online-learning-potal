@@ -39,6 +39,12 @@ class ArticleController extends Controller
         return view('larnr::articles.index', compact('articles', 'title', 'description'));
     }
 
+    public function sitemap()
+    {
+        $articles = Article::publish()->get();
+        return view('larnr::articles.sitemap', compact('articles'));
+    }
+
     public function subscribe(Request $req){
         try {
             Subscribe::updateOrCreate(

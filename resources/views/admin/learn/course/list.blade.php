@@ -59,7 +59,7 @@ td:hover{
 @endsection
 
 @section('scripts')
-<script src="{{url('/')}}/js/jqueryui/jquery-ui.min.js"></script>
+{{-- <script src="{{url('/')}}/js/jqueryui/jquery-ui.min.js"></script> --}}
 <script>
 	// var fixHelperModified = function(e, tr) {
 	// 	var $originals = tr.children();
@@ -93,7 +93,7 @@ td:hover{
 	// 	helper: fixHelperModified,
 	// 	stop: updateIndex
 	// }).disableSelection();
-	
+
     // $("tbody").sortable({
     //     distance: 5,
     //     delay: 100,

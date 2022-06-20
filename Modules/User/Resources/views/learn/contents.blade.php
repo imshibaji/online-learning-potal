@@ -28,10 +28,10 @@
         <div class="scrollbar" style="height: 45vh">
             {{-- Menu Index --}}
             <div class="list-group pb-2">
-                <a href="{{ url('/') }}/user/course-details/{{$course->id}}" class="list-group-item list-group-item-action {{ Request::is('user/course-details/'.$course->id) ? 'active' : '' }}">
+                {{-- <a href="{{ url('/') }}/user/course-details/{{$course->id}}" class="list-group-item list-group-item-action {{ Request::is('user/course-details/'.$course->id) ? 'active' : '' }}">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     Course Overview
-                </a>
+                </a> --}}
                 @foreach ($topics as $ta)
                     @if($ta->status == 'active')
                         <a id="Label{{$ta->id}}" href="{{ url('/') }}/user/course-details/{{$course->id}}/{{$ta->id}}#Label{{$ta->id}}" class="list-group-item list-group-item-action {{ Request::is('user/course-details/'.$course->id.'/'.$ta->id) ? 'active' : '' }}">

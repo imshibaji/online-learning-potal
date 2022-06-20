@@ -32,7 +32,7 @@
         @if($course)
             <div class="row">
                 <div class="col-md-12 py-3">
-                    <h2>{{$course->title}} {{Request::query('cid')}}</h2>
+                    <h2>{{$course->title}}</h2>
                 </div>
             </div>
             <div class="row">

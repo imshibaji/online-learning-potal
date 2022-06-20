@@ -1,6 +1,6 @@
 @extends('larnr::layouts.master')
 
-@section('title', 'Welcome Learners! Learn Proffessional Tutorials from Industry Expert Teachers')
+@section('title', 'Learn Proffessional Tutorials from Industry Expert Teachers')
 @section('keywords', 'learning website, elearning website, free learning, courses, online courses')
 @section('description', 'Welcomne learners, you can learning various types of learning topics, and get guidance from Exparienced and Expert Teachers.')
 

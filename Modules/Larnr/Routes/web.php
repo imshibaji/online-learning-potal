@@ -65,7 +65,8 @@ $routes = function(){
 
     // Payment
     Route::get('/checkout/{cid}', [PaymentController::class,'course_purchase'])->name('checkout');
-    Route::any('/payment', [PaymentController::class, 'pay'])->middleware('auth');
+    Route::any('/payment', [PaymentController::class, 'pay']);
+    // ->middleware('auth');
 
     // Video Controller
     Route::get('allvideos', 'VideoController@allVideos');
@@ -74,6 +75,10 @@ $routes = function(){
     // ->middleware('auth');
     Route::post('v/comment', 'VideoController@comment')->middleware('auth');
 
+
+    // Sitemaps
+    Route::get('articles-sitemap.xml', 'ArticleController@sitemap');
+    Route::get('courses-sitemap.xml', 'CourseController@sitemap');
 
     // Activities Data Create
     Route::post('/ahoy/visits', [ActivityController::class, 'create']);

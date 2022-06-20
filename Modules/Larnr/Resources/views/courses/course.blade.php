@@ -27,12 +27,15 @@
                 <div class="accordion" id="accordionExample">
                     @foreach ($course->sections()->orderBy('short')->get() as $k => $section)
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading{{$section->id}}">
-                          <button class="accordion-button {{($k == 0)? '' : 'collapsed'}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$section->id}}" aria-expanded="{{($k == 0)? 'true' : 'false'}}" aria-controls="collapse{{$section->id}}">
-                            {{$section->title}}
+                        <div class="accordion-header" id="heading{{$section->id}}">
+                          <button class="accordion-button collapsed {{--($k == 0)? '' : 'collapsed' --}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$section->id}}" aria-expanded="{{($k == 0)? 'true' : 'false'}}" aria-controls="collapse{{$section->id}}">
+                            <div class="d-flex flex-column ">
+                                <p class="p-0 m-0">{{$section->title}}</p>
+                                <p class="p-0 m-0"><small>{{$section->description}}</small></p>
+                            </div>
                           </button>
-                        </h2>
-                        <div id="collapse{{$section->id}}" class="accordion-collapse collapse {{($k == 0)? 'show' : 'hide'}}" aria-labelledby="heading{{$section->id}}" data-bs-parent="#accordionExample">
+                        </div>
+                        <div id="collapse{{$section->id}}" class="accordion-collapse collapse hide {{--($k == 0)? 'show' : 'hide' --}}" aria-labelledby="heading{{$section->id}}" data-bs-parent="#accordionExample">
                           <div class="accordion-body p-0">
                               @foreach ($section->topics()->publish()->orderBy('short')->get() as $topic)
                                   <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="modal" data-target="#coursePreview">

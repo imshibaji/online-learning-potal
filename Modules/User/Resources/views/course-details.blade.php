@@ -45,7 +45,7 @@
                                 @include('user::learn.contents')
                             </div>
                         </div>
-                    @else
+                    {{-- @else
                         <div class="p-0" style="min-height: 650px">
                             @isset($course->video->video_path)
                                 <div class="pb-2">
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     @endif
                 </div>
             </div>
@@ -96,10 +96,10 @@
                     <li class="list-group-item">
                         <h5>Course Index</h5>
                     </li>
-                    <a href="{{ url('/') }}/user/course-details/{{$course->id}}" class="list-group-item list-group-item-action {{ Request::is('user/course-details/'.$course->id) ? 'active' : '' }}">
+                    {{-- <a href="{{ url('/') }}/user/course-details/{{$course->id}}" class="list-group-item list-group-item-action {{ Request::is('user/course-details/'.$course->id) ? 'active' : '' }}">
                         <i class="fa fa-book" aria-hidden="true"></i>
                         Course Overview
-                    </a>
+                    </a> --}}
                     <div class="accordion" id="accordionExample">
                     @foreach ($sections as $section)
                         <div class="accordion-item">
