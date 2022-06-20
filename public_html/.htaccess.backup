@@ -1,0 +1,40 @@
+#============== My Code ===========================
+    # URL Redirect
+    # RewriteBase /
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+    # whitelist: good bots
+
+    # allow major browsers
+    RewriteCond %{HTTP_USER_AGENT} !^.*AOL.*       [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Mozilla.*   [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Opera.*     [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Msie.*      [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Firefox.*   [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Netscape.*  [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Safari.*    [NC]
+
+    # allow major search engines
+    RewriteCond %{HTTP_USER_AGENT} !^.*Whatsapp.*    [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Facebook.*    [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Google.*    [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Slurp.*     [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Yahoo.*     [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*MMCrawler.* [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*msnbot.*    [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*SandCrawl.* [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*MSRBOT.*    [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Teoma.*     [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*Jeeves.*    [NC]
+    RewriteCond %{HTTP_USER_AGENT} !^.*inktomi.*   [NC]
+
+    # allow misc user agents
+    RewriteCond %{HTTP_USER_AGENT} !^.*libwww.*    [NC]
+
+    RewriteRule .* - [F]
+
+    # HTTPS Redirect
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+# ===================================================

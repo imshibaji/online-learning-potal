@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: https://app.larnr.com
+Disallow: https://62.171.177.99

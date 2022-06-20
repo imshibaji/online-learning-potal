@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css?family=Acme|Comfortaa|Pacifico|Shadows+Into+Light|Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Shadows+Into+Light&display=swap');
+
+/*
+font-family: 'Pacifico', cursive;
+font-family: 'Shadows Into Light', cursive;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+font-family: 'Comfortaa', cursive;
+font-family: 'Acme', sans-serif;
+*/
+
+/* 
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Shadows Into Light', cursive; 
+*/
+.logo-img{
+    height: 20px; margin-right:10px;
+}
+
+.author-msg{
+    font-size: large;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.sign{
+    font-size: x-large;
+    font-family: 'Shadows Into Light', cursive; 
+}
+
+:root{
+    /* Global Variable Declaration */
+    --base-color: rgb(8, 140, 216);
+}
+
+@media(max-width: 768px){
+    .hover-nav {
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+.hover-nav:hover{
+    animation: navhover 1s forwards;
+}
+
+@keyframes navhover{
+    to {
+        background-color: #eee;
+        color: black;
+        border-radius: 2px;
+        box-shadow: 0px 0px 8px #888888;
+    }
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: var(--base-color);
+}
+
+.bg-mycolor{
+    background-color: var(--base-color);
+}
+.img-thumbnail-icon {
+    background-color: aliceblue;
+    padding: 2px;
+    border-radius: 50%;
+    width: 42px;
+}
+
+.contents{
+    padding-top: 60px;
+}
+
+.banner-back{
+    background: url('../imgs/tech-back.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.intro{
+    position: relative;
+    padding: 0px;
+    margin-top: 5vh;
+}
+
+.intro .text{
+    padding: 8vh;
+    color: white;
+    background: black;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+
+.intro .text h1{
+    color: var(--base-color);
+}
+.image{
+    align-items: flex-end;
+    display: flex;
+}
+
+.goal{
+    background-color: var(--base-color);
+    color: white;
+    padding: 20px;
+}
+
+.img-thumbnail{
+    border-radius: 50%;
+    margin-top: 5vh;
+}
+
+.services{
+    /* background-color: rgb(212, 212, 212); */
+    background: url('../imgs/backcode.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.service{
+    background-color: white;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    padding: 15px;
+}
+.service .icon{
+    text-align: center;
+}
+.services h1{
+    color: white;
+}
+.service h3{
+    text-align: center;
+}
+
+.fa-xl{
+    font-size: 80px;
+}
+
+.social{
+    padding: 3vh;
+    background-color: azure;
+    border-bottom: 2px solid var(--base-color);
+}
+.social h1 {
+    color: var(--base-color);
+    text-align: center;
+}
+.social-content{
+    padding: 2vh;
+}
+.social-content .btn-group{
+    padding: 5vh 0vh;
+}
+
+.testimonials{
+    padding: 3vh;
+}
+
+.testimonials h1{
+    color: var(--base-color);
+}
+.testimonials .button{
+    padding: 3vh;
+}
+.testimonials h4{
+    font-family: 'Pacifico', cursive;
+}
+.testimonials p{
+    font-family: 'Comfortaa', cursive;
+}
+.testimonials .card:hover{
+    -webkit-animation: dropshadow 1.0s forwards;
+    /* for less modern browsers */
+    animation: dropshadow .5s forwards;
+}
+@keyframes dropshadow {
+    from {
+        -moz-box-shadow: 0 0 0px #888;
+        -webkit-box-shadow: 0 0 0px#888;
+        box-shadow: 0px 0px 0px #888888;
+    }
+
+    to {
+        -moz-box-shadow: 0 0 20px #888;
+        -webkit-box-shadow: 0 0 20px#888;
+        box-shadow: 0px 0px 20px #888888;
+    }
+}
+
+.footer{
+    background-color: #eee;
+    padding: 30px;
+}
+.card{
+    border-radius: 0px;
+    /* text-align: center; */
+}
+.copyright{
+    background-color: var(--base-color);
+    padding: 10px;
+    color: white;
+}
+
+.sticky-btn{
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    z-index: 100;
+}
+
+
+/* Page Section */
+.page-name{
+    font-family: 'Comfortaa', cursive;
+    color: var(--base-color);
+    background: url(../imgs/technology-background.png);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+@media (min-width: 768px) {
+    .page-name {
+        padding-bottom: 0px;
+    }
+}
+@media (min-width: 992px) {
+    .page-name {
+        height: 200px;
+        padding-bottom: 0px;
+    }
+}
+.page-name h1{
+    padding-top: 60px;
+}
+.page-name img{
+    height: 300px;
+}
+
+.page-contents{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.block{
+    border: 1px solid rgb(8, 140, 216);
+    padding: 5px 15px;
+    margin: 5px;
+    position: relative;
+}
+.block h2, .block h3{
+   font-family: 'Acme', sans-serif;
+   color: rgb(8, 140, 216);
+}
+
+.line-height{
+    padding: 10px;
+}
+
+.box {
+    position: relative;
+    border: 1px solid #BBB;
+    background: #EEE;
+}
+
+.ribbon-right {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: right;
+}
+
+.ribbon-right span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 100px;
+    display: block;
+    background: #79A70A;
+    background: linear-gradient(#2281C9 0%, #3F73A7 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 19px;
+    right: -21px;
+}
+
+.ribbon-right span::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid #3F73A7;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #3F73A7;
+}
+
+.ribbon-right span::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #3F73A7;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #3F73A7;
+}
+
+.ribbon-left {
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: right;
+}
+
+.ribbon-left span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    width: 100px;
+    display: block;
+    background: #79A70A;
+    background: linear-gradient(#2281C9 0%, #3F73A7 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 19px;
+    left: -21px;
+}
+
+.ribbon-left span::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid #3F73A7;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #3F73A7;
+}
+
+.ribbon-left span::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #3F73A7;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #3F73A7;
+}
+
+.timmer{
+    background-color: #222;
+    color: #eee;
+    padding: 20px;
+    text-align: center;
+    /* font-family: 'Yanone Kaffeesatz', sans-serif; */
+    font-size: 30px;
+}
+.top-line{
+    border-top: var(--base-color) solid 2px;
+}
+.bottom-line {
+    border-bottom: var(--base-color) solid 2px;
+}
+
+.little{
+    font-size: small;
+}
+
+.can-img{
+    border: #2281C9 solid 1px;
+    padding: 5px;
+}
+.can-img img{
+    width: 100%;
+    height: 100% !important;
+}
+
+.page-height{
+    min-height: 660px;
+}
+
+.err-divider{
+    background-color: #3F73A7;
+}
+
+.img-thumbnail-icon{
+    height: 32px;
+    width: 32px;
+}
